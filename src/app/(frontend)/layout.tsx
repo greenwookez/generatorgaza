@@ -1,13 +1,18 @@
 import React from 'react'
-import { Inter } from 'next/font/google'
-import { Header } from '@/app/(frontend)/_components/Header'
+import { Manrope } from 'next/font/google'
+import { Header } from '@/app/(frontend)/_components/Header/Header'
 
 import './styles.css'
+import { Footer } from './_components/Footer'
+import { Feedback } from './_components/Feedback'
 
-const inter = Inter({
+const font = Manrope({
   subsets: ['latin'],
   display: 'swap',
 })
+
+// TODO: Обсудить Sheet вместо лайбокса (dialog)
+// TODO: Проверить все ссылки (искать на href)
 
 // TODO: Уточнить информацию
 export const metadata = {
@@ -30,14 +35,23 @@ export const metadata = {
   },
 }
 
+export const ContainerClass = 'flex justify-center px-20 max-lg:px-10 max-sm:px-6'
+export const InsideContainerClass = 'max-w-335 w-full'
+
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
 
   return (
-    <html lang="en" className={inter.className}>
+    <html lang="en" className={font.className}>
       <body>
         <Header />
-        <main>{children}</main>
+        <main className={ContainerClass}>
+          <section className={InsideContainerClass}>
+            {children}
+            <Feedback />
+          </section>
+        </main>
+        <Footer />
       </body>
     </html>
   )

@@ -17,6 +17,9 @@ const nextConfig = {
 
     return webpackConfig
   },
+  images: {
+    remotePatterns: [new URL('https://placehold.co/**')],
+  },
 }
 
 export default withPayload(nextConfig, { devBundleServerPackages: false })
