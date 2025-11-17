@@ -1,4 +1,13 @@
-import { Book, Menu, Sunset, Trees, Zap, Search, PhoneCall, ChevronDown } from 'lucide-react'
+import {
+  Book,
+  Menu,
+  Search,
+  PhoneCall,
+  ChevronDown,
+  Cylinder,
+  Factory,
+  Container,
+} from 'lucide-react'
 
 import {
   Accordion,
@@ -31,63 +40,32 @@ type MenuItem = {
 }
 
 const menu = [
-  { title: 'Главная', url: '#' },
+  { title: 'Главная', url: '/' },
   {
     title: 'Каталог',
-    url: '#',
     items: [
       {
-        title: 'Блог',
-        description: 'Последние новости отрасли, обновления и информация',
+        title: 'Вся продукция',
+        description: 'Полный ассортимент товаров и оборудования для заказа',
         icon: <Book className="size-5 shrink-0" />,
+        url: '/catalog',
+      },
+      {
+        title: 'Технические газы',
+        description: 'Азот, ацетилен, кислород и другие газы в баллонах',
+        icon: <Cylinder className="size-5 shrink-0" />,
+        url: '/catalog/industrial-gases',
+      },
+      {
+        title: 'Воздухоразделительные установки',
+        description: 'Оборудование для производства азота и кислорода',
+        icon: <Factory className="size-5 shrink-0" />,
         url: '#',
       },
       {
-        title: 'Компания',
-        description: 'Наша миссия — внедрять инновации и расширять возможности мира',
-        icon: <Trees className="size-5 shrink-0" />,
-        url: '#',
-      },
-      {
-        title: 'Карьера',
-        description: 'Просмотрите вакансии и узнайте о нашей рабочей среде',
-        icon: <Sunset className="size-5 shrink-0" />,
-        url: '#',
-      },
-      {
-        title: 'Поддержка',
-        description: 'Свяжитесь с нашей службой поддержки или посетите наши форумы сообщества',
-        icon: <Zap className="size-5 shrink-0" />,
-        url: '#',
-      },
-    ],
-  },
-  {
-    title: 'Услуги',
-    url: '#',
-    items: [
-      {
-        title: 'Центр помощи',
-        description: 'Получите все необходимые ответы прямо здесь',
-        icon: <Zap className="size-5 shrink-0" />,
-        url: '#',
-      },
-      {
-        title: 'Связаться с нами',
-        description: 'Мы готовы помочь вам с любыми вопросами',
-        icon: <Sunset className="size-5 shrink-0" />,
-        url: '#',
-      },
-      {
-        title: 'Статус',
-        description: 'Проверьте текущий статус наших сервисов и API',
-        icon: <Trees className="size-5 shrink-0" />,
-        url: '#',
-      },
-      {
-        title: 'Условия использования',
-        description: 'Наши условия и положения использования сервисов',
-        icon: <Book className="size-5 shrink-0" />,
+        title: 'Газовые моноблоки',
+        description: 'Готовые решения для наполнения, перевозки и хранения газов',
+        icon: <Container className="size-5 shrink-0" />,
         url: '#',
       },
     ],

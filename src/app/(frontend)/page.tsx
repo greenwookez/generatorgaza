@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Logo from '@/assets/logo.svg'
 import NitrogenGeneratorImage from '@/assets/images/nitrogen-generator.png'
-import { CatalogueItem } from '@/components/elements/CatalogueItem'
+import { CatalogItem } from '@/components/elements/CatalogItem'
 import { LinkWithIcon } from '@/components/elements/LinkWithIcon'
 import { Separator } from '@/components/elements/Separator'
 import { Button } from '@/components/ui/button'
@@ -20,7 +20,7 @@ export default async function HomePage() {
   return (
     <div className="flex flex-col gap-y-20 pt-5 pb-20 items-center w-full max-lg:pb-10 max-lg:gap-y-10 max-sm:pb-6 max-sm:gap-y-6">
       <HomePageHero />
-      <HomePageCatalogue />
+      <HomePageCatalog />
       <HomePageAdvantages />
       <HomePageAbout />
       <HomePageExample />
@@ -53,27 +53,27 @@ const HomePageHero = () => {
   )
 }
 
-const HomePageCatalogue = () => (
+const HomePageCatalog = () => (
   <div className="flex flex-col gap-y-10 w-full">
     <div className="flex gap-x-7 align-center">
       <h3 className="text-[2.25rem] font-medium leading-[110%]">Каталог</h3>
       <Button asChild variant="link" size="indent-none">
-        <a href="#">
-          Все оборудование <ArrowRight />
+        <a href="/catalog">
+          Вся продукция <ArrowRight />
         </a>
       </Button>
     </div>
     <div className="grid [grid-template-columns:repeat(auto-fit,minmax(260px,1fr))] gap-6">
-      <CatalogueItem
+      <CatalogItem
         title="Технические газы"
         description="Технические, чистые и сжиженные газы, такие как азот, ацетилен, кислород и другие газы в баллонах"
         image={{
           src: 'https://placehold.co/1200x600.png',
           alt: 'Технические газы',
         }}
-        link={{ href: '#', children: 'Все товары' }}
+        link={{ href: '/catalog/industrial-gases', children: 'Все товары' }}
       />
-      <CatalogueItem
+      <CatalogItem
         title="Воздухоразделительные установки"
         description="Индивидуальный проект установок для производства азота или кислорода"
         image={{
@@ -82,7 +82,7 @@ const HomePageCatalogue = () => (
         }}
         link={{ href: '#', children: 'Все товары' }}
       />
-      <CatalogueItem
+      <CatalogItem
         title="Моноблоки"
         description="Предназначены для наполнения различными газами, перевозки, хранения и использования в производственных целях"
         image={{
@@ -147,8 +147,12 @@ const HomePageAbout = () => (
         </Button>
         <Separator hr={{ className: 'my-7' }} />
         <div className="flex flex-col gap-y-7">
-          <LinkWithIcon icon={Factory} text="Производство и цехи" href="#" />
-          <LinkWithIcon icon={ScrollText} text="Сертификаты" href="#" />
+          <LinkWithIcon icon={Factory} href="#">
+            Производство и цехи
+          </LinkWithIcon>
+          <LinkWithIcon icon={ScrollText} href="#">
+            Сертификаты
+          </LinkWithIcon>
         </div>
       </div>
       <Image

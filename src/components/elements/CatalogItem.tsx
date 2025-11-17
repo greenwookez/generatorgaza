@@ -3,7 +3,7 @@ import { Button } from '../ui/button'
 import { ArrowRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-export type CatalogueItemProps = {
+export type CatalogItemProps = {
   title: string
   description: string
   image: ImageProps
@@ -12,14 +12,14 @@ export type CatalogueItemProps = {
   containerClassName?: string
 }
 
-export const CatalogueItem = ({
+export const CatalogItem = ({
   title,
   description,
   image,
   link,
   horizontal,
   containerClassName,
-}: CatalogueItemProps) => {
+}: CatalogItemProps) => {
   const { className: imageClassName, ...imageProps } = image
   const { children: linkChildren, ...linkProps } = link
 

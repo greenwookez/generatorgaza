@@ -3,10 +3,9 @@ import { LucideIcon, ArrowUpRight } from 'lucide-react'
 
 export type LinkWithIconProps = React.ComponentProps<'a'> & {
   icon?: LucideIcon
-  text: string
 }
 
-export const LinkWithIcon = ({ icon: Icon, className, text, ...rest }: LinkWithIconProps) => {
+export const LinkWithIcon = ({ icon: Icon, className, children, ...rest }: LinkWithIconProps) => {
   return (
     <a className={cn('flex gap-x-2 items-center group', className)} {...rest}>
       {Icon && (
@@ -15,7 +14,7 @@ export const LinkWithIcon = ({ icon: Icon, className, text, ...rest }: LinkWithI
         </div>
       )}
       <span className="text-[1.125rem] font-medium leading-[1.5rem] ml-2 group-hover:underline">
-        {text}
+        {children}
       </span>
       <ArrowUpRight className="size-5" />
     </a>
