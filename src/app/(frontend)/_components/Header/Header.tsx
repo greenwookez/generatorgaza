@@ -33,7 +33,7 @@ import { ConnectPopover } from './ConnectPopover'
 
 type MenuItem = {
   title: string
-  url: string
+  url?: string
   description?: string
   icon?: React.ReactNode
   items?: MenuItem[]
@@ -72,7 +72,7 @@ const menu = [
   },
   {
     title: 'Доставка и оплата',
-    url: '#',
+    url: '/shipping-and-payment',
   },
   {
     title: 'Контакты',
@@ -132,15 +132,6 @@ export const Header = () => {
                   <Accordion type="single" collapsible className="flex w-full flex-col gap-4">
                     {menu.map((item) => renderMobileMenuItem(item))}
                   </Accordion>
-
-                  <div className="flex flex-col gap-3">
-                    <Button asChild variant="outline">
-                      {/* <a href={auth.login.url}>{auth.login.title}</a> */}
-                    </Button>
-                    <Button asChild>
-                      {/* <a href={auth.signup.url}>{auth.signup.title}</a> */}
-                    </Button>
-                  </div>
                 </div>
               </SheetContent>
             </Sheet>

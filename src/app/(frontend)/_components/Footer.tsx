@@ -19,7 +19,7 @@ const menu: MenuCategory[] = [
     title: 'Компания',
     links: [
       { label: 'О предприятии', href: '#' },
-      { label: 'Доставка и оплата', href: '#' },
+      { label: 'Доставка и оплата', href: '/shipping-and-payment' },
       { label: 'Контакты', href: '#' },
       { label: 'Отзывы', href: '#' },
       { label: 'Новости', href: '#' },

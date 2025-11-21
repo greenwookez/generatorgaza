@@ -12,8 +12,8 @@ export const PopularLinks = () => {
       {
         icon: Route,
         title: 'Доставка и оплата',
-        href: '#',
-        hideRule: false,
+        href: '/shipping-and-payment',
+        hideRule: pathname.includes('shipping-and-payment'),
       },
       {
         icon: Cylinder,

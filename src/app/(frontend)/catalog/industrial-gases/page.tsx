@@ -18,12 +18,12 @@ export default async function IndustrialGasesPage() {
       </div>
       <div className="flex flex-col gap-y-12">
         <div className="grid [grid-template-columns:repeat(auto-fit,minmax(240px,1fr))] gap-y-8 gap-x-6">
-          {INDUSTRIAL_GASES.map(({ title, image }) => (
+          {INDUSTRIAL_GASES.map((data, idx) => (
             <ProductCard
-              key={title}
-              title={title}
-              image={{ src: image, alt: title }}
-              link={{ href: '#', children: 'Подробнее' }}
+              key={idx}
+              title={data.title}
+              image={{ src: data.image, alt: data.title }}
+              link={{ href: `/catalog/industrial-gases/${data.uri}`, children: 'Подробнее' }}
             />
           ))}
         </div>

@@ -21,7 +21,9 @@ export const BreadCrumbsTrail = ({ items }: BreadCrumbsTrailProps) => {
   return (
     <BreadcrumbList>
       <BreadcrumbItem>
-        <BreadcrumbLink href="/">Главная</BreadcrumbLink>
+        <BreadcrumbLink className="text-[1rem]" href="/">
+          Главная
+        </BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbSeparator />
       {items.map((item, idx) => {
@@ -29,7 +31,9 @@ export const BreadCrumbsTrail = ({ items }: BreadCrumbsTrailProps) => {
           return (
             <React.Fragment key={idx}>
               <BreadcrumbItem>
-                <BreadcrumbLink href={item.href}>{item.title}</BreadcrumbLink>
+                <BreadcrumbLink className="text-[1rem]" href={item.href}>
+                  {item.title}
+                </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
             </React.Fragment>
@@ -38,7 +42,7 @@ export const BreadCrumbsTrail = ({ items }: BreadCrumbsTrailProps) => {
 
         return (
           <BreadcrumbItem key={idx}>
-            <BreadcrumbPage>{item.title}</BreadcrumbPage>
+            <BreadcrumbPage className="text-[1rem]">{item.title}</BreadcrumbPage>
           </BreadcrumbItem>
         )
       })}
