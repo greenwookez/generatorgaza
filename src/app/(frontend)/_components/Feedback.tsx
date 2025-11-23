@@ -1,6 +1,7 @@
 import { InputWithLabel } from '@/components/elements/InputWithLabel'
 import { TextareaWithLabel } from '@/components/elements/TextareaWithLabel'
 import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 
 // FIXME: Переписать компоненты формы на shadcn field (новый компонент)
 export const Feedback = () => {
@@ -40,9 +41,9 @@ export const Feedback = () => {
         <div className="flex flex-col gap-y-2">
           <div className="text-[0.75rem] font-medium leading-5 text-muted-foreground">
             Нажимая на кнопку, я соглашаюсь с{' '}
-            <a href="#" className="underline">
+            <Link href="#" className="underline">
               Политикой обработки персональных данных
-            </a>
+            </Link>
           </div>
           <Button type="submit">Отправить</Button>
         </div>

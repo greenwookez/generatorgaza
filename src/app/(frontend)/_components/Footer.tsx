@@ -4,6 +4,7 @@ import Logo from '@/assets/logo.svg'
 import { TextWithLabel } from '@/components/elements/TextWithLabel'
 import { ContainerClass, InsideContainerClass } from '../layout'
 import { Separator } from '@/components/elements/Separator'
+import Link from 'next/link'
 
 export type FooterProps = {
   className?: string
@@ -18,27 +19,20 @@ const menu: MenuCategory[] = [
   {
     title: 'Компания',
     links: [
-      { label: 'О предприятии', href: '#' },
+      { label: 'О предприятии', href: '/about' },
       { label: 'Доставка и оплата', href: '/shipping-and-payment' },
-      { label: 'Контакты', href: '#' },
-      { label: 'Отзывы', href: '#' },
-      { label: 'Новости', href: '#' },
+      { label: 'Контакты', href: '/contact-us' },
+      { label: 'Производство и цехи', href: '/facilities' },
+      { label: 'Сертификаты', href: '/certificates' },
     ],
   },
   {
     title: 'Каталог',
     links: [
-      { label: 'Технические газы', href: '#' },
+      { label: 'Технические газы', href: '/catalog/industrial-gases' },
       { label: 'Воздухоразделительные установки', href: '#' },
       { label: 'Моноблоки', href: '#' },
       { label: 'Оборудование для сварки', href: '#' },
-    ],
-  },
-  {
-    title: 'Услуги',
-    links: [
-      { label: 'Аренда', href: '#' },
-      { label: 'Освидетельствование балонов', href: '#' },
     ],
   },
 ]
@@ -76,13 +70,13 @@ export const Footer = ({ className }: FooterProps) => {
               <div key={key} className="flex flex-col gap-y-4 flex-1 min-w-[200px]">
                 <span className="font-semibold leading-[140%]">{category.title}</span>
                 {category.links.map((link, key) => (
-                  <a
+                  <Link
                     key={key}
                     href={link.href}
                     className="font-medium leading-[140%] text-muted-foreground hover:underline"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 ))}
               </div>
             ))}
@@ -91,9 +85,9 @@ export const Footer = ({ className }: FooterProps) => {
         <Separator />
         <div className="flex justify-between text-muted-foreground text-[0.875rem] font-medium">
           <span>© 2000—{new Date().getFullYear()} АО «ОТЗ» Все права защищены.</span>
-          <a href="#" className="underline">
+          <Link href="#" className="underline">
             Политика обработки персональных данных
-          </a>
+          </Link>
         </div>
       </div>
     </footer>

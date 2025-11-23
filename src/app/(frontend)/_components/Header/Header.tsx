@@ -30,6 +30,7 @@ import Logo from '@/assets/logo.svg'
 import { cn } from '@/lib/utils'
 import { ContainerClass, InsideContainerClass } from '../../layout'
 import { ConnectPopover } from './ConnectPopover'
+import Link from 'next/link'
 
 type MenuItem = {
   title: string
@@ -76,7 +77,7 @@ const menu = [
   },
   {
     title: 'Контакты',
-    url: '#',
+    url: '/contact-us',
   },
 ]
 
@@ -187,17 +188,17 @@ const renderMobileMenuItem = (item: MenuItem) => {
   }
 
   return (
-    <a key={item.title} href={item.url} className="text-md font-semibold">
+    <Link key={item.title} href={item.url ?? '#'} className="text-md font-semibold">
       {item.title}
-    </a>
+    </Link>
   )
 }
 
 const SubMenuLink = ({ item }: { item: MenuItem }) => {
   return (
-    <a
+    <Link
       className="hover:bg-muted hover:text-accent-foreground flex min-w-80 select-none flex-row gap-4 rounded-md p-3 leading-none no-underline outline-none transition-colors"
-      href={item.url}
+      href={item.url ?? '#'}
     >
       <div className="text-foreground">{item.icon}</div>
       <div>
@@ -206,6 +207,6 @@ const SubMenuLink = ({ item }: { item: MenuItem }) => {
           <p className="text-muted-foreground text-sm leading-snug">{item.description}</p>
         )}
       </div>
-    </a>
+    </Link>
   )
 }

@@ -1,10 +1,11 @@
 import { cn } from '@/lib/utils'
+import Link from 'next/link'
 
 type TextWithLabelProps = {
   label: React.ReactNode
   text: React.ReactNode
   containerClassName?: string
-  a?: React.ComponentProps<'a'>
+  a?: React.ComponentProps<typeof Link>
   span?: React.ComponentProps<'span'>
 }
 
@@ -13,7 +14,7 @@ export const TextWithLabel = ({ label, text, containerClassName, a, span }: Text
     if (a) {
       const { className, ...props } = a
       return (
-        <a
+        <Link
           {...props}
           className={cn(
             'text-[1.25rem] font-medium text-secondary-foreground hover:underline',
@@ -21,7 +22,7 @@ export const TextWithLabel = ({ label, text, containerClassName, a, span }: Text
           )}
         >
           {text}
-        </a>
+        </Link>
       )
     }
 

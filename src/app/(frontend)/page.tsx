@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Image from 'next/image'
 import Logo from '@/assets/logo.svg'
 import NitrogenGeneratorImage from '@/assets/images/nitrogen-generator.png'
@@ -58,9 +59,9 @@ const HomePageCatalog = () => (
     <div className="flex gap-x-7 align-center">
       <h3 className="text-[2.25rem] font-medium leading-[110%]">Каталог</h3>
       <Button asChild variant="link" size="indent-none">
-        <a href="/catalog">
+        <Link href="/catalog">
           Вся продукция <ArrowRight />
-        </a>
+        </Link>
       </Button>
     </div>
     <div className="grid [grid-template-columns:repeat(auto-fit,minmax(260px,1fr))] gap-6">
@@ -141,16 +142,16 @@ const HomePageAbout = () => (
           растворенного ацетилена.
         </p>
         <Button asChild variant="link" size="indent-none">
-          <a href="#">
+          <Link href="/about">
             Подробнее <ArrowRight />
-          </a>
+          </Link>
         </Button>
         <Separator hr={{ className: 'my-7' }} />
         <div className="flex flex-col gap-y-7">
-          <LinkWithIcon icon={Factory} href="#">
+          <LinkWithIcon icon={Factory} href="/facilities">
             Производство и цехи
           </LinkWithIcon>
-          <LinkWithIcon icon={ScrollText} href="#">
+          <LinkWithIcon icon={ScrollText} href="/certificates">
             Сертификаты
           </LinkWithIcon>
         </div>
@@ -188,9 +189,9 @@ const HomePageContacts = () => (
     <div className="flex gap-x-7 align-center">
       <h3 className="text-[2.25rem] font-medium leading-[110%]">Контакты</h3>
       <Button asChild variant="link" size="indent-none">
-        <a href="#">
+        <Link href="#">
           Подробнее <ArrowRight />
-        </a>
+        </Link>
       </Button>
     </div>
     <div className="flex gap-x-10">

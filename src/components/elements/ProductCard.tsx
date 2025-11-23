@@ -2,11 +2,12 @@ import Image, { ImageProps } from 'next/image'
 import { Button } from '../ui/button'
 import { ArrowRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import Link from 'next/link'
 
 export type ProductCardProps = {
   title: string
   image: ImageProps
-  link: React.PropsWithChildren<React.ComponentProps<'a'>>
+  link: React.PropsWithChildren<React.ComponentProps<typeof Link>>
   onRequestClick?: () => void
   containerClassName?: string
 }
@@ -41,10 +42,10 @@ export const ProductCard = ({
           Запросить цену
         </Button>
         <Button variant="outline" asChild>
-          <a {...linkProps}>
+          <Link {...linkProps}>
             {linkChildren}
             <ArrowRight />
-          </a>
+          </Link>
         </Button>
       </div>
     </div>

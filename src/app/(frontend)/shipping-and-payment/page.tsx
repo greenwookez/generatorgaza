@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { BreadCrumbsTrail } from '@/components/elements/BreadCrumbsTrail'
 import { PopularLinks } from '../_components/PopularLinks'
 import { Separator } from '@/components/elements/Separator'
+import Link from 'next/link'
 
 export default async function IndustrialGasPage() {
   return (
@@ -35,13 +36,13 @@ export default async function IndustrialGasPage() {
             <p className="text-[1.25rem] leading-[160%]">
               Доставка по всей России Доставка осуществляется из Москвы, по поводу стоимости
               доставки Вы можете уточнить по телефону в Москве 
-              <a className="hover:underline" type="tel" href="tel:+74991887356">
+              <Link className="hover:underline" type="tel" href="tel:+74991887356">
                 +7 (499) 188-73-56
-              </a>
+              </Link>
                либо в Протвино по телефону 
-              <a className="hover:underline" type="tel" href="tel:+74967755955">
+              <Link className="hover:underline" type="tel" href="tel:+74967755955">
                 +7 (4967) 75-59-55
-              </a>
+              </Link>
             </p>
           </div>
         </div>

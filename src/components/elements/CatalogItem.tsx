@@ -2,13 +2,13 @@ import Image, { ImageProps } from 'next/image'
 import { Button } from '../ui/button'
 import { ArrowRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import Link from 'next/link'
 
 export type CatalogItemProps = {
   title: string
   description: string
   image: ImageProps
-  link: React.PropsWithChildren<React.ComponentProps<'a'>>
-  horizontal?: boolean
+  link: React.PropsWithChildren<React.ComponentProps<typeof Link>>
   containerClassName?: string
 }
 
@@ -17,7 +17,6 @@ export const CatalogItem = ({
   description,
   image,
   link,
-  horizontal,
   containerClassName,
 }: CatalogItemProps) => {
   const { className: imageClassName, ...imageProps } = image
@@ -34,10 +33,10 @@ export const CatalogItem = ({
       </div>
       <div>
         <Button variant="link" size="indent-none" asChild>
-          <a {...linkProps}>
+          <Link {...linkProps}>
             {linkChildren}
             <ArrowRight />
-          </a>
+          </Link>
         </Button>
       </div>
     </div>
