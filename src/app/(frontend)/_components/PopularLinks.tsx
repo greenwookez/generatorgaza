@@ -37,7 +37,7 @@ export const PopularLinks = () => {
   }
 
   return (
-    <div className="flex flex-col gap-y-6">
+    <div className="flex flex-col gap-y-6 max-sm:gap-y-5">
       {getLinks().map((item, idx) => {
         if (!item.hideRule) {
           return (

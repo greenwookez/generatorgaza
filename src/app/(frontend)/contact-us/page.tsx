@@ -38,17 +38,6 @@ export default async function ContactUsPage() {
               ]}
             />
             <Separator />
-            <ContactUsBlockWithMap
-              title="Калуга"
-              telephone="+7 (4842) 55-93-11"
-              addresses={[
-                {
-                  label: 'Адрес',
-                  address: '24801, г. Калуга, ул. Московская, д. 292',
-                },
-              ]}
-            />
-            <Separator />
           </div>
           <div>
             <h2 className="text-[1.5rem] leading-[160%] font-medium mb-3">Контактные телефоны</h2>

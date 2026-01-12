@@ -29,7 +29,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/co
 import Logo from '@/assets/logo.svg'
 import { cn } from '@/lib/utils'
 import { ContainerClass, InsideContainerClass } from '../../layout'
-import { ConnectPopover } from './ConnectPopover'
+import { ConnectBlock, ConnectHoverCard } from './Connect'
 import Link from 'next/link'
 
 type MenuItem = {
@@ -85,48 +85,46 @@ export const Header = () => {
   return (
     <header className={cn(ContainerClass, 'sticky top-0 bg-background py-3 z-10')}>
       <div className={InsideContainerClass}>
-        {/* Desktop Menu */}
-        <nav className="hidden items-center justify-between lg:flex">
+        <nav className="flex items-center justify-between">
           <div className="flex items-center gap-6">
-            {/* Logo */}
-            <Logo aria-label="Логотип АО «Опытно-технологический завод»" />
-            <div className="flex items-center">
-              <NavigationMenu>
+            <LogoLink />
+            <div className="flex items-center max-xl:hidden">
+              <NavigationMenu delayDuration={0}>
                 <NavigationMenuList>{menu.map((item) => renderMenuItem(item))}</NavigationMenuList>
               </NavigationMenu>
             </div>
           </div>
-          <div className="flex gap-x-5">
-            <Button variant="ghost">
-              <Search className="size-5" aria-hidden="true" />
-              Поиск
-            </Button>
-            <ConnectPopover>
+          <div className="flex gap-x-4">
+            <div className="flex gap-x-5 max-sm:gap-x-3">
               <Button variant="ghost">
-                <PhoneCall className="size-5" aria-hidden="true" />
-                Связаться
-                <ChevronDown className="size-5" aria-hidden="true" />
+                <Search className="size-5" aria-hidden="true" />
+                <span className="max-sm:hidden">Поиск</span>
               </Button>
-            </ConnectPopover>
-            <Button>Заказать звонок</Button>
-          </div>
-        </nav>
-
-        {/* Mobile Menu */}
-        <div className="block lg:hidden">
-          <div className="flex items-center justify-between">
-            {/* Logo */}
-            <Logo />
+              <ConnectHoverCard>
+                <Button
+                  variant="ghost"
+                  className="max-sm:hidden [&[data-state=open]_.chevron-down]:rotate-180"
+                >
+                  <PhoneCall className="size-5" aria-hidden="true" />
+                  Связаться
+                  <ChevronDown
+                    className="transition duration-300 chevron-down size-4"
+                    aria-hidden="true"
+                  />
+                </Button>
+              </ConnectHoverCard>
+              <Button>Заказать звонок</Button>
+            </div>
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="outline" size="icon">
+                <Button className="xl:hidden" variant="outline" size="icon">
                   <Menu className="size-4" />
                 </Button>
               </SheetTrigger>
-              <SheetContent className="overflow-y-auto">
-                <SheetHeader>
+              <SheetContent className="overflow-y-auto gap-0">
+                <SheetHeader className="sticky top-0">
                   <SheetTitle>
-                    <Logo />
+                    <LogoLink />
                   </SheetTitle>
                 </SheetHeader>
                 <div className="flex flex-col gap-6 p-4">
@@ -134,10 +132,18 @@ export const Header = () => {
                     {menu.map((item) => renderMobileMenuItem(item))}
                   </Accordion>
                 </div>
+                <div className="p-4">
+                  <Button size="lg" className="w-full">
+                    Заказать звонок
+                  </Button>
+                </div>
+                <div className="p-4">
+                  <ConnectBlock />
+                </div>
               </SheetContent>
             </Sheet>
           </div>
-        </div>
+        </nav>
       </div>
     </header>
   )
@@ -210,3 +216,9 @@ const SubMenuLink = ({ item }: { item: MenuItem }) => {
     </Link>
   )
 }
+
+const LogoLink = () => (
+  <Link href="/">
+    <Logo aria-label="Логотип АО «Опытно-технологический завод»" />
+  </Link>
+)

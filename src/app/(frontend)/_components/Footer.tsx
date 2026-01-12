@@ -20,10 +20,10 @@ const menu: MenuCategory[] = [
     title: 'Компания',
     links: [
       { label: 'О предприятии', href: '/about' },
-      { label: 'Доставка и оплата', href: '/shipping-and-payment' },
-      { label: 'Контакты', href: '/contact-us' },
       { label: 'Производство и цехи', href: '/facilities' },
       { label: 'Сертификаты', href: '/certificates' },
+      { label: 'Доставка и оплата', href: '/shipping-and-payment' },
+      { label: 'Контакты', href: '/contact-us' },
     ],
   },
   {
@@ -32,7 +32,6 @@ const menu: MenuCategory[] = [
       { label: 'Технические газы', href: '/catalog/industrial-gases' },
       { label: 'Воздухоразделительные установки', href: '#' },
       { label: 'Моноблоки', href: '#' },
-      { label: 'Оборудование для сварки', href: '#' },
     ],
   },
 ]
@@ -83,7 +82,7 @@ export const Footer = ({ className }: FooterProps) => {
           </div>
         </div>
         <Separator />
-        <div className="flex justify-between text-muted-foreground text-[0.875rem] font-medium">
+        <div className="flex justify-between text-muted-foreground text-[0.875rem] font-medium gap-y-3 max-sm:flex-col-reverse">
           <span>© 2000—{new Date().getFullYear()} АО «ОТЗ» Все права защищены.</span>
           <Link href="#" className="underline">
             Политика обработки персональных данных

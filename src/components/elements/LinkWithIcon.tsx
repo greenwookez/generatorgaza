@@ -10,14 +10,14 @@ export const LinkWithIcon = ({ icon: Icon, className, children, ...rest }: LinkW
   return (
     <Link className={cn('flex gap-x-2 items-center group', className)} {...rest}>
       {Icon && (
-        <div className="rounded-full shrink-0 size-12 bg-accent flex items-center justify-center">
+        <div className="rounded-full shrink-0 size-12 bg-accent flex items-center justify-center text-secondary-foreground">
           <Icon className="size-6" />
         </div>
       )}
-      <span className="text-[1.125rem] font-medium leading-[1.5rem] ml-2 group-hover:underline">
+      <span className="text-[1.125rem] font-medium leading-[1.5rem] ml-2 group-hover:underline max-sm:text-[1rem] text-secondary-foreground">
         {children}
       </span>
-      <ArrowUpRight className="size-5" />
+      <ArrowUpRight className="size-5 shrink-0 text-secondary-foreground" />
     </Link>
   )
 }

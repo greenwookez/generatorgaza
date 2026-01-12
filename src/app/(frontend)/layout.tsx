@@ -5,6 +5,7 @@ import { Header } from '@/app/(frontend)/_components/Header/Header'
 import './styles.css'
 import { Footer } from './_components/Footer'
 import { Feedback } from './_components/Feedback'
+import { cn } from '@/lib/utils'
 
 const font = Manrope({
   subsets: ['latin'],
@@ -19,7 +20,7 @@ export const metadata = {
   title:
     'Производство генераторов газа, воздухоразделительных установок, газа в баллонах по оптимальным ценам | АО «Опытно-технологический завод»',
   description:
-    'АО «Опытно-технологический завод» осуществляет производство генераторов газа, воздухо-разделительных установок, газа в баллонах по оптимальным ценам. Ждем Ваших звонков по телефонам в Москве, Калуге и Протвино.',
+    'АО «Опытно-технологический завод» осуществляет производство генераторов газа, воздухо-разделительных установок, газа в баллонах по оптимальным ценам. Ждем Ваших звонков по телефонам в Москве и Протвино.',
   keywords: 'АО «Опытно-технологический завод»: общая информация',
   icons: {
     icon: [
@@ -35,14 +36,20 @@ export const metadata = {
   },
 }
 
-export const ContainerClass = 'flex justify-center px-20 max-lg:px-10 max-sm:px-6'
+export const ContainerClass = 'flex justify-center px-20 max-lg:px-10 max-sm:px-4'
 export const InsideContainerClass = 'max-w-335 w-full'
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
 
   return (
-    <html lang="en" className={font.className}>
+    <html
+      lang="en"
+      className={cn(
+        font.className,
+        'max-[380px]:w-[380px] max-[380px]:mx-auto max-[380px]:origin-top max-[380px]:scale-[clamp(0.75,calc(100vw/380),1)]',
+      )}
+    >
       <body>
         <Header />
         <main className={ContainerClass}>

@@ -28,7 +28,9 @@ export const CatalogItem = ({
         <Image {...imageProps} fill alt={title} className={cn('object-cover', imageClassName)} />
       </div>
       <div className="flex flex-col gap-y-1">
-        <div className="text-[1.375rem] leading-[140%] font-semibold">{title}</div>
+        <div className="text-[1.375rem] leading-[140%] font-semibold max-sm:text-[1.25rem]">
+          {title}
+        </div>
         <p className="text-[1rem] leading-[140%] text-[#333]">{description}</p>
       </div>
       <div>

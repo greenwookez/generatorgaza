@@ -17,9 +17,11 @@ import {
 } from 'lucide-react'
 import { TextWithLabel } from '@/components/elements/TextWithLabel'
 
+const h3ClassName = 'text-[2.25rem] font-medium leading-[110%] max-md:text-[1.5rem]'
+
 export default async function HomePage() {
   return (
-    <div className="flex flex-col gap-y-20 pt-5 pb-20 items-center w-full max-lg:pb-10 max-lg:gap-y-10 max-sm:pb-6 max-sm:gap-y-6">
+    <div className="flex flex-col gap-y-20 pt-5 pb-20 items-center w-full max-sm:gap-y-16">
       <HomePageHero />
       <HomePageCatalog />
       <HomePageAdvantages />
@@ -34,21 +36,24 @@ const HomePageHero = () => {
   const yearsInBusiness = Math.max(50, Math.floor((new Date().getFullYear() - 1976) / 5) * 5)
 
   return (
-    <div className="py-12 px-7.5 rounded-[20px] border-4 border-accent flex flex-col gap-y-10 w-full">
+    <div className="py-12 px-7.5 rounded-[20px] border-4 border-accent flex flex-col gap-y-10 w-full max-sm:py-9 max-sm:px-4">
       <div className="flex flex-col gap-y-3 items-center">
         <Logo aria-label="Логотип АО «Опытно-технологический завод»" className="w-17.5 h-16.5" />
-        <h1 className="text-[3rem] font-medium leading-[140%] text-center max-md:text-[2rem]">
+        <h1 className="text-[3rem] font-medium leading-[120%] text-center max-xl:text-[2.5rem] max-md:text-[2rem] max-sm:text-[1.625rem]">
           Опытно-
           <wbr />
           технологический завод
         </h1>
-        <h2 className="text-[1.5rem] font-medium leading-[140%] text-muted-foreground">
+        <h2 className="text-[1.5rem] font-medium leading-[140%] text-muted-foreground max-sm:text-[1.125rem]">
+          {' '}
           {yearsInBusiness} лет на рынке!
         </h2>
       </div>
-      <div className="flex gap-x-4 justify-center">
-        <Button variant="outline">Задать вопрос</Button>
-        <Button>Заказать звонок</Button>
+      <div className="flex gap-x-4 gap-y-3 justify-center max-sm:flex-col">
+        <Button size="lg" variant="outline">
+          Задать вопрос
+        </Button>
+        <Button size="lg">Заказать звонок</Button>
       </div>
     </div>
   )
@@ -57,14 +62,14 @@ const HomePageHero = () => {
 const HomePageCatalog = () => (
   <div className="flex flex-col gap-y-10 w-full">
     <div className="flex gap-x-7 align-center">
-      <h3 className="text-[2.25rem] font-medium leading-[110%]">Каталог</h3>
+      <h3 className={h3ClassName}>Каталог</h3>
       <Button asChild variant="link" size="indent-none">
         <Link href="/catalog">
           Вся продукция <ArrowRight />
         </Link>
       </Button>
     </div>
-    <div className="grid [grid-template-columns:repeat(auto-fit,minmax(260px,1fr))] gap-6">
+    <div className="grid [grid-template-columns:repeat(auto-fit,minmax(270px,1fr))] gap-x-9 gap-y-12">
       <CatalogItem
         title="Технические газы"
         description="Технические, чистые и сжиженные газы, такие как азот, ацетилен, кислород и другие газы в баллонах"
@@ -75,17 +80,17 @@ const HomePageCatalog = () => (
         link={{ href: '/catalog/industrial-gases', children: 'Все товары' }}
       />
       <CatalogItem
-        title="Воздухоразделительные установки"
-        description="Индивидуальный проект установок для производства азота или кислорода"
+        title="Установки"
+        description="Индивидуальный проект воздухоразделительных установок для производства азота или кислорода"
         image={{
           src: 'https://placehold.co/1200x600.png',
-          alt: 'Воздухоразделительные установки',
+          alt: 'Установки',
         }}
         link={{ href: '#', children: 'Все товары' }}
       />
       <CatalogItem
         title="Моноблоки"
-        description="Предназначены для наполнения различными газами, перевозки, хранения и использования в производственных целях"
+        description="Предназначены для наполнения различными газами, перевозки, хранения и использования в производственных целях"
         image={{
           src: 'https://placehold.co/1200x600.png',
           alt: 'Моноблоки',
@@ -100,25 +105,29 @@ const HomePageAdvantages = () => (
   <div className="w-full">
     <Separator />
     <div className="py-12 flex flex-col gap-y-10">
-      <h3 className="text-[2.25rem] font-medium leading-[110%]">Наши преимущества</h3>
-      <div className="grid [grid-template-columns:repeat(auto-fit,minmax(350px,1fr))] gap-x-6 gap-y-4">
+      <h3 className={h3ClassName}>Наши преимущества</h3>
+      <div className="grid [grid-template-columns:repeat(auto-fit,minmax(350px,1fr))] gap-6">
         <div className="flex gap-x-5 items-center w-full">
           <div className="size-16 rounded-full bg-accent flex items-center justify-center shrink-0">
-            <BadgeRussianRuble className="size-8.5" />
+            <BadgeRussianRuble className="size-8.5 max-sm:size-7.5" />
           </div>
-          <span className="text-[1.25rem] font-medium leading-[140%]">Гибкая система скидок</span>
+          <span className="text-[1.25rem] font-medium leading-[140%] max-sm:text-[1.125rem]">
+            Гибкая система скидок
+          </span>
         </div>
         <div className="flex gap-x-5 items-center w-full">
           <div className="size-16 rounded-full bg-accent flex items-center justify-center shrink-0">
-            <Handshake className="size-8.5" />
+            <Handshake className="size-8.5 max-sm:size-7.5" />
           </div>
-          <span className="text-[1.25rem] font-medium leading-[140%]">Индивидуальный подход</span>
+          <span className="text-[1.25rem] font-medium leading-[140%] max-sm:text-[1.125rem]">
+            Индивидуальный подход
+          </span>
         </div>
         <div className="flex gap-x-5 items-center w-full">
           <div className="size-16 rounded-full bg-accent flex items-center justify-center shrink-0">
-            <BriefcaseBusiness className="size-8.5" />
+            <BriefcaseBusiness className="size-8.5 max-sm:size-7.5" />
           </div>
-          <span className="text-[1.25rem] font-medium leading-[140%]">
+          <span className="text-[1.25rem] font-medium leading-[140%] max-sm:text-[1.125rem]">
             Работаем с физическими и юридическими лицами
           </span>
         </div>
@@ -129,11 +138,11 @@ const HomePageAdvantages = () => (
 )
 
 const HomePageAbout = () => (
-  <div className="flex flex-col gap-y-10">
-    <h3 className="text-[2.25rem] font-medium leading-[110%]">О предприятии</h3>
-    <div className="grid [grid-template-columns:repeat(auto-fit,minmax(400px,1fr))] gap-x-10 gap-y-5">
-      <div className="">
-        <p className="text-[1.25rem] leading-[160%] mb-5">
+  <div className="flex flex-col gap-y-10 max-sm:gap-y-7">
+    <h3 className={h3ClassName}>О предприятии</h3>
+    <div className="flex gap-x-10 gap-y-7 max-lg:flex-col">
+      <div className="w-full">
+        <p className="text-[1.25rem] leading-[160%] mb-5 max-sm:text-[1rem]">
           Акционерное общество «Опытно-технологический завод» является правопреемником предприятия
           по производству ацетилена «Моспромтехмонтаж», которое входило в Министерство атомной
           энергии Российской Федерации.
@@ -147,7 +156,7 @@ const HomePageAbout = () => (
           </Link>
         </Button>
         <Separator hr={{ className: 'my-7' }} />
-        <div className="flex flex-col gap-y-7">
+        <div className="flex flex-col gap-y-6 max-sm:gap-y-5">
           <LinkWithIcon icon={Factory} href="/facilities">
             Производство и цехи
           </LinkWithIcon>
@@ -158,7 +167,9 @@ const HomePageAbout = () => (
       </div>
       <Image
         alt="Азотный генератор"
-        className={cn('rounded-[16px] max-h-[500px] object-cover')}
+        className={cn(
+          'w-full min-w-[400px] rounded-[16px] max-h-[500px] object-cover max-lg:min-w-full',
+        )}
         src={NitrogenGeneratorImage}
       />
     </div>
@@ -168,7 +179,7 @@ const HomePageAbout = () => (
 const HomePageExample = () => {
   return (
     <div className="flex flex-col gap-y-10 w-full items-center">
-      <h4 className="text-[1.75rem] font-medium leading-[110%]">
+      <h4 className="text-[1.75rem] font-medium leading-[110%] max-sm:text-[1.5rem]">
         Пример работы адсорбционного генератора кислорода
       </h4>
       <iframe
@@ -187,24 +198,24 @@ const HomePageExample = () => {
 const HomePageContacts = () => (
   <div className="flex flex-col gap-y-10 w-full">
     <div className="flex gap-x-7 align-center">
-      <h3 className="text-[2.25rem] font-medium leading-[110%]">Контакты</h3>
+      <h3 className={h3ClassName}>Контакты</h3>
       <Button asChild variant="link" size="indent-none">
-        <Link href="#">
+        <Link href="/contact-us">
           Подробнее <ArrowRight />
         </Link>
       </Button>
     </div>
-    <div className="flex gap-x-10">
-      <div className="w-full py-4 flex flex-col gap-y-4 justify-between">
+    <div className="flex gap-x-10 gap-y-8 max-xl:flex-col">
+      <div className="w-full py-4 flex flex-col gap-y-4 justify-between max-xl:p-0">
         <div className="flex flex-col gap-y-4">
           <h4 className="text-[1.375rem] font-semibold leading-[140%]">Протвино</h4>
           <TextWithLabel
-            label="Адрес газового производства"
+            label="Адрес производства технических газов"
             text="142280, Московская обл., г. Протвино, ул. Железнодорожная, д. 1"
             span={{ className: 'text-[1.125rem]' }}
           />
           <TextWithLabel
-            label="Адрес производства оборудования"
+            label="Адрес производства установок"
             text="142280, Московская обл., г. Протвино, ул. Индустриальный проезд, д. 4 (проходная №2)"
             span={{ className: 'text-[1.125rem]' }}
           />
@@ -228,8 +239,8 @@ const HomePageContacts = () => (
           />
         </div>
       </div>
-      <div className="w-[1px] bg-border2 shrink-0"></div>
-      <div className="w-full py-4 flex flex-col gap-y-4 justify-between">
+      <div className="w-[1px] bg-border2 shrink-0 max-xl:h-[1px] max-xl:w-full"></div>
+      <div className="w-full py-4 flex flex-col gap-y-4 justify-between max-xl:p-0">
         <div className="flex flex-col gap-y-4">
           <h4 className="text-[1.375rem] font-semibold leading-[140%]">Москва</h4>
           <TextWithLabel
@@ -243,35 +254,6 @@ const HomePageContacts = () => (
             label="Телефон"
             text="+7 (499) 188-73-56"
             a={{ href: 'tel:+74991887356' }}
-          />
-          <TextWithLabel
-            label="Режим работы"
-            text={
-              <>
-                Пн-Пт: 08:00 - 17:00
-                <br />
-                Сб-Вс: Выходные
-              </>
-            }
-            span={{ className: 'text-[1rem] leading-[140%] text-foreground' }}
-          />
-        </div>
-      </div>
-      <div className="w-[1px] bg-border2 shrink-0"></div>
-      <div className="w-full py-4 flex flex-col gap-y-4 justify-between">
-        <div className="flex flex-col gap-y-4">
-          <h4 className="text-[1.375rem] font-semibold leading-[140%]">Калуга</h4>
-          <TextWithLabel
-            label="Адрес"
-            text="24801, г. Калуга, ул. Московская, д. 292"
-            span={{ className: 'text-[1.125rem]' }}
-          />
-        </div>
-        <div className="flex flex-col gap-y-4">
-          <TextWithLabel
-            label="Телефон"
-            text="+7 (4842) 55-93-11"
-            a={{ href: 'tel:+74842559311' }}
           />
           <TextWithLabel
             label="Режим работы"
