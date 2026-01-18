@@ -1,7 +1,6 @@
 import { getPayload } from 'payload'
 import config from '@/payload.config'
 import { BreadCrumbsTrail } from '@/components/elements/BreadCrumbsTrail'
-import { CatalogItem } from '@/components/elements/CatalogItem'
 import { Separator } from '@/components/elements/Separator'
 import { PopularLinks } from '../../_components/PopularLinks'
 import { ProductCard } from '@/components/elements/ProductCard'
@@ -41,16 +40,16 @@ export default async function CatalogCategoryPage({
   return (
     <div className="flex flex-col gap-y-7 pt-7.5 pb-22.5">
       <BreadCrumbsTrail
-        items={[{ title: 'Каталог', href: '/catalog' }, { title: 'Технические газы в баллонах' }]}
+        items={[{ title: 'Каталог', href: '/catalog' }, { title: category.title }]}
       />
       <div className="flex gap-x-5 items-center">
-        <h1 className="text-[1.875rem] font-medium leading-[110%]">Технические газы в баллонах</h1>
+        <h1 className="text-[1.875rem] font-medium leading-[110%]">{category.title}</h1>
         <span className="text-muted-foreground text-[0.875rem] font-medium leading-[100%]">
           {items.totalDocs} товаров
         </span>
       </div>
       <div className="flex flex-col gap-y-12">
-        <div className="grid [grid-template-columns:repeat(auto-fit,minmax(240px,1fr))] gap-y-8 gap-x-6">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-y-8 gap-x-6">
           {items.docs.map((item, idx) => (
             <ProductCard
               key={idx}

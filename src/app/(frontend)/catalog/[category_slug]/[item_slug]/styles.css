@@ -1,0 +1,17 @@
+@reference "../../../styles.css";
+
+.payload-richtext {
+  @apply text-[1rem] leading-[170%];
+}
+
+.payload-richtext a {
+  @apply text-secondary-foreground underline hover:no-underline;
+}
+
+.payload-richtext .lexical-table-container {
+  @apply overflow-x-scroll max-w-[calc(100vw-32px)];
+}
+
+.payload-richtext .lexical-table-container .lexical-table {
+  @apply min-w-[700px];
+}

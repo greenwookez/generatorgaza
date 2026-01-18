@@ -6,7 +6,7 @@ import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 import { ru } from '@payloadcms/translations/languages/ru'
 import { s3Storage } from '@payloadcms/storage-s3'
-import { EXPERIMENTAL_TableFeature } from '@payloadcms/richtext-lexical'
+import { EXPERIMENTAL_TableFeature, LinkFeature } from '@payloadcms/richtext-lexical'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
@@ -25,7 +25,13 @@ export default buildConfig({
   },
   collections: [Users, Media, CatalogCategories, CatalogItems],
   editor: lexicalEditor({
-    features: ({ defaultFeatures }) => [...defaultFeatures, EXPERIMENTAL_TableFeature()],
+    features: ({ defaultFeatures }) => [
+      ...defaultFeatures.filter((f) => f.key !== 'link'),
+      LinkFeature({
+        enabledCollections: [],
+      }),
+      EXPERIMENTAL_TableFeature(),
+    ],
   }),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

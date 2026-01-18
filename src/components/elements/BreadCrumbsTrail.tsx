@@ -19,7 +19,7 @@ export type BreadCrumbsTrailProps = {
 
 export const BreadCrumbsTrail = ({ items }: BreadCrumbsTrailProps) => {
   return (
-    <BreadcrumbList>
+    <BreadcrumbList className="max-sm:hidden">
       <BreadcrumbItem>
         <BreadcrumbLink className="text-[1rem]" href="/">
           Главная

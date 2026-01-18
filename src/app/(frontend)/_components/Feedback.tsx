@@ -6,7 +6,10 @@ import Link from 'next/link'
 // FIXME: Переписать компоненты формы на shadcn field (новый компонент)
 export const Feedback = () => {
   return (
-    <div className="p-10 flex gap-x-20 gap-y-10 bg-accent rounded-[20px] max-lg:flex-col max-sm:py-5 max-sm:px-4 max-sm:gap-y-5">
+    <div
+      id="feedback-form"
+      className="p-10 flex gap-x-20 gap-y-10 bg-accent rounded-[20px] max-lg:flex-col max-sm:py-5 max-sm:px-4 max-sm:gap-y-5"
+    >
       <div className="w-full">
         <div className="mb-3 font-medium text-muted-foreground leading-[110%]">Есть вопросы?</div>
         <h3 className="mb-7 font-medium text-[1.75rem] leading-[110%] max-sm:text-[1.5rem] max-sm:mb-5">
