@@ -148,7 +148,10 @@ export interface User {
  */
 export interface Media {
   id: number;
-  alt: string;
+  /**
+   * Требуется для скринридеров, которые используются людьми с нарушениями зрения. В этом поле следует в двух словах описать, что изображено на картинке. Например: "Мобильная азотная установка".
+   */
+  alt?: string | null;
   prefix?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -169,6 +172,12 @@ export interface Media {
 export interface CatalogCategory {
   id: number;
   title: string;
+  /**
+   * Часть URL страницы категории. Например, industrial-gases
+   */
+  slug: string;
+  image: number | Media;
+  description: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -180,6 +189,10 @@ export interface CatalogItem {
   id: number;
   title: string;
   category: number | CatalogCategory;
+  /**
+   * Часть URL страницы товара. Например, acetylene
+   */
+  slug: string;
   cardImage: number | Media;
   shortDescription: string;
   images?: (number | Media)[] | null;
@@ -351,6 +364,9 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface CatalogCategoriesSelect<T extends boolean = true> {
   title?: T;
+  slug?: T;
+  image?: T;
+  description?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -361,6 +377,7 @@ export interface CatalogCategoriesSelect<T extends boolean = true> {
 export interface CatalogItemsSelect<T extends boolean = true> {
   title?: T;
   category?: T;
+  slug?: T;
   cardImage?: T;
   shortDescription?: T;
   images?: T;

@@ -25,15 +25,17 @@ export const ProductCard = ({
   return (
     <div
       className={cn(
-        'flex flex-col gap-y-4 p-4 rounded-[8px] border border-border2',
+        'flex flex-col gap-y-4 p-4 rounded-[8px] border border-border2 max-w-[250px]',
         containerClassName,
       )}
     >
-      <div className="bg-accent2 rounded-[4px] flex items-center justify-center py-7.5">
+      <div className="bg-accent2 rounded-[4px] flex items-center justify-center grow relative min-h-[300px]">
         <Image
           {...imageProps}
           alt={title}
-          className={cn('object-cover max-h-[108px]', imageClassName)}
+          fill
+          sizes="(max-width: 768px) 300px, 600px"
+          className={cn('object-cover', imageClassName)}
         />
       </div>
       <div className="text-[1.125rem] leading-[130%] font-semibold">{title}</div>

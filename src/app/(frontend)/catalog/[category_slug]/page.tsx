@@ -1,10 +1,43 @@
+import { getPayload } from 'payload'
+import config from '@/payload.config'
 import { BreadCrumbsTrail } from '@/components/elements/BreadCrumbsTrail'
-import { ProductCard } from '@/components/elements/ProductCard'
-import { INDUSTRIAL_GASES } from './_items'
+import { CatalogItem } from '@/components/elements/CatalogItem'
 import { Separator } from '@/components/elements/Separator'
 import { PopularLinks } from '../../_components/PopularLinks'
+import { ProductCard } from '@/components/elements/ProductCard'
+import { notFound } from 'next/navigation'
+import { Media } from '@/payload-types'
 
-export default async function IndustrialGasesPage() {
+export default async function CatalogCategoryPage({
+  params,
+}: {
+  params: Promise<{ category_slug: string }>
+}) {
+  const payload = await getPayload({ config: await config })
+
+  const { category_slug } = await params
+
+  const categories = await payload.find({
+    collection: 'catalog-categories',
+    where: {
+      slug: { equals: category_slug },
+    },
+    limit: 1,
+  })
+
+  const category = categories.docs[0]
+  if (!category) {
+    notFound()
+  }
+
+  const items = await payload.find({
+    collection: 'catalog-items',
+    where: {
+      category: { equals: category.id },
+    },
+    sort: 'createdAt',
+  })
+
   return (
     <div className="flex flex-col gap-y-7 pt-7.5 pb-22.5">
       <BreadCrumbsTrail
@@ -13,17 +46,20 @@ export default async function IndustrialGasesPage() {
       <div className="flex gap-x-5 items-center">
         <h1 className="text-[1.875rem] font-medium leading-[110%]">Технические газы в баллонах</h1>
         <span className="text-muted-foreground text-[0.875rem] font-medium leading-[100%]">
-          {INDUSTRIAL_GASES.length} товаров
+          {items.totalDocs} товаров
         </span>
       </div>
       <div className="flex flex-col gap-y-12">
         <div className="grid [grid-template-columns:repeat(auto-fit,minmax(240px,1fr))] gap-y-8 gap-x-6">
-          {INDUSTRIAL_GASES.map((data, idx) => (
+          {items.docs.map((item, idx) => (
             <ProductCard
               key={idx}
-              title={data.title}
-              image={{ src: data.image, alt: data.title }}
-              link={{ href: `/catalog/industrial-gases/${data.uri}`, children: 'Подробнее' }}
+              title={item.title}
+              image={{
+                src: (item.cardImage as Media)?.url ?? '',
+                alt: (item.cardImage as Media)?.alt ?? item.title,
+              }}
+              link={{ href: `/catalog/${category.slug}/${item.slug}`, children: 'Подробнее' }}
             />
           ))}
         </div>

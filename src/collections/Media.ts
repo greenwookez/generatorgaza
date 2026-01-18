@@ -24,7 +24,16 @@ export const Media: CollectionConfig = {
     {
       name: 'alt',
       type: 'text',
-      required: true,
+      label: {
+        ru: 'Альтернативный текст для изображения',
+      },
+      admin: {
+        condition: (data) => {
+          return data?.file?.type?.startsWith('image/') || false
+        },
+        description:
+          'Требуется для скринридеров, которые используются людьми с нарушениями зрения. В этом поле следует в двух словах описать, что изображено на картинке. Например: "Мобильная азотная установка".',
+      },
     },
   ],
   upload: {

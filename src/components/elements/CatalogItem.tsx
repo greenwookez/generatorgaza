@@ -25,7 +25,13 @@ export const CatalogItem = ({
   return (
     <div className={cn('flex flex-col gap-y-4', containerClassName)}>
       <div className="overflow-hidden rounded-[8px] bg-[#ECECEC] flex justify-center relative max-h-[200px] shrink-0 grow-0 basis-[200px]">
-        <Image {...imageProps} fill alt={title} className={cn('object-cover', imageClassName)} />
+        <Image
+          {...imageProps}
+          fill
+          sizes="(max-width: 768px) 300px, 600px"
+          alt={title}
+          className={cn('object-cover', imageClassName)}
+        />
       </div>
       <div className="flex flex-col gap-y-1">
         <div className="text-[1.375rem] leading-[140%] font-semibold max-sm:text-[1.25rem]">

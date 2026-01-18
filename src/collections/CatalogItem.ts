@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload'
 import { UserRoleAdmin, UserRoleDefault } from './Users'
+import { validateSlug } from '@/lib/validateSlug'
 
 export const CatalogItems: CollectionConfig = {
   slug: 'catalog-items',
@@ -45,6 +46,20 @@ export const CatalogItems: CollectionConfig = {
               label: {
                 ru: 'Категория',
               },
+            },
+            {
+              name: 'slug',
+              type: 'text',
+              required: true,
+              unique: true,
+              index: true,
+              label: {
+                ru: 'Идентификатор (slug)',
+              },
+              admin: {
+                description: 'Часть URL страницы товара. Например, acetylene',
+              },
+              validate: validateSlug,
             },
             {
               type: 'upload',
