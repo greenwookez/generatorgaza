@@ -69,6 +69,8 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    'catalog-categories': CatalogCategory;
+    'catalog-items': CatalogItem;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -77,6 +79,8 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    'catalog-categories': CatalogCategoriesSelect<false> | CatalogCategoriesSelect<true>;
+    'catalog-items': CatalogItemsSelect<false> | CatalogItemsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -119,6 +123,7 @@ export interface UserAuthOperations {
  */
 export interface User {
   id: number;
+  role: 'default' | 'admin';
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -144,6 +149,7 @@ export interface User {
 export interface Media {
   id: number;
   alt: string;
+  prefix?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -155,6 +161,82 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "catalog-categories".
+ */
+export interface CatalogCategory {
+  id: number;
+  title: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "catalog-items".
+ */
+export interface CatalogItem {
+  id: number;
+  title: string;
+  category: number | CatalogCategory;
+  cardImage: number | Media;
+  shortDescription: string;
+  images?: (number | Media)[] | null;
+  fullDescription?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  advantages?: string | null;
+  documents?: (number | Media)[] | null;
+  services?: string | null;
+  specification_key_value?:
+    | {
+        key?: string | null;
+        value?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  specification?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Введите каждую вариацию с новой строки
+   */
+  variations?: string | null;
+  /**
+   * Предназначается для раздела "Технические газы". Введите каждый объем с новой строки
+   */
+  volumes?: string | null;
+  /**
+   * Введите каждую характеристику с новой строки
+   */
+  shortSpecification?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -170,6 +252,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'catalog-categories';
+        value: number | CatalogCategory;
+      } | null)
+    | ({
+        relationTo: 'catalog-items';
+        value: number | CatalogItem;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -218,6 +308,7 @@ export interface PayloadMigration {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+  role?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -241,6 +332,7 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  prefix?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -252,6 +344,43 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "catalog-categories_select".
+ */
+export interface CatalogCategoriesSelect<T extends boolean = true> {
+  title?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "catalog-items_select".
+ */
+export interface CatalogItemsSelect<T extends boolean = true> {
+  title?: T;
+  category?: T;
+  cardImage?: T;
+  shortDescription?: T;
+  images?: T;
+  fullDescription?: T;
+  advantages?: T;
+  documents?: T;
+  services?: T;
+  specification_key_value?:
+    | T
+    | {
+        key?: T;
+        value?: T;
+        id?: T;
+      };
+  specification?: T;
+  variations?: T;
+  volumes?: T;
+  shortSpecification?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
