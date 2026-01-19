@@ -3,6 +3,8 @@ import config from '@/payload.config'
 import { BreadCrumbsTrail } from '@/components/elements/BreadCrumbsTrail'
 import { CatalogItem } from '@/components/elements/CatalogItem'
 import { Media } from '@/payload-types'
+import { cn } from '@/lib/utils'
+import { ContentClass } from '../layout'
 
 export default async function CatalogPage() {
   const payload = await getPayload({ config })
@@ -20,7 +22,7 @@ export default async function CatalogPage() {
   })
 
   return (
-    <div className="flex flex-col gap-y-7 pt-7.5 pb-22.5">
+    <div className={cn(ContentClass, 'gap-y-7')}>
       <BreadCrumbsTrail items={[{ title: 'Каталог' }]} />
       <div className="flex gap-x-5 items-center">
         <h1 className="text-[1.875rem] font-medium leading-[110%]">Каталог</h1>

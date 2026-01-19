@@ -2,10 +2,12 @@ import Image from 'next/image'
 import { BreadCrumbsTrail } from '@/components/elements/BreadCrumbsTrail'
 import { PopularLinks } from '../_components/PopularLinks'
 import { Separator } from '@/components/elements/Separator'
+import { cn } from '@/lib/utils'
+import { ContentClass } from '../layout'
 
 export default async function FacilitiesPage() {
   return (
-    <div className="flex flex-col gap-y-12 pt-7.5 pb-22.5">
+    <div className={cn(ContentClass)}>
       <div className="flex flex-col gap-y-7">
         <BreadCrumbsTrail items={[{ title: 'Сертификаты' }]} />
         <h1 className="text-[1.875rem] font-medium leading-[110%]">Сертификаты</h1>

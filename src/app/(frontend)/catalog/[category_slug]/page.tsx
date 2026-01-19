@@ -6,6 +6,8 @@ import { PopularLinks } from '../../_components/PopularLinks'
 import { ProductCard } from '@/components/elements/ProductCard'
 import { notFound } from 'next/navigation'
 import { Media } from '@/payload-types'
+import { cn } from '@/lib/utils'
+import { ContentClass } from '../../layout'
 
 export default async function CatalogCategoryPage({
   params,
@@ -49,7 +51,7 @@ export default async function CatalogCategoryPage({
   })
 
   return (
-    <div className="flex flex-col gap-y-7 pt-7.5 pb-22.5">
+    <div className={cn(ContentClass, 'gap-y-7')}>
       <BreadCrumbsTrail
         items={[{ title: 'Каталог', href: '/catalog' }, { title: category.title }]}
       />

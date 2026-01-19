@@ -19,6 +19,8 @@ import { ImagesCarousel } from './_components/ImagesCarousel'
 import { AskQuestionButton } from './_components/AskQuestionButton'
 import { MakeInquiryButton } from './_components/MakeInquiryButton'
 import './styles.css'
+import { cn } from '@/lib/utils'
+import { ContentClass } from '@/app/(frontend)/layout'
 
 type CatalogItemForThisPage = {
   id: number
@@ -79,7 +81,7 @@ export default async function CatalogItemPage({
   }
 
   return (
-    <div className="flex flex-col gap-y-12 pt-7.5 pb-22.5">
+    <div className={cn(ContentClass)}>
       <div className="flex flex-col gap-y-7">
         <BreadCrumbsTrail
           items={[
@@ -239,13 +241,25 @@ const CatalogItemPageContentAccordion = ({ sections }: { sections: AccordionSect
 )
 
 const CatalogItemPageSidebar = ({ item }: { item: CatalogItemForThisPage }) => (
-  <div className="max-lg:hidden w-full max-w-[440px] sticky top-[94px] shadow-[0px_5px_20px_0px_rgba(0,31,84,0.08)] ">
+  <div
+    className={cn(
+      'max-lg:hidden w-full max-w-[440px] sticky top-[94px] shadow-[0px_5px_20px_0px_rgba(0,31,84,0.08)]',
+      CatalogItemPageSidebarBodyRoundedClass,
+    )}
+  >
     <CatalogItemPageSidebarBody item={item} />
   </div>
 )
 
+const CatalogItemPageSidebarBodyRoundedClass = 'rounded-[12px]'
+
 const CatalogItemPageSidebarBody = ({ item }: { item: CatalogItemForThisPage }) => (
-  <div className="border rounded-[12px] p-6 flex flex-col gap-y-4.5 w-full">
+  <div
+    className={cn(
+      'border p-6 flex flex-col gap-y-4.5 w-full max-lg:rounded-[8px] max-lg:border-border2',
+      CatalogItemPageSidebarBodyRoundedClass,
+    )}
+  >
     <h2 className="max-lg:hidden text-[1.375rem] font-semibold leading-[110%]">{item.title}</h2>
     <div className="flex flex-col gap-y-4">
       {item.variations && (

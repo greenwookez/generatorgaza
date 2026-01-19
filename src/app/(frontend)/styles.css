@@ -43,7 +43,7 @@ body {
   --destructive-foreground: oklch(0.9842 0.0034 247.8575);
   --border: oklch(0.869 0.0198 252.8943);
   --input: oklch(0.869 0.0198 252.8943);
-  --ring: oklch(0.369 0.1468 261.03);
+  --ring: oklch(0.5439 0.111 260.56);
   --chart-1: oklch(0.369 0.1468 261.03);
   --chart-2: oklch(0.3707 0.1108 252.7448);
   --chart-3: oklch(0.5647 0.1021 223.9398);
