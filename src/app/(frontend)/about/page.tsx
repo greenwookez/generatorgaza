@@ -92,7 +92,7 @@ const AboutPageLinkingBlock = ({ title, href, icon: Icon }: AboutPageLinkingBloc
       </div>
       <h2 className="text-[1.375rem] leading-[140%] font-semibold">{title}</h2>
       <Button asChild variant="outline">
-        <Link href={href}>
+        <Link href={href} prefetch>
           Подробнее <ArrowRight />
         </Link>
       </Button>

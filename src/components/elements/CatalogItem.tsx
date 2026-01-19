@@ -41,7 +41,7 @@ export const CatalogItem = ({
       </div>
       <div>
         <Button variant="link" size="indent-none" asChild>
-          <Link {...linkProps}>
+          <Link {...linkProps} prefetch>
             {linkChildren}
             <ArrowRight />
           </Link>

@@ -195,7 +195,7 @@ const renderMobileMenuItem = (item: MenuItem) => {
   }
 
   return (
-    <Link key={item.title} href={item.url ?? '#'} className="text-md font-semibold">
+    <Link key={item.title} href={item.url ?? '#'} className="text-md font-semibold" prefetch>
       {item.title}
     </Link>
   )
@@ -219,7 +219,7 @@ const SubMenuLink = ({ item }: { item: MenuItem }) => {
 }
 
 const LogoLink = () => (
-  <Link href="/">
+  <Link href="/" prefetch>
     <Logo aria-label="Логотип АО «Опытно-технологический завод»" />
   </Link>
 )

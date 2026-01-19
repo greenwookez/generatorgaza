@@ -9,7 +9,9 @@ export default function NotFoundSegment() {
         Такой страницы у нас нет. Зато есть много других интересных! Взгляните на главную страницу.
       </p>
       <Button asChild>
-        <Link href="/">На главную</Link>
+        <Link href="/" prefetch>
+          На главную
+        </Link>
       </Button>
     </div>
   )

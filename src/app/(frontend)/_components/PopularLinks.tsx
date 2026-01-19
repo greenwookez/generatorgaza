@@ -41,7 +41,7 @@ export const PopularLinks = () => {
       {getLinks().map((item, idx) => {
         if (!item.hideRule) {
           return (
-            <LinkWithIcon key={idx} icon={item.icon} href={item.href}>
+            <LinkWithIcon key={idx} icon={item.icon} href={item.href} prefetch>
               {item.title}
             </LinkWithIcon>
           )

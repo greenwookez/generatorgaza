@@ -64,7 +64,7 @@ const HomePageCatalog = () => (
     <div className="flex gap-x-7 align-center">
       <h3 className={h3ClassName}>Каталог</h3>
       <Button asChild variant="link" size="indent-none">
-        <Link href="/catalog">
+        <Link href="/catalog" prefetch>
           Вся продукция <ArrowRight />
         </Link>
       </Button>
@@ -151,16 +151,16 @@ const HomePageAbout = () => (
           растворенного ацетилена.
         </p>
         <Button asChild variant="link" size="indent-none">
-          <Link href="/about">
+          <Link href="/about" prefetch>
             Подробнее <ArrowRight />
           </Link>
         </Button>
         <Separator hr={{ className: 'my-7' }} />
         <div className="flex flex-col gap-y-6 max-sm:gap-y-5">
-          <LinkWithIcon icon={Factory} href="/facilities">
+          <LinkWithIcon icon={Factory} href="/facilities" prefetch>
             Производство и цехи
           </LinkWithIcon>
-          <LinkWithIcon icon={ScrollText} href="/certificates">
+          <LinkWithIcon icon={ScrollText} href="/certificates" prefetch>
             Сертификаты
           </LinkWithIcon>
         </div>
@@ -200,7 +200,7 @@ const HomePageContacts = () => (
     <div className="flex gap-x-7 align-center">
       <h3 className={h3ClassName}>Контакты</h3>
       <Button asChild variant="link" size="indent-none">
-        <Link href="/contact-us">
+        <Link href="/contact-us" prefetch>
           Подробнее <ArrowRight />
         </Link>
       </Button>

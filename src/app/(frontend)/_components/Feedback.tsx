@@ -46,7 +46,7 @@ export const Feedback = () => {
         <div className="flex flex-col gap-y-2">
           <div className="text-[0.75rem] font-medium leading-4 text-muted-foreground">
             Нажимая на кнопку, я соглашаюсь с{' '}
-            <Link href="#" className="underline">
+            <Link href="#" className="underline" prefetch>
               Политикой обработки персональных данных
             </Link>
           </div>

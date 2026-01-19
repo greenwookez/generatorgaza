@@ -44,7 +44,7 @@ export const ProductCard = ({
           Запросить цену
         </Button>
         <Button variant="outline" asChild>
-          <Link {...linkProps}>
+          <Link {...linkProps} prefetch>
             {linkChildren}
             <ArrowRight />
           </Link>

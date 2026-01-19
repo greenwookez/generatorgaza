@@ -36,13 +36,13 @@ export default function IndustrialGasPage() {
             <p className="text-[1.25rem] leading-[160%]">
               Доставка по всей России Доставка осуществляется из Москвы, по поводу стоимости
               доставки Вы можете уточнить по телефону в Москве 
-              <Link className="hover:underline" type="tel" href="tel:+74991887356">
+              <a className="hover:underline" type="tel" href="tel:+74991887356">
                 +7 (499) 188-73-56
-              </Link>
+              </a>
                либо в Протвино по телефону 
-              <Link className="hover:underline" type="tel" href="tel:+74967755955">
+              <a className="hover:underline" type="tel" href="tel:+74967755955">
                 +7 (4967) 75-59-55
-              </Link>
+              </a>
             </p>
           </div>
         </div>
