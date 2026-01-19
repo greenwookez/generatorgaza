@@ -12,7 +12,7 @@ export default async function CatalogCategoryPage({
 }: {
   params: Promise<{ category_slug: string }>
 }) {
-  const payload = await getPayload({ config: await config })
+  const payload = await getPayload({ config })
 
   const { category_slug } = await params
 
@@ -22,9 +22,14 @@ export default async function CatalogCategoryPage({
       slug: { equals: category_slug },
     },
     limit: 1,
+    pagination: false,
+    select: {
+      title: true,
+      slug: true,
+    },
   })
 
-  const category = categories.docs[0]
+  const category = categories.docs?.[0]
   if (!category) {
     notFound()
   }
@@ -35,6 +40,12 @@ export default async function CatalogCategoryPage({
       category: { equals: category.id },
     },
     sort: 'createdAt',
+    pagination: false,
+    select: {
+      title: true,
+      cardImage: true,
+      slug: true,
+    },
   })
 
   return (

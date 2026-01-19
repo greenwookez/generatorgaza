@@ -61,5 +61,28 @@ export const CatalogCategories: CollectionConfig = {
         ru: 'Краткое описание',
       },
     },
+    {
+      name: 'navDescription',
+      type: 'textarea',
+      required: true,
+      label: {
+        ru: 'Описание в навигационном меню',
+      },
+    },
+    {
+      name: 'navIcon',
+      type: 'text',
+      required: true,
+      label: {
+        ru: 'Иконка в навигационном меню',
+      },
+      admin: {
+        description: 'ComponentName из https://lucide.dev/icons (например, Cylinder)',
+      },
+    },
   ],
+  defaultPopulate: {
+    title: true,
+    slug: true,
+  },
 }

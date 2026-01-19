@@ -5,11 +5,18 @@ import { CatalogItem } from '@/components/elements/CatalogItem'
 import { Media } from '@/payload-types'
 
 export default async function CatalogPage() {
-  const payload = await getPayload({ config: await config })
+  const payload = await getPayload({ config })
 
   const categories = await payload.find({
     collection: 'catalog-categories',
     sort: 'createdAt',
+    pagination: false,
+    select: {
+      title: true,
+      description: true,
+      image: true,
+      slug: true,
+    },
   })
 
   return (

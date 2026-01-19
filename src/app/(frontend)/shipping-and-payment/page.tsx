@@ -4,7 +4,7 @@ import { PopularLinks } from '../_components/PopularLinks'
 import { Separator } from '@/components/elements/Separator'
 import Link from 'next/link'
 
-export default async function IndustrialGasPage() {
+export default function IndustrialGasPage() {
   return (
     <div className="flex flex-col gap-y-12 pt-7.5 pb-22.5">
       <div className="flex flex-col gap-y-7">

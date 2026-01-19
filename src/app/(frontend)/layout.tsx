@@ -14,6 +14,7 @@ const font = Manrope({
 
 // TODO: Обсудить Sheet вместо лайбокса (dialog)
 // TODO: Проверить все ссылки (искать на href)
+// TODO: Caching
 
 // TODO: Уточнить информацию
 export const metadata = {

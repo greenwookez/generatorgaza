@@ -1,14 +1,8 @@
-import {
-  Book,
-  Menu,
-  Search,
-  PhoneCall,
-  ChevronDown,
-  Cylinder,
-  Factory,
-  Container,
-} from 'lucide-react'
-
+import React from 'react'
+import { getPayload } from 'payload'
+import config from '@/payload.config'
+import Link from 'next/link'
+import { Book, Menu, Search, PhoneCall, ChevronDown } from 'lucide-react'
 import {
   Accordion,
   AccordionContent,
@@ -25,12 +19,10 @@ import {
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
-
 import Logo from '@/assets/logo.svg'
 import { cn } from '@/lib/utils'
 import { ContainerClass, InsideContainerClass } from '../../layout'
 import { ConnectBlock, ConnectHoverCard } from './Connect'
-import Link from 'next/link'
 
 type MenuItem = {
   title: string
@@ -40,48 +32,57 @@ type MenuItem = {
   items?: MenuItem[]
 }
 
-const menu = [
-  { title: 'Главная', url: '/' },
-  {
-    title: 'Каталог',
-    items: [
-      {
-        title: 'Вся продукция',
-        description: 'Полный ассортимент товаров и оборудования для заказа',
-        icon: <Book className="size-5 shrink-0" />,
-        url: '/catalog',
-      },
-      {
-        title: 'Технические газы',
-        description: 'Азот, ацетилен, кислород и другие газы в баллонах',
-        icon: <Cylinder className="size-5 shrink-0" />,
-        url: '/catalog/industrial-gases',
-      },
-      {
-        title: 'Воздухоразделительные установки',
-        description: 'Оборудование для производства азота и кислорода',
-        icon: <Factory className="size-5 shrink-0" />,
-        url: '#',
-      },
-      {
-        title: 'Газовые моноблоки',
-        description: 'Готовые решения для наполнения, перевозки и хранения газов',
-        icon: <Container className="size-5 shrink-0" />,
-        url: '#',
-      },
-    ],
-  },
-  {
-    title: 'Доставка и оплата',
-    url: '/shipping-and-payment',
-  },
-  {
-    title: 'Контакты',
-    url: '/contact-us',
-  },
-]
+export async function Header() {
+  const payload = await getPayload({ config })
 
-export const Header = () => {
+  const catalogCategories = await payload.find({
+    collection: 'catalog-categories',
+    sort: 'createdAt',
+    pagination: false,
+    select: {
+      title: true,
+      slug: true,
+      navDescription: true,
+      navIcon: true,
+    },
+  })
+
+  const catalogItems = catalogCategories.docs.map((category) => {
+    return {
+      title: category.title,
+      url: `/catalog/${category.slug}`,
+      description: category.navDescription,
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      icon: React.createElement(require('lucide-react')[category.navIcon], {
+        className: 'size-5 shrink-0',
+      }),
+    }
+  })
+
+  const menu = [
+    { title: 'Главная', url: '/' },
+    {
+      title: 'Каталог',
+      items: [
+        {
+          title: 'Вся продукция',
+          description: 'Полный ассортимент товаров и оборудования для заказа',
+          icon: <Book className="size-5 shrink-0" />,
+          url: '/catalog',
+        },
+        ...catalogItems,
+      ],
+    },
+    {
+      title: 'Доставка и оплата',
+      url: '/shipping-and-payment',
+    },
+    {
+      title: 'Контакты',
+      url: '/contact-us',
+    },
+  ]
+
   return (
     <header className={cn(ContainerClass, 'sticky top-0 bg-background py-3 z-10')}>
       <div className={InsideContainerClass}>

@@ -14,18 +14,38 @@ import { BreadCrumbsTrail } from '@/components/elements/BreadCrumbsTrail'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/elements/Separator'
 import { PopularLinks } from '@/app/(frontend)/_components/PopularLinks'
-import { CatalogCategory, CatalogItem, Media } from '@/payload-types'
+import { CatalogCategory, Media } from '@/payload-types'
 import { ImagesCarousel } from './_components/ImagesCarousel'
 import { AskQuestionButton } from './_components/AskQuestionButton'
 import { MakeInquiryButton } from './_components/MakeInquiryButton'
 import './styles.css'
+
+type CatalogItemForThisPage = {
+  id: number
+  title: string
+  category: number | CatalogCategory
+  variations?: string | null | undefined
+  volumes?: string | null | undefined
+  shortSpecification?: string | null | undefined
+  specification?: any
+  specification_key_value?:
+    | { key?: string | null; value?: string | null; id?: string | null }[]
+    | null
+    | undefined
+  shortDescription: string
+  fullDescription?: any
+  advantages?: string | null | undefined
+  documents?: (number | Media)[] | null | undefined
+  services?: string | null | undefined
+  images?: (number | Media)[] | null | undefined
+}
 
 export default async function CatalogItemPage({
   params,
 }: {
   params: Promise<{ item_slug: string }>
 }) {
-  const payload = await getPayload({ config: await config })
+  const payload = await getPayload({ config })
 
   const { item_slug } = await params
 
@@ -35,23 +55,26 @@ export default async function CatalogItemPage({
       slug: { equals: item_slug },
     },
     limit: 1,
+    pagination: false,
+    select: {
+      title: true,
+      category: true,
+      variations: true,
+      volumes: true,
+      specification: true,
+      shortSpecification: true,
+      fullDescription: true,
+      shortDescription: true,
+      advantages: true,
+      specification_key_value: true,
+      documents: true,
+      services: true,
+      images: true,
+    },
   })
 
   const item = items.docs?.[0]
   if (!item) {
-    notFound()
-  }
-
-  const categories = await payload.find({
-    collection: 'catalog-categories',
-    where: {
-      id: { equals: (item.category as CatalogCategory).id },
-    },
-    limit: 1,
-  })
-
-  const category = categories.docs[0]
-  if (!category) {
     notFound()
   }
 
@@ -61,7 +84,10 @@ export default async function CatalogItemPage({
         <BreadCrumbsTrail
           items={[
             { title: 'Каталог', href: '/catalog' },
-            { title: category.title, href: `/catalog/${category.slug}` },
+            {
+              title: (item.category as CatalogCategory).title,
+              href: `/catalog/${(item.category as CatalogCategory).slug}`,
+            },
             { title: item.title },
           ]}
         />
@@ -79,7 +105,7 @@ export default async function CatalogItemPage({
   )
 }
 
-const CatalogItemPageContent = ({ item }: { item: CatalogItem }) => {
+const CatalogItemPageContent = ({ item }: { item: CatalogItemForThisPage }) => {
   const getAccordionSections = () => {
     const sections: AccordionSection[] = []
 
@@ -212,13 +238,13 @@ const CatalogItemPageContentAccordion = ({ sections }: { sections: AccordionSect
   </Accordion>
 )
 
-const CatalogItemPageSidebar = ({ item }: { item: CatalogItem }) => (
+const CatalogItemPageSidebar = ({ item }: { item: CatalogItemForThisPage }) => (
   <div className="max-lg:hidden w-full max-w-[440px] sticky top-[94px] shadow-[0px_5px_20px_0px_rgba(0,31,84,0.08)] ">
     <CatalogItemPageSidebarBody item={item} />
   </div>
 )
 
-const CatalogItemPageSidebarBody = ({ item }: { item: CatalogItem }) => (
+const CatalogItemPageSidebarBody = ({ item }: { item: CatalogItemForThisPage }) => (
   <div className="border rounded-[12px] p-6 flex flex-col gap-y-4.5 w-full">
     <h2 className="max-lg:hidden text-[1.375rem] font-semibold leading-[110%]">{item.title}</h2>
     <div className="flex flex-col gap-y-4">

@@ -36,6 +36,11 @@ export const Media: CollectionConfig = {
       },
     },
   ],
+  defaultPopulate: {
+    url: true,
+    alt: true,
+    filename: true,
+  },
   upload: {
     disableLocalStorage: true,
   },

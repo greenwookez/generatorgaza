@@ -178,6 +178,11 @@ export interface CatalogCategory {
   slug: string;
   image: number | Media;
   description: string;
+  navDescription: string;
+  /**
+   * ComponentName из https://lucide.dev/icons (например, Cylinder)
+   */
+  navIcon: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -367,6 +372,8 @@ export interface CatalogCategoriesSelect<T extends boolean = true> {
   slug?: T;
   image?: T;
   description?: T;
+  navDescription?: T;
+  navIcon?: T;
   updatedAt?: T;
   createdAt?: T;
 }
