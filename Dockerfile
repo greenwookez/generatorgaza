@@ -25,6 +25,11 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+RUN echo "===== BUILD STAGE CHECK =====" \
+ && echo "ENV PAYLOAD_SECRET=$PAYLOAD_SECRET" \
+ && echo "printenv PAYLOAD_*:" \
+ && (printenv | grep PAYLOAD || true)
+
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry during the build.
@@ -68,4 +73,8 @@ ENV PORT 3000
 
 # server.js is created by next build from the standalone output
 # https://nextjs.org/docs/pages/api-reference/next-config-js/output
-CMD HOSTNAME="0.0.0.0" node server.js
+CMD sh -c 'echo "===== RUNTIME ENV CHECK =====" \
+ && echo "PAYLOAD_SECRET=$PAYLOAD_SECRET" \
+ && echo "printenv PAYLOAD_*:" \
+ && (printenv | grep PAYLOAD || true) \
+ && HOSTNAME="0.0.0.0" node server.js'
