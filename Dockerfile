@@ -25,10 +25,8 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-RUN echo "===== BUILD STAGE CHECK =====" \
- && echo "ENV PAYLOAD_SECRET=$PAYLOAD_SECRET" \
- && echo "printenv PAYLOAD_*:" \
- && (printenv | grep PAYLOAD || true)
+ARG PAYLOAD_SECRET
+RUN echo "PAYLOAD_SECRET is $PAYLOAD_SECRET"
 
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
@@ -69,12 +67,8 @@ USER nextjs
 
 EXPOSE 3000
 
-ENV PORT 3000
+ENV PORT=3000
 
 # server.js is created by next build from the standalone output
 # https://nextjs.org/docs/pages/api-reference/next-config-js/output
-CMD sh -c 'echo "===== RUNTIME ENV CHECK =====" \
- && echo "PAYLOAD_SECRET=$PAYLOAD_SECRET" \
- && echo "printenv PAYLOAD_*:" \
- && (printenv | grep PAYLOAD || true) \
- && HOSTNAME="0.0.0.0" node server.js'
+CMD HOSTNAME="0.0.0.0" node server.js
