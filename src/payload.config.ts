@@ -47,7 +47,7 @@ export default buildConfig({
     s3Storage({
       collections: {
         media: {
-          prefix: 'generatorgaza',
+          prefix: process.env.S3_PREFIX || 'generatorgaza',
         },
       },
       bucket: process.env.S3_BUCKET!,
