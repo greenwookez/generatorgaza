@@ -4,7 +4,7 @@ import { Header } from '@/app/(frontend)/_components/Header/Header'
 
 import './styles.css'
 import { Footer } from './_components/Footer'
-import { Feedback } from './_components/Feedback'
+import { Feedback } from './_components/Feedback/Feedback'
 import { cn } from '@/lib/utils'
 
 const font = Manrope({

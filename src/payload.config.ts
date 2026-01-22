@@ -12,6 +12,7 @@ import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { CatalogCategories } from './collections/CatalogCategories'
 import { CatalogItems } from './collections/CatalogItem'
+import { Feedback } from './collections/Feedback'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -23,7 +24,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, CatalogCategories, CatalogItems],
+  collections: [Users, Media, CatalogCategories, CatalogItems, Feedback],
   editor: lexicalEditor({
     features: ({ defaultFeatures }) => [
       ...defaultFeatures.filter((f) => f.key !== 'link'),

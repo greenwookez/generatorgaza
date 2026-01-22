@@ -71,6 +71,7 @@ export interface Config {
     media: Media;
     'catalog-categories': CatalogCategory;
     'catalog-items': CatalogItem;
+    feedback: Feedback;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -82,6 +83,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     'catalog-categories': CatalogCategoriesSelect<false> | CatalogCategoriesSelect<true>;
     'catalog-items': CatalogItemsSelect<false> | CatalogItemsSelect<true>;
+    feedback: FeedbackSelect<false> | FeedbackSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -261,6 +263,20 @@ export interface CatalogItem {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "feedback".
+ */
+export interface Feedback {
+  id: number;
+  name: string;
+  phone: string;
+  email: string;
+  message: string;
+  page_url: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -298,6 +314,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'catalog-items';
         value: number | CatalogItem;
+      } | null)
+    | ({
+        relationTo: 'feedback';
+        value: number | Feedback;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -423,6 +443,19 @@ export interface CatalogItemsSelect<T extends boolean = true> {
   variations?: T;
   volumes?: T;
   shortSpecification?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "feedback_select".
+ */
+export interface FeedbackSelect<T extends boolean = true> {
+  name?: T;
+  phone?: T;
+  email?: T;
+  message?: T;
+  page_url?: T;
   updatedAt?: T;
   createdAt?: T;
 }
