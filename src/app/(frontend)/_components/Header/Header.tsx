@@ -35,6 +35,7 @@ type MenuItem = {
 export async function Header() {
   const payload = await getPayload({ config })
 
+  const now = Date.now()
   const catalogCategories = await payload.find({
     collection: 'catalog-categories',
     sort: 'createdAt',
@@ -46,6 +47,7 @@ export async function Header() {
       navIcon: true,
     },
   })
+  console.log('Catalog categories fetched in header:', Date.now() - now, 'ms')
 
   const catalogItems = catalogCategories.docs.map((category) => {
     return {
