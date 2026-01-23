@@ -204,7 +204,7 @@ const CatalogItemPageContent = ({ item }: { item: CatalogItemForThisPage }) => {
       <div className="lg:hidden">
         <CatalogItemPageSidebarBody item={item} />
       </div>
-      {item.images && (
+      {item.images && item.images.length > 0 && (
         <div className="flex justify-center">
           <ImagesCarousel
             images={item.images.map((image) => ({

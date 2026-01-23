@@ -16,6 +16,7 @@ import {
   ScrollText,
 } from 'lucide-react'
 import { TextWithLabel } from '@/components/elements/TextWithLabel'
+import { AskQuestionButton } from './_components/AskQuestionButton'
 
 const h3ClassName = 'text-[2.25rem] font-medium leading-[110%] max-md:text-[1.5rem]'
 
@@ -50,9 +51,7 @@ const HomePageHero = () => {
         </h2>
       </div>
       <div className="flex gap-x-4 gap-y-3 justify-center max-sm:flex-col">
-        <Button size="lg" variant="outline">
-          Задать вопрос
-        </Button>
+        <AskQuestionButton />
         <Button size="lg">Заказать звонок</Button>
       </div>
     </div>
