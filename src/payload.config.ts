@@ -9,6 +9,8 @@ import { ru } from '@payloadcms/translations/languages/ru'
 import { s3Storage } from '@payloadcms/storage-s3'
 import { EXPERIMENTAL_TableFeature, LinkFeature } from '@payloadcms/richtext-lexical'
 
+import { migrations } from './migrations'
+
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { CatalogCategories } from './collections/CatalogCategories'
@@ -40,6 +42,7 @@ export default buildConfig({
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   db: postgresAdapter({
+    prodMigrations: migrations,
     pool: {
       connectionString:
         process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD
