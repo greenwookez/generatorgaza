@@ -19,6 +19,8 @@ import { Feedback } from './collections/Feedback'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
+const isBuild = process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD
+console.log('isBuild', isBuild)
 
 export default buildConfig({
   admin: {
@@ -44,10 +46,9 @@ export default buildConfig({
   db: postgresAdapter({
     prodMigrations: migrations,
     pool: {
-      connectionString:
-        process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD
-          ? process.env.DATABASE_PUBLIC_URI || ''
-          : process.env.DATABASE_PRIVATE_URI || '',
+      connectionString: isBuild
+        ? process.env.DATABASE_PUBLIC_URI || ''
+        : process.env.DATABASE_PRIVATE_URI || '',
     },
   }),
   sharp,
