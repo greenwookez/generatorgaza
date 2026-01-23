@@ -37,6 +37,7 @@ export const Users: CollectionConfig = {
     {
       type: 'text',
       name: 'name',
+      required: true,
       label: {
         ru: 'Имя',
       },

@@ -128,7 +128,7 @@ export interface UserAuthOperations {
  */
 export interface User {
   id: number;
-  name?: string | null;
+  name: string;
   role: 'default' | 'admin';
   updatedAt: string;
   createdAt: string;
