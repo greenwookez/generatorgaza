@@ -29,15 +29,13 @@ const eslintConfig = [
         },
       ],
     },
-    overrides: [
-      {
-        files: ['src/migrations/**/*.{ts,js}'],
-        rules: {
-          'no-unused-vars': 'off',
-          '@typescript-eslint/no-unused-vars': 'off',
-        },
-      },
-    ],
+  },
+  {
+    files: ['src/migrations/**/*.{ts,js}'],
+    rules: {
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': 'off',
+    },
   },
   {
     ignores: ['.next/'],
