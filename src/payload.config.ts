@@ -1,9 +1,10 @@
-import { postgresAdapter } from '@payloadcms/db-postgres'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
+import { PHASE_PRODUCTION_BUILD } from 'next/constants'
+import { postgresAdapter } from '@payloadcms/db-postgres'
+import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { ru } from '@payloadcms/translations/languages/ru'
 import { s3Storage } from '@payloadcms/storage-s3'
 import { EXPERIMENTAL_TableFeature, LinkFeature } from '@payloadcms/richtext-lexical'
@@ -40,7 +41,10 @@ export default buildConfig({
   },
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URI || '',
+      connectionString:
+        process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD
+          ? process.env.DATABASE_PUBLIC_URI || ''
+          : process.env.DATABASE_PRIVATE_URI || '',
     },
   }),
   sharp,

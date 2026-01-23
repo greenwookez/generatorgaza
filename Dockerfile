@@ -24,14 +24,8 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-ARG DATABASE_URI
+ARG DATABASE_PUBLIC_URI
 ARG PAYLOAD_SECRET
-ARG S3_REGION
-ARG S3_ENDPOINT
-ARG S3_ACCESS_KEY
-ARG S3_SECRET_KEY
-ARG S3_BUCKET
-ARG S3_PREFIX
 
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
