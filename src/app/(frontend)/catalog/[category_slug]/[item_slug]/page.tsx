@@ -51,7 +51,6 @@ export default async function CatalogItemPage({
 
   const { item_slug } = await params
 
-  const now = Date.now()
   const items = await payload.find({
     collection: 'catalog-items',
     where: {
@@ -75,7 +74,7 @@ export default async function CatalogItemPage({
       images: true,
     },
   })
-  console.log('Catalog items fetched in page:', Date.now() - now, 'ms')
+
   const item = items.docs?.[0]
   if (!item) {
     notFound()
