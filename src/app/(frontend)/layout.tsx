@@ -7,11 +7,7 @@ import { Footer } from './_components/Footer'
 import { Feedback } from './_components/Feedback/Feedback'
 import { cn } from '@/lib/utils'
 
-const font = Manrope({
-  subsets: ['latin'],
-  display: 'swap',
-})
-
+// Перед релизом:
 // [ ]: Поиск
 // [ ]: Формы обратной связи: UX, валидация на фронте и бэке, защита от спама
 // [ ]: Главная: фото, тексты, видео на Rutube или self-hosted
@@ -20,17 +16,15 @@ const font = Manrope({
 // [ ]: Доставка и оплата: фото, тексты и адаптация под мобильные
 // [ ]: Контакты: фото, тексты и адаптация под мобильные
 // [ ]: Каталог: заполнение и адаптация под мобильные
-// [ ]: Политика обработки персональных данных - изучить как лучше
-// -----------------------------------------------------
-// [ ]: Главная - подвязать каталог из Payload CMS
-// [ ]: Popular links - брать категории каталога из payload CMS
-// [ ]: Футер - брать категории каталога из Payload CMS
 // [ ]: Перепроверить доступы в Payload CMS
 // -----------------------------------------------------
-// [ ]: Подключить домен, настроить 307 редиректы со старого сайта
+// [ ]: Политика обработки персональных данных - изучить как лучше
 // [ ]: Проверить все ссылки (искать на href)
+// [ ]: Подключить домен, настроить 307 редиректы со старого сайта
+// [ ]: Перепроверить метаданные, SEO, подключить аналитику в Яндексе
 
-// Room for
+// На потом:
+// [ ]: Создать карточки на Яндекс.Картах и обязательно добавить ссылки на сайт
 // [ ]: Адреса и конкакты в Payload CMS
 // [ ]: Метаданные в Global в Payload CMS
 
@@ -57,6 +51,11 @@ export const metadata = {
 export const ContainerClass = 'flex justify-center px-20 max-lg:px-10 max-sm:px-4'
 export const InsideContainerClass = 'max-w-335 w-full'
 export const ContentClass = 'flex flex-col gap-y-12 pt-7.5 pb-22.5 max-lg:pb-15 max-lg:gap-y-9'
+
+const font = Manrope({
+  subsets: ['latin'],
+  display: 'swap',
+})
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props

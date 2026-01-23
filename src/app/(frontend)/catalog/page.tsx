@@ -1,13 +1,12 @@
-import { getPayload } from 'payload'
-import config from '@/payload.config'
 import { BreadCrumbsTrail } from '@/components/elements/BreadCrumbsTrail'
 import { CatalogItem } from '@/components/elements/CatalogItem'
 import { Media } from '@/payload-types'
 import { cn } from '@/lib/utils'
 import { ContentClass } from '../layout'
+import { initPayload } from '@/lib/initPayload'
 
 export default async function CatalogPage() {
-  const payload = await getPayload({ config })
+  const payload = await initPayload()
 
   const categories = await payload.find({
     collection: 'catalog-categories',

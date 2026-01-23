@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { ArrowRight, Factory, LucideIcon, ScrollText } from 'lucide-react'
 import { BreadCrumbsTrail } from '@/components/elements/BreadCrumbsTrail'
-import { PopularLinks } from '../_components/PopularLinks'
+import { PopularLinks } from '../_components/PopularLinks/PopularLinks'
 import { Separator } from '@/components/elements/Separator'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'

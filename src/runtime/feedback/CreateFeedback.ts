@@ -1,8 +1,7 @@
 'use server'
 
-import { getPayload } from 'payload'
-import config from '@/payload.config'
 import { Feedback } from '@/payload-types'
+import { initPayload } from '@/lib/initPayload'
 
 export type CreateFeedbackInput = Omit<Feedback, 'id' | 'createdAt' | 'updatedAt'>
 
@@ -13,7 +12,7 @@ export type CreateFeedbackInput = Omit<Feedback, 'id' | 'createdAt' | 'updatedAt
  * @returns A promise that resolves when the feedback entry has been created.
  */
 export async function CreateFeedback(Input: CreateFeedbackInput) {
-  const payload = await getPayload({ config })
+  const payload = await initPayload()
   payload.create({
     collection: 'feedback',
     data: Input,

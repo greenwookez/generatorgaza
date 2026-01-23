@@ -1,6 +1,4 @@
 import React from 'react'
-import { getPayload } from 'payload'
-import config from '@/payload.config'
 import Link from 'next/link'
 import { Book, Menu, Search, PhoneCall, ChevronDown } from 'lucide-react'
 import {
@@ -23,6 +21,7 @@ import Logo from '@/assets/logo.svg'
 import { cn } from '@/lib/utils'
 import { ContainerClass, InsideContainerClass } from '../../layout'
 import { ConnectBlock, ConnectHoverCard } from './Connect'
+import { initPayload } from '@/lib/initPayload'
 
 type MenuItem = {
   title: string
@@ -33,7 +32,7 @@ type MenuItem = {
 }
 
 export async function Header() {
-  const payload = await getPayload({ config })
+  const payload = await initPayload()
 
   const catalogCategories = await payload.find({
     collection: 'catalog-categories',
@@ -206,6 +205,7 @@ const SubMenuLink = ({ item }: { item: MenuItem }) => {
     <Link
       className="hover:bg-muted hover:text-accent-foreground flex min-w-80 select-none flex-row gap-4 rounded-md p-3 leading-none no-underline outline-none transition-colors"
       href={item.url ?? '#'}
+      prefetch
     >
       <div className="text-foreground">{item.icon}</div>
       <div>

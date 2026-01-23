@@ -5,7 +5,7 @@ import { InputWithLabel } from '@/components/elements/InputWithLabel'
 import { TextareaWithLabel } from '@/components/elements/TextareaWithLabel'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
-import { CreateFeedback } from '@/actions/CreateFeedback'
+import { CreateFeedback } from '@/runtime/feedback/CreateFeedback'
 
 type FormData = {
   name: string

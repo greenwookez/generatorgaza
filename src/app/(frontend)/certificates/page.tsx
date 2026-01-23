@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { BreadCrumbsTrail } from '@/components/elements/BreadCrumbsTrail'
-import { PopularLinks } from '../_components/PopularLinks'
+import { PopularLinks } from '../_components/PopularLinks/PopularLinks'
 import { Separator } from '@/components/elements/Separator'
 import { cn } from '@/lib/utils'
 import { ContentClass } from '../layout'

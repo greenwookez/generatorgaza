@@ -1,12 +1,5 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import Logo from '@/assets/logo.svg'
-import NitrogenGeneratorImage from '@/assets/images/nitrogen-generator.png'
-import { CatalogItem } from '@/components/elements/CatalogItem'
-import { LinkWithIcon } from '@/components/elements/LinkWithIcon'
-import { Separator } from '@/components/elements/Separator'
-import { Button } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
 import {
   ArrowRight,
   BadgeRussianRuble,
@@ -15,8 +8,17 @@ import {
   Factory,
   ScrollText,
 } from 'lucide-react'
+import { initPayload } from '@/lib/initPayload'
+import { CatalogItem } from '@/components/elements/CatalogItem'
+import { LinkWithIcon } from '@/components/elements/LinkWithIcon'
+import { Separator } from '@/components/elements/Separator'
+import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 import { TextWithLabel } from '@/components/elements/TextWithLabel'
 import { AskQuestionButton } from './_components/AskQuestionButton'
+import Logo from '@/assets/logo.svg'
+import NitrogenGeneratorImage from '@/assets/images/nitrogen-generator.png'
+import { Media } from '@/payload-types'
 
 const h3ClassName = 'text-[2.25rem] font-medium leading-[110%] max-md:text-[1.5rem]'
 
@@ -58,47 +60,48 @@ const HomePageHero = () => {
   )
 }
 
-const HomePageCatalog = () => (
-  <div className="flex flex-col gap-y-10 w-full">
-    <div className="flex gap-x-7 align-center">
-      <h3 className={h3ClassName}>Каталог</h3>
-      <Button asChild variant="link" size="indent-none">
-        <Link href="/catalog" prefetch>
-          Вся продукция <ArrowRight />
-        </Link>
-      </Button>
+const HomePageCatalog = async () => {
+  const payload = await initPayload()
+
+  const categories = await payload.find({
+    collection: 'catalog-categories',
+    sort: 'createdAt',
+    pagination: false,
+    select: {
+      title: true,
+      description: true,
+      image: true,
+      slug: true,
+    },
+  })
+
+  return (
+    <div className="flex flex-col gap-y-10 w-full">
+      <div className="flex gap-x-7 align-center">
+        <h3 className={h3ClassName}>Каталог</h3>
+        <Button asChild variant="link" size="indent-none">
+          <Link href="/catalog" prefetch>
+            Вся продукция <ArrowRight />
+          </Link>
+        </Button>
+      </div>
+      <div className="grid [grid-template-columns:repeat(auto-fit,minmax(270px,1fr))] gap-x-9 gap-y-12">
+        {categories.docs.map((category) => (
+          <CatalogItem
+            key={category.id}
+            title={category.title}
+            description={category.description}
+            image={{
+              src: (category.image as Media)?.url || '',
+              alt: (category.image as Media)?.alt || category.title,
+            }}
+            link={{ href: `/catalog/${category.slug}`, children: 'Все товары' }}
+          />
+        ))}
+      </div>
     </div>
-    <div className="grid [grid-template-columns:repeat(auto-fit,minmax(270px,1fr))] gap-x-9 gap-y-12">
-      <CatalogItem
-        title="Технические газы"
-        description="Технические, чистые и сжиженные газы, такие как азот, ацетилен, кислород и другие газы в баллонах"
-        image={{
-          src: 'https://placehold.co/1200x600.png',
-          alt: 'Технические газы',
-        }}
-        link={{ href: '/catalog/industrial-gases', children: 'Все товары' }}
-      />
-      <CatalogItem
-        title="Установки"
-        description="Индивидуальный проект воздухоразделительных установок для производства азота или кислорода"
-        image={{
-          src: 'https://placehold.co/1200x600.png',
-          alt: 'Установки',
-        }}
-        link={{ href: '#', children: 'Все товары' }}
-      />
-      <CatalogItem
-        title="Моноблоки"
-        description="Предназначены для наполнения различными газами, перевозки, хранения и использования в производственных целях"
-        image={{
-          src: 'https://placehold.co/1200x600.png',
-          alt: 'Моноблоки',
-        }}
-        link={{ href: '#', children: 'Все товары' }}
-      />
-    </div>
-  </div>
-)
+  )
+}
 
 const HomePageAdvantages = () => (
   <div className="w-full">

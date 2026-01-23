@@ -1,7 +1,7 @@
 import type { CollectionConfig } from 'payload'
 import { UserRoleAdmin, UserRoleDefault } from './Users'
-import { SendNotificationInTelegram } from '@/actions/SendNotificationInTelegram'
-import { FormatFeedbackNotificationMessage } from '@/runtime/FormatFeedbackNotificationMessage'
+import { SendNotificationInTelegram } from '@/runtime/telegram/SendNotificationInTelegram'
+import { FormatFeedbackNotificationMessage } from '@/runtime/feedback/FormatFeedbackNotificationMessage'
 import { Feedback as TFeeback } from '@/payload-types'
 
 export const Feedback: CollectionConfig = {

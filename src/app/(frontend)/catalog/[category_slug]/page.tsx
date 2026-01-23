@@ -1,20 +1,19 @@
-import { getPayload } from 'payload'
-import config from '@/payload.config'
 import { BreadCrumbsTrail } from '@/components/elements/BreadCrumbsTrail'
 import { Separator } from '@/components/elements/Separator'
-import { PopularLinks } from '../../_components/PopularLinks'
+import { PopularLinks } from '../../_components/PopularLinks/PopularLinks'
 import { ProductCard } from '@/components/elements/ProductCard'
 import { notFound } from 'next/navigation'
 import { Media } from '@/payload-types'
 import { cn } from '@/lib/utils'
 import { ContentClass } from '../../layout'
+import { initPayload } from '@/lib/initPayload'
 
 export default async function CatalogCategoryPage({
   params,
 }: {
   params: Promise<{ category_slug: string }>
 }) {
-  const payload = await getPayload({ config })
+  const payload = await initPayload()
 
   const { category_slug } = await params
 

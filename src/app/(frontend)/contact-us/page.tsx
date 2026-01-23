@@ -1,5 +1,5 @@
 import { BreadCrumbsTrail } from '@/components/elements/BreadCrumbsTrail'
-import { PopularLinks } from '../_components/PopularLinks'
+import { PopularLinks } from '../_components/PopularLinks/PopularLinks'
 import { Separator } from '@/components/elements/Separator'
 import { TextWithLabel } from '@/components/elements/TextWithLabel'
 import { cn } from '@/lib/utils'

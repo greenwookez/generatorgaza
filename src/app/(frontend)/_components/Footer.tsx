@@ -5,38 +5,55 @@ import { TextWithLabel } from '@/components/elements/TextWithLabel'
 import { ContainerClass, InsideContainerClass } from '../layout'
 import { Separator } from '@/components/elements/Separator'
 import Link from 'next/link'
+import { initPayload } from '@/lib/initPayload'
 
 export type FooterProps = {
   className?: string
 }
 
-type MenuCategory = {
-  title: string
-  links: { label: string; href: string }[]
+type MenuCategoryLink = {
+  label: string
+  href: string
 }
 
-const menu: MenuCategory[] = [
-  {
-    title: 'Компания',
-    links: [
-      { label: 'О предприятии', href: '/about' },
-      { label: 'Производство и цехи', href: '/facilities' },
-      { label: 'Сертификаты', href: '/certificates' },
-      { label: 'Доставка и оплата', href: '/shipping-and-payment' },
-      { label: 'Контакты', href: '/contact-us' },
-    ],
-  },
-  {
-    title: 'Каталог',
-    links: [
-      { label: 'Технические газы', href: '/catalog/industrial-gases' },
-      { label: 'Воздухоразделительные установки', href: '#' },
-      { label: 'Моноблоки', href: '#' },
-    ],
-  },
-]
+type MenuCategory = {
+  title: string
+  links: MenuCategoryLink[]
+}
 
-export const Footer = ({ className }: FooterProps) => {
+export const Footer = async ({ className }: FooterProps) => {
+  const payload = await initPayload()
+
+  const categories = await payload.find({
+    collection: 'catalog-categories',
+    sort: 'createdAt',
+    pagination: false,
+    select: {
+      title: true,
+      slug: true,
+    },
+  })
+
+  const menu: MenuCategory[] = [
+    {
+      title: 'Компания',
+      links: [
+        { label: 'О предприятии', href: '/about' },
+        { label: 'Производство и цехи', href: '/facilities' },
+        { label: 'Сертификаты', href: '/certificates' },
+        { label: 'Доставка и оплата', href: '/shipping-and-payment' },
+        { label: 'Контакты', href: '/contact-us' },
+      ],
+    },
+    {
+      title: 'Каталог',
+      links: categories.docs.reduce<MenuCategoryLink[]>((acc, category) => {
+        acc.push({ label: category.title, href: `/catalog/${category.slug}` })
+        return acc
+      }, []),
+    },
+  ]
+
   return (
     <footer className={cn(ContainerClass, 'pt-15 pb-10', className)}>
       <div className={cn(InsideContainerClass, 'flex flex-col gap-y-8')}>
@@ -73,6 +90,7 @@ export const Footer = ({ className }: FooterProps) => {
                     key={key}
                     href={link.href}
                     className="font-medium leading-[140%] text-muted-foreground hover:underline"
+                    prefetch
                   >
                     {link.label}
                   </Link>

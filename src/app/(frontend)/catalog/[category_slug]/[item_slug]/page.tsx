@@ -1,7 +1,5 @@
 import React from 'react'
-import { getPayload } from 'payload'
 import { Download, File } from 'lucide-react'
-import config from '@/payload.config'
 import { notFound } from 'next/navigation'
 import {
   Accordion,
@@ -13,7 +11,7 @@ import { RichText } from '@payloadcms/richtext-lexical/react'
 import { BreadCrumbsTrail } from '@/components/elements/BreadCrumbsTrail'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/elements/Separator'
-import { PopularLinks } from '@/app/(frontend)/_components/PopularLinks'
+import { PopularLinks } from '@/app/(frontend)/_components/PopularLinks/PopularLinks'
 import { CatalogCategory, Media } from '@/payload-types'
 import { ImagesCarousel } from './_components/ImagesCarousel'
 import { AskQuestionButton } from './_components/AskQuestionButton'
@@ -21,6 +19,7 @@ import { MakeInquiryButton } from './_components/MakeInquiryButton'
 import './styles.css'
 import { cn } from '@/lib/utils'
 import { ContentClass } from '@/app/(frontend)/layout'
+import { initPayload } from '@/lib/initPayload'
 
 type CatalogItemForThisPage = {
   id: number
@@ -47,7 +46,7 @@ export default async function CatalogItemPage({
 }: {
   params: Promise<{ item_slug: string }>
 }) {
-  const payload = await getPayload({ config })
+  const payload = await initPayload()
 
   const { item_slug } = await params
 
