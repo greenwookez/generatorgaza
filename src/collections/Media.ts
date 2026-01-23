@@ -1,5 +1,4 @@
 import type { CollectionConfig } from 'payload'
-import { UserRoleAdmin } from './Users'
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -16,9 +15,6 @@ export const Media: CollectionConfig = {
   },
   access: {
     read: () => true,
-    admin: ({ req: { user } }) => {
-      return user?.role === UserRoleAdmin
-    },
   },
   fields: [
     {

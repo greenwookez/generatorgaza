@@ -1,5 +1,5 @@
 import type { CollectionConfig } from 'payload'
-import { UserRoleAdmin, UserRoleDefault } from './Users'
+import { isAdmin } from './Users'
 import { SendNotificationInTelegram } from '@/runtime/telegram/SendNotificationInTelegram'
 import { FormatFeedbackNotificationMessage } from '@/runtime/feedback/FormatFeedbackNotificationMessage'
 import { Feedback as TFeeback } from '@/payload-types'
@@ -8,6 +8,7 @@ export const Feedback: CollectionConfig = {
   slug: 'feedback',
   admin: {
     group: 'CRM',
+    defaultColumns: ['message', 'name', 'phone', 'email'],
   },
   labels: {
     singular: {
@@ -18,12 +19,9 @@ export const Feedback: CollectionConfig = {
     },
   },
   access: {
-    admin: ({ req: { user } }) => {
-      return user?.role === UserRoleDefault || user?.role === UserRoleAdmin
-    },
-    create: () => false,
-    update: () => false,
-    delete: () => false,
+    create: isAdmin,
+    delete: isAdmin,
+    update: isAdmin,
   },
   hooks: {
     afterChange: [

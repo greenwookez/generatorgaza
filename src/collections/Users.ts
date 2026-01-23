@@ -1,4 +1,4 @@
-import type { CollectionConfig, Option } from 'payload'
+import type { Access, CollectionConfig, Option } from 'payload'
 
 export const UserRoleDefault = 'default'
 export const UserRoleAdmin = 'admin'
@@ -7,6 +7,11 @@ const Roles: Option[] = [
   { label: 'Менеджер', value: UserRoleDefault },
   { label: 'Администратор', value: UserRoleAdmin },
 ]
+
+export const isAdmin: Access = ({ req }) => {
+  const user = req.user
+  return user?.role === UserRoleAdmin
+}
 
 export const Users: CollectionConfig = {
   slug: 'users',
@@ -23,12 +28,19 @@ export const Users: CollectionConfig = {
     group: 'Система',
   },
   access: {
-    admin: ({ req: { user } }) => {
-      return user?.role === UserRoleAdmin
-    },
+    create: isAdmin,
+    delete: isAdmin,
+    update: isAdmin,
   },
   auth: true,
   fields: [
+    {
+      type: 'text',
+      name: 'name',
+      label: {
+        ru: 'Имя',
+      },
+    },
     {
       name: 'role',
       type: 'select',

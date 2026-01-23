@@ -1,5 +1,4 @@
 import type { CollectionConfig } from 'payload'
-import { UserRoleAdmin, UserRoleDefault } from './Users'
 import { validateSlug } from '@/lib/validateSlug'
 
 export const CatalogItems: CollectionConfig = {
@@ -14,11 +13,6 @@ export const CatalogItems: CollectionConfig = {
     },
     plural: {
       ru: 'Товары',
-    },
-  },
-  access: {
-    admin: ({ req: { user } }) => {
-      return user?.role === UserRoleDefault || user?.role === UserRoleAdmin
     },
   },
   fields: [
