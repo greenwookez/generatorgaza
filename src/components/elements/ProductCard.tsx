@@ -1,3 +1,5 @@
+'use client'
+import { useRouter } from 'next/navigation'
 import Image, { ImageProps } from 'next/image'
 import { Button } from '../ui/button'
 import { ArrowRight } from 'lucide-react'
@@ -19,15 +21,24 @@ export const ProductCard = ({
   onRequestClick,
   containerClassName,
 }: ProductCardProps) => {
+  const router = useRouter()
+
   const { className: imageClassName, ...imageProps } = image
   const { children: linkChildren, ...linkProps } = link
+
+  const onClick = () => {
+    if (typeof link.href === 'string') {
+      router.push(link.href)
+    }
+  }
 
   return (
     <div
       className={cn(
-        'flex flex-col gap-y-4 p-4 rounded-[8px] border border-border2 max-w-[250px]',
+        'flex flex-col gap-y-4 p-4 rounded-[8px] border border-border2 max-w-[250px] group cursor-pointer hover:border-border',
         containerClassName,
       )}
+      onClick={onClick}
     >
       <div className="bg-accent2 rounded-[4px] flex items-center justify-center grow relative min-h-[300px]">
         <Image
@@ -38,7 +49,9 @@ export const ProductCard = ({
           className={cn('object-cover', imageClassName)}
         />
       </div>
-      <div className="text-[1.125rem] leading-[130%] font-semibold">{title}</div>
+      <div className="text-[1.125rem] leading-[130%] font-semibold group-hover:text-secondary-foreground">
+        {title}
+      </div>
       <div className="flex flex-col gap-y-2">
         <Button variant="default" onClick={onRequestClick}>
           Запросить цену

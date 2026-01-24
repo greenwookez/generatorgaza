@@ -1,0 +1,118 @@
+@reference "./styles.css";
+
+.payload-richtext {
+  @apply text-[1rem] leading-[170%] max-w-[780px];
+}
+
+.payload-richtext a {
+  @apply text-secondary-foreground underline hover:no-underline;
+}
+
+.payload-richtext p {
+  @apply my-2;
+}
+
+.payload-richtext p:first-child {
+  @apply mt-0;
+}
+
+.payload-richtext p:last-child {
+  @apply mb-0;
+}
+
+.payload-richtext h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-bold;
+}
+
+.payload-richtext h1 {
+  @apply text-[1.75rem];
+}
+
+.payload-richtext h2 {
+  @apply text-[1.5625rem];
+}
+
+.payload-richtext h3 {
+  @apply text-[1.375rem];
+}
+
+.payload-richtext h4 {
+  @apply text-[1.25rem];
+}
+
+.payload-richtext h5 {
+  @apply text-[1.125rem];
+}
+
+.payload-richtext h6 {
+  @apply text-[1rem];
+}
+
+.payload-richtext ul {
+  @apply list-disc pl-5;
+}
+
+.payload-richtext ul > li.nestedListItem > ul {
+  @apply list-[circle];
+}
+
+.payload-richtext ul > li.nestedListItem > ul > li.nestedListItem > ul {
+  @apply list-[square];
+}
+
+.payload-richtext ol {
+  @apply list-decimal pl-5;
+}
+
+.payload-richtext ol > li.nestedListItem > ol {
+  @apply list-[upper-alpha];
+}
+
+.payload-richtext ol > li.nestedListItem > ol > li.nestedListItem > ol {
+  @apply list-[lower-alpha];
+}
+
+.payload-richtext ol > li.nestedListItem > ol > li.nestedListItem > ol > li.nestedListItem > ol {
+  @apply list-[upper-roman];
+}
+
+.payload-richtext
+  ol
+  > li.nestedListItem
+  > ol
+  > li.nestedListItem
+  > ol
+  > li.nestedListItem
+  > ol
+  > li.nestedListItem
+  > ol {
+  @apply list-[lower-roman];
+}
+
+.payload-richtext
+  ol
+  > li.nestedListItem
+  > ol
+  > li.nestedListItem
+  > ol
+  > li.nestedListItem
+  > ol
+  > li.nestedListItem
+  > ol
+  > li.nestedListItem
+  > ol {
+  @apply list-decimal;
+}
+
+.payload-richtext .lexical-table-container {
+  @apply overflow-x-scroll max-w-[calc(100vw-80px)] max-md:max-w-[calc(100vw-32px)];
+}
+
+.payload-richtext .lexical-table-container .lexical-table {
+  @apply max-sm:min-w-[600px];
+}

@@ -54,12 +54,7 @@ export default async function CatalogCategoryPage({
       <BreadCrumbsTrail
         items={[{ title: 'Каталог', href: '/catalog' }, { title: category.title }]}
       />
-      <div className="flex gap-x-5 items-center">
-        <h1 className="text-[1.875rem] font-medium leading-[110%]">{category.title}</h1>
-        <span className="text-muted-foreground text-[0.875rem] font-medium leading-[100%]">
-          {items.totalDocs} товаров
-        </span>
-      </div>
+      <h1 className="text-[1.875rem] font-medium leading-[110%]">{category.title}</h1>
       <div className="flex flex-col gap-y-12">
         <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-y-8 gap-x-6">
           {items.docs.map((item, idx) => (

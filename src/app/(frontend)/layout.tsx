@@ -1,11 +1,12 @@
 import React from 'react'
 import { Manrope } from 'next/font/google'
 import { Header } from '@/app/(frontend)/_components/Header/Header'
-
-import './styles.css'
 import { Footer } from './_components/Footer'
 import { Feedback } from './_components/Feedback/Feedback'
 import { cn } from '@/lib/utils'
+
+import './styles.css'
+import './lexical.css'
 
 // Перед релизом:
 // [ ]: Поиск
@@ -22,7 +23,7 @@ import { cn } from '@/lib/utils'
 // [ ]: Проверить все ссылки (искать на href)
 // [ ]: Подключить домен, настроить 307 редиректы со старого сайта
 // [ ]: Перепроверить метаданные, SEO, подключить аналитику в Яндексе
-
+// [ ]: Подключить корпоративную почту
 // На потом:
 // [ ]: Создать карточки на Яндекс.Картах и обязательно добавить ссылки на сайт
 // [ ]: Адреса и конкакты в Payload CMS

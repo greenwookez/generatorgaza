@@ -31,7 +31,7 @@ export default buildConfig({
   collections: [Users, Media, CatalogCategories, CatalogItems, Feedback],
   editor: lexicalEditor({
     features: ({ defaultFeatures }) => [
-      ...defaultFeatures.filter((f) => f.key !== 'link'),
+      ...defaultFeatures.filter((f) => !['link', 'checklist', 'blockquote'].includes(f.key)),
       LinkFeature({
         enabledCollections: [],
       }),

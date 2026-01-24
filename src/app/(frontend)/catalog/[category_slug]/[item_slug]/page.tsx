@@ -16,7 +16,6 @@ import { CatalogCategory, Media } from '@/payload-types'
 import { ImagesCarousel } from './_components/ImagesCarousel'
 import { AskQuestionButton } from './_components/AskQuestionButton'
 import { MakeInquiryButton } from './_components/MakeInquiryButton'
-import './styles.css'
 import { cn } from '@/lib/utils'
 import { ContentClass } from '@/app/(frontend)/layout'
 import { initPayload } from '@/lib/initPayload'
@@ -125,7 +124,13 @@ const CatalogItemPageContent = ({ item }: { item: CatalogItemForThisPage }) => {
       sections.push({
         title: 'Преимущества',
         value: 'advantages',
-        content: <div className="text-[1rem] leading-[170%]">{item.advantages}</div>,
+        content: (
+          <ul className="text-[1rem] leading-[170%] list-disc pl-5 marker:text-muted-foreground">
+            {item.advantages.split('\n').map((advantage, idx) => (
+              <li key={idx}>{advantage}</li>
+            ))}
+          </ul>
+        ),
       })
     }
 
@@ -189,7 +194,13 @@ const CatalogItemPageContent = ({ item }: { item: CatalogItemForThisPage }) => {
       sections.push({
         title: 'Услуги',
         value: 'services',
-        content: <div className="text-[1rem] leading-[170%]">{item.services}</div>,
+        content: (
+          <ul className="text-[1rem] leading-[170%] list-disc pl-5 marker:text-muted-foreground">
+            {item.services.split('\n').map((service, idx) => (
+              <li key={idx}>{service}</li>
+            ))}
+          </ul>
+        ),
       })
     }
 
@@ -213,7 +224,7 @@ const CatalogItemPageContent = ({ item }: { item: CatalogItemForThisPage }) => {
           />
         </div>
       )}
-      <p className="leading-[170%]">{item.shortDescription}</p>
+      <p className="leading-[170%] whitespace-pre-wrap">{item.shortDescription}</p>
       {sections && <CatalogItemPageContentAccordion sections={sections} />}
       <CatalogItemPageMobileFooter />
     </div>
@@ -227,7 +238,7 @@ type AccordionSection = {
 }
 
 const CatalogItemPageContentAccordion = ({ sections }: { sections: AccordionSection[] }) => (
-  <Accordion type="multiple" className="w-full" defaultValue={['description', 'services']}>
+  <Accordion type="multiple" className="w-full">
     {sections.map((section, idx) => (
       <AccordionItem key={idx} value={section.value} className="border-border2">
         <AccordionTrigger className="text-[1.125rem] text-secondary-foreground font-semibold leading-[1.5rem] cursor-pointer">
@@ -264,14 +275,16 @@ const CatalogItemPageSidebarBody = ({ item }: { item: CatalogItemForThisPage }) 
       {item.variations && (
         <div className="flex flex-col gap-y-3 items-start">
           <span className="font-semibold leading-[160%]">Доступные вариации:</span>
-          {item.variations.split('\n').map((variation, idx) => (
-            <div
-              key={idx}
-              className="py-1 px-3 bg-accent rounded-[50px] text-accent-foreground leading-[140%] font-semibold"
-            >
-              {variation}
-            </div>
-          ))}
+          <div className="flex gap-x-3 gap-y-3 flex-wrap">
+            {item.variations.split('\n').map((variation, idx) => (
+              <div
+                key={idx}
+                className="py-1 px-3 bg-accent rounded-[50px] text-accent-foreground leading-[140%] font-semibold"
+              >
+                {variation}
+              </div>
+            ))}
+          </div>
         </div>
       )}
       {item.volumes && (
