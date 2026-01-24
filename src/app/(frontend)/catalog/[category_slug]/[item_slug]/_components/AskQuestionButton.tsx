@@ -9,7 +9,7 @@ export const AskQuestionButton = () => {
   const scrollToFeedbackForm = () => {
     const form = document.getElementById('feedback-form')
     if (form) {
-      form.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      form.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
   }
 
