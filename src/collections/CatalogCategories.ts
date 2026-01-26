@@ -17,6 +17,19 @@ export const CatalogCategories: CollectionConfig = {
   },
   fields: [
     {
+      name: 'order',
+      type: 'number',
+      defaultValue: 0,
+      required: true,
+      index: true,
+      label: {
+        ru: 'Порядковый номер в списке категорий',
+      },
+      admin: {
+        description: 'Категории с меньшим номером будут отображаться раньше',
+      },
+    },
+    {
       name: 'title',
       type: 'text',
       required: true,

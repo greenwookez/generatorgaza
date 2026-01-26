@@ -25,6 +25,19 @@ export const CatalogItems: CollectionConfig = {
           },
           fields: [
             {
+              name: 'order',
+              type: 'number',
+              defaultValue: 0,
+              required: true,
+              index: true,
+              label: {
+                ru: 'Порядковый номер в списке товаров внутри категории',
+              },
+              admin: {
+                description: 'Товары с меньшим номером будут отображаться раньше',
+              },
+            },
+            {
               type: 'text',
               name: 'title',
               required: true,
@@ -107,6 +120,9 @@ export const CatalogItems: CollectionConfig = {
               label: {
                 ru: 'Преимущества',
               },
+              admin: {
+                description: 'Введите каждое преимущество с новой строки',
+              },
             },
             {
               type: 'upload',
@@ -125,6 +141,9 @@ export const CatalogItems: CollectionConfig = {
               name: 'services',
               label: {
                 ru: 'Услуги',
+              },
+              admin: {
+                description: 'Введите каждую услугу с новой строки',
               },
             },
           ],

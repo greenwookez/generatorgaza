@@ -36,7 +36,7 @@ export async function Header() {
 
   const catalogCategories = await payload.find({
     collection: 'catalog-categories',
-    sort: 'createdAt',
+    sort: 'order',
     pagination: false,
     select: {
       title: true,

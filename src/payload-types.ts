@@ -177,6 +177,10 @@ export interface Media {
  */
 export interface CatalogCategory {
   id: number;
+  /**
+   * Категории с меньшим номером будут отображаться раньше
+   */
+  order: number;
   title: string;
   /**
    * Часть URL страницы категории. Например, industrial-gases
@@ -198,6 +202,10 @@ export interface CatalogCategory {
  */
 export interface CatalogItem {
   id: number;
+  /**
+   * Товары с меньшим номером будут отображаться раньше
+   */
+  order: number;
   title: string;
   category: number | CatalogCategory;
   /**
@@ -410,6 +418,7 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "catalog-categories_select".
  */
 export interface CatalogCategoriesSelect<T extends boolean = true> {
+  order?: T;
   title?: T;
   slug?: T;
   image?: T;
@@ -424,6 +433,7 @@ export interface CatalogCategoriesSelect<T extends boolean = true> {
  * via the `definition` "catalog-items_select".
  */
 export interface CatalogItemsSelect<T extends boolean = true> {
+  order?: T;
   title?: T;
   category?: T;
   slug?: T;

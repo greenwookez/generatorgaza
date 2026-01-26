@@ -40,7 +40,7 @@ export default async function CatalogCategoryPage({
     where: {
       category: { equals: category.id },
     },
-    sort: 'createdAt',
+    sort: 'order',
     pagination: false,
     select: {
       title: true,

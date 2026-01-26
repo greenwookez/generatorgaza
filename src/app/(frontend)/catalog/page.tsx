@@ -10,7 +10,7 @@ export default async function CatalogPage() {
 
   const categories = await payload.find({
     collection: 'catalog-categories',
-    sort: 'createdAt',
+    sort: 'order',
     pagination: false,
     select: {
       title: true,
