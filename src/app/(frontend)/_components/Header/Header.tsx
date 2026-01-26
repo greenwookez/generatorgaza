@@ -96,10 +96,6 @@ export async function Header() {
           </div>
           <div className="flex gap-x-4">
             <div className="flex gap-x-5 max-sm:gap-x-3">
-              <Button variant="ghost">
-                <Search className="size-5" aria-hidden="true" />
-                <span className="max-sm:hidden">Поиск</span>
-              </Button>
               <ConnectHoverCard>
                 <Button
                   variant="ghost"
@@ -121,8 +117,8 @@ export async function Header() {
                   <Menu className="size-4" />
                 </Button>
               </SheetTrigger>
-              <SheetContent className="overflow-y-auto gap-0">
-                <SheetHeader className="sticky top-0">
+              <SheetContent className="overflow-y-auto gap-0 max-sm:w-full">
+                <SheetHeader>
                   <SheetTitle>
                     <LogoLink />
                   </SheetTitle>
