@@ -217,12 +217,7 @@ const CatalogItemPageContent = ({ item }: { item: CatalogItemForThisPage }) => {
       </div>
       {item.images && item.images.length > 0 && (
         <div className="flex justify-center">
-          <ImagesCarousel
-            images={item.images.map((image) => ({
-              src: (image as Media).url ?? '',
-              alt: (image as Media).alt ?? '',
-            }))}
-          />
+          <ImagesCarousel images={item.images as Media[]} />
         </div>
       )}
       <p className="leading-[170%] whitespace-pre-wrap">{item.shortDescription}</p>

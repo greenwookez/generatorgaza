@@ -4,13 +4,18 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Carousel, CarouselContent, CarouselItem, useCarousel } from '@/components/ui/carousel'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { cn } from '@/lib/utils'
+import { Media } from '@/payload-types'
 
-type Image = {
-  src: string
-  alt: string
-}
-
-export const ImagesCarousel = ({ images }: { images: Image[] }) => {
+export const ImagesCarousel = ({ images }: { images: Media[] }) => {
+  if (images.length === 1) {
+    return (
+      <ImageRenderer
+        image={images[0]}
+        className="w-full relative rounded-[8px] border border-border2 overflow-hidden"
+      />
+    )
+  }
   return (
     <Carousel className="w-full relative rounded-[8px] border border-border2 overflow-hidden">
       <ImagesCarouselBody images={images} />
@@ -18,7 +23,7 @@ export const ImagesCarousel = ({ images }: { images: Image[] }) => {
   )
 }
 
-const ImagesCarouselBody = ({ images }: { images: Image[] }) => {
+const ImagesCarouselBody = ({ images }: { images: Media[] }) => {
   const { scrollPrev, scrollNext, canScrollPrev, canScrollNext } = useCarousel()
 
   return (
@@ -26,9 +31,7 @@ const ImagesCarouselBody = ({ images }: { images: Image[] }) => {
       <CarouselContent>
         {images.map((image, index) => (
           <CarouselItem key={index}>
-            <div className="relative h-[450px]">
-              <Image src={image.src} alt={image.alt} fill className="object-cover" />
-            </div>
+            <ImageRenderer image={image} />
           </CarouselItem>
         ))}
       </CarouselContent>
@@ -55,3 +58,16 @@ const ImagesCarouselBody = ({ images }: { images: Image[] }) => {
     </>
   )
 }
+
+const ImageRenderer = ({ image, className }: { image: Media; className?: string }) => (
+  <div className={cn(`relative h-[520px]`, className)}>
+    <Image src={image.url!} alt={image.alt ?? ''} fill className="z-10 object-contain" />
+    <Image
+      src={image.url!}
+      alt={image.alt ?? ''}
+      width={image.width!}
+      height={image.height!}
+      className="absolute inset-0 w-full h-full object-cover filter blur-[20px] scale-[1.1] opacity-60"
+    />
+  </div>
+)
