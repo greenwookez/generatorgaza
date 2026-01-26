@@ -220,7 +220,7 @@ const CatalogItemPageContent = ({ item }: { item: CatalogItemForThisPage }) => {
           <ImagesCarousel images={item.images as Media[]} />
         </div>
       )}
-      <p className="leading-[170%] whitespace-pre-wrap">{item.shortDescription}</p>
+      <p className="text-[1.125rem] leading-[170%] whitespace-pre-wrap">{item.shortDescription}</p>
       {sections && <CatalogItemPageContentAccordion sections={sections} />}
       <CatalogItemPageMobileFooter />
     </div>
