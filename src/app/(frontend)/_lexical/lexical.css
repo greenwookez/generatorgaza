@@ -1,4 +1,4 @@
-@reference "./styles.css";
+@reference "../styles.css";
 
 .payload-richtext {
   @apply text-[1rem] leading-[170%] max-w-[780px];
@@ -115,4 +115,10 @@
 
 .payload-richtext .lexical-table-container .lexical-table {
   @apply max-sm:min-w-[600px];
+}
+
+.payload-richtext [data-component='lexical-image'] {
+  max-height: 450px;
+  min-height: 450px;
+  width: auto;
 }

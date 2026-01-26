@@ -6,7 +6,7 @@ import { Feedback } from './_components/Feedback/Feedback'
 import { cn } from '@/lib/utils'
 
 import './styles.css'
-import './lexical.css'
+import './_lexical/lexical.css'
 import { CookiePopup } from './_components/CookiePopup'
 
 // Перед релизом:

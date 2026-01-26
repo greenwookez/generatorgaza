@@ -1,6 +1,7 @@
 import React from 'react'
 import { Download, File } from 'lucide-react'
 import { notFound } from 'next/navigation'
+import { SerializedEditorState } from 'lexical'
 import {
   Accordion,
   AccordionContent,
@@ -8,6 +9,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion'
 import { RichText } from '@payloadcms/richtext-lexical/react'
+import { hasText } from '@payloadcms/richtext-lexical/shared'
 import { BreadCrumbsTrail } from '@/components/elements/BreadCrumbsTrail'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/elements/Separator'
@@ -19,6 +21,7 @@ import { MakeInquiryButton } from './_components/MakeInquiryButton'
 import { cn } from '@/lib/utils'
 import { ContentClass } from '@/app/(frontend)/layout'
 import { initPayload } from '@/lib/initPayload'
+import { LexicalConverters } from '@/app/(frontend)/_lexical/converters'
 
 type CatalogItemForThisPage = {
   id: number
@@ -27,13 +30,13 @@ type CatalogItemForThisPage = {
   variations?: string | null | undefined
   volumes?: string | null | undefined
   shortSpecification?: string | null | undefined
-  specification?: any
+  specification?: SerializedEditorState | null
   specification_key_value?:
     | { key?: string | null; value?: string | null; id?: string | null }[]
     | null
     | undefined
   shortDescription: string
-  fullDescription?: any
+  fullDescription?: SerializedEditorState | null
   advantages?: string | null | undefined
   documents?: (number | Media)[] | null | undefined
   services?: string | null | undefined
@@ -109,14 +112,11 @@ const CatalogItemPageContent = ({ item }: { item: CatalogItemForThisPage }) => {
   const getAccordionSections = () => {
     const sections: AccordionSection[] = []
 
-    if (item.fullDescription) {
+    if (hasText(item.fullDescription)) {
       sections.push({
         title: 'Описание',
         value: 'description',
-        content: (
-          // @ts-ignore
-          <RichText data={item.fullDescription} />
-        ),
+        content: <RichText converters={LexicalConverters} data={item.fullDescription!} />,
       })
     }
 
@@ -134,7 +134,7 @@ const CatalogItemPageContent = ({ item }: { item: CatalogItemForThisPage }) => {
       })
     }
 
-    if (item.specification) {
+    if (hasText(item.specification) || item.specification_key_value) {
       sections.push({
         title: 'Технические характеристики',
         value: 'specification',
@@ -157,8 +157,9 @@ const CatalogItemPageContent = ({ item }: { item: CatalogItemForThisPage }) => {
                 ))}
               </div>
             )}
-            {/* @ts-ignore */}
-            <RichText data={item.specification} />
+            {hasText(item.specification) && (
+              <RichText converters={LexicalConverters} data={item.specification!} />
+            )}
           </div>
         ),
       })

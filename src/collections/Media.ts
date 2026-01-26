@@ -33,6 +33,8 @@ export const Media: CollectionConfig = {
     url: true,
     alt: true,
     filename: true,
+    width: true,
+    height: true,
   },
   upload: {
     disableLocalStorage: true,
