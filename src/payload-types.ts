@@ -230,8 +230,14 @@ export interface CatalogItem {
     };
     [k: string]: unknown;
   } | null;
+  /**
+   * Введите каждое преимущество с новой строки
+   */
   advantages?: string | null;
   documents?: (number | Media)[] | null;
+  /**
+   * Введите каждую услугу с новой строки
+   */
   services?: string | null;
   specification_key_value?:
     | {

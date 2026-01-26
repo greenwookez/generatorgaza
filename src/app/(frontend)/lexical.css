@@ -21,11 +21,11 @@
 }
 
 .payload-richtext h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+.payload-richtext h2,
+.payload-richtext h3,
+.payload-richtext h4,
+.payload-richtext h5,
+.payload-richtext h6 {
   @apply font-bold;
 }
 

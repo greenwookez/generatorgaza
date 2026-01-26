@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils'
 
 import './styles.css'
 import './lexical.css'
+import { CookiePopup } from './_components/CookiePopup'
 
 // Перед релизом:
 // [ ]: Поиск
@@ -70,6 +71,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
       )}
     >
       <body>
+        <CookiePopup />
         <Header />
         <main className={ContainerClass}>
           <section className={InsideContainerClass}>
