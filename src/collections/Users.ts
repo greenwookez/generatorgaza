@@ -32,7 +32,9 @@ export const Users: CollectionConfig = {
     delete: isAdmin,
     update: isAdmin,
   },
-  auth: true,
+  auth: {
+    tokenExpiration: 60 * 60 * 24 * 30,
+  },
   fields: [
     {
       type: 'text',

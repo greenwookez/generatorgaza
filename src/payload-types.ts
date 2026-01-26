@@ -178,7 +178,7 @@ export interface Media {
 export interface CatalogCategory {
   id: number;
   /**
-   * Категории с меньшим номером будут отображаться раньше
+   * Категории с меньшим номером будут отображаться раньше (левее/выше)
    */
   order: number;
   title: string;
@@ -203,7 +203,7 @@ export interface CatalogCategory {
 export interface CatalogItem {
   id: number;
   /**
-   * Товары с меньшим номером будут отображаться раньше
+   * Товары с меньшим номером будут отображаться раньше (левее/выше)
    */
   order: number;
   title: string;
