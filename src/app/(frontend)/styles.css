@@ -24,6 +24,33 @@ body {
   }
 }
 
+@theme {
+  --animate-cookie-appear-bottom: cookie-appear-bottom 0.4s ease-in-out forwards;
+  --animate-cookie-appear-left: cookie-appear-left 0.4s ease-in-out forwards;
+}
+
+@keyframes cookie-appear-bottom {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cookie-appear-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.1363 0.0364 259.201);
