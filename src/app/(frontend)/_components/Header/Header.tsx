@@ -45,7 +45,6 @@ export async function Header() {
       navIcon: true,
     },
   })
-  console.log(catalogCategories.docs)
 
   const catalogItems = catalogCategories.docs.map((category) => {
     return {

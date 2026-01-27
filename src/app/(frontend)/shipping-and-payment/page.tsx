@@ -7,7 +7,6 @@ import { cn } from '@/lib/utils'
 import ScaniaImg from '@/assets/images/scania.png'
 
 export default function ShippingAndPaymentPage() {
-  console.log('ShippingAndPaymentPage is rendering...')
   return (
     <div className={cn(ContentClass)}>
       <div className="flex flex-col gap-y-7">
