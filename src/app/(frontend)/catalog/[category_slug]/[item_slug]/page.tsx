@@ -134,13 +134,16 @@ const CatalogItemPageContent = ({ item }: { item: CatalogItemForThisPage }) => {
       })
     }
 
-    if (hasText(item.specification) || item.specification_key_value) {
+    if (
+      hasText(item.specification) ||
+      (item.specification_key_value && item.specification_key_value.length > 0)
+    ) {
       sections.push({
         title: 'Технические характеристики',
         value: 'specification',
         content: (
           <div className="flex flex-col gap-y-8">
-            {item.specification_key_value && (
+            {item.specification_key_value && item.specification_key_value.length > 0 && (
               <div className="flex flex-col gap-y-3">
                 {item.specification_key_value?.map((pair, idx) => (
                   <React.Fragment key={idx}>
@@ -272,12 +275,12 @@ const CatalogItemPageSidebarBody = ({ item }: { item: CatalogItemForThisPage }) 
         <div className="flex flex-col gap-y-3 items-start">
           <span className="font-semibold leading-[160%]">Доступные вариации:</span>
           <div className="flex gap-x-3 gap-y-3 flex-wrap">
-            {item.variations.split('\n').map((variation, idx) => (
+            {item.variations.split('\n').map((item, idx) => (
               <div
                 key={idx}
                 className="py-1 px-3 bg-accent rounded-[50px] text-accent-foreground leading-[140%] font-semibold"
               >
-                {variation}
+                {item}
               </div>
             ))}
           </div>
@@ -287,12 +290,12 @@ const CatalogItemPageSidebarBody = ({ item }: { item: CatalogItemForThisPage }) 
         <div className="flex flex-col gap-y-3 items-start">
           <span className="font-semibold leading-[160%]">Доступные объемы баллонов:</span>
           <div className="flex gap-x-3 gap-y-3 flex-wrap">
-            {item.volumes.split('\n').map((volume, idx) => (
+            {item.volumes.split('\n').map((item, idx) => (
               <div
                 key={idx}
                 className="py-1 px-3 bg-accent rounded-[50px] text-accent-foreground leading-[140%] font-semibold"
               >
-                {volume}
+                {item}
               </div>
             ))}
           </div>
@@ -301,9 +304,9 @@ const CatalogItemPageSidebarBody = ({ item }: { item: CatalogItemForThisPage }) 
       {item.shortSpecification && (
         <div className="flex flex-col gap-y-1 items-start">
           <span className="font-semibold leading-[160%]">Характеристики:</span>
-          {item.shortSpecification.split('\n').map((volume, idx) => (
-            <div key={idx} className="text-[0.875rem] leading-[180%]">
-              {volume}
+          {item.shortSpecification.split('\n').map((item, idx) => (
+            <div key={idx} className="text-[0.875rem] leading-[160%]">
+              {item}
             </div>
           ))}
         </div>

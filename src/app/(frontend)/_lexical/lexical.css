@@ -30,27 +30,27 @@
 }
 
 .payload-richtext h1 {
-  @apply text-[1.75rem];
+  @apply text-[1.75rem] mt-[0.875rem] mb-[0.7rem];
 }
 
 .payload-richtext h2 {
-  @apply text-[1.5625rem];
+  @apply text-[1.5625rem] mt-[0.8594rem] mb-[0.625rem];
 }
 
 .payload-richtext h3 {
-  @apply text-[1.375rem];
+  @apply text-[1.375rem] mt-[0.825rem] mb-[0.55rem];
 }
 
 .payload-richtext h4 {
-  @apply text-[1.25rem];
+  @apply text-[1.25rem] mt-[0.8125rem] mb-[0.5rem];
 }
 
 .payload-richtext h5 {
-  @apply text-[1.125rem];
+  @apply text-[1.125rem] mt-[0.7875rem] mb-[0.45rem];
 }
 
 .payload-richtext h6 {
-  @apply text-[1rem];
+  @apply text-[1rem] mt-[0.75rem] mb-[0.4rem];
 }
 
 .payload-richtext ul {
