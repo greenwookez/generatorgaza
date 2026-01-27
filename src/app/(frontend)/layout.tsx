@@ -50,8 +50,6 @@ export const metadata = {
   },
 }
 
-export const revalidate = 60
-
 export const ContainerClass = 'flex justify-center px-20 max-lg:px-10 max-sm:px-4'
 export const InsideContainerClass = 'max-w-335 w-full'
 export const ContentClass = 'flex flex-col gap-y-12 pt-7.5 pb-22.5 max-lg:pb-15 max-lg:gap-y-9'
