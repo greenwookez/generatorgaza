@@ -50,7 +50,7 @@ export const metadata = {
   },
 }
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 10
 
 export const ContainerClass = 'flex justify-center px-20 max-lg:px-10 max-sm:px-4'
 export const InsideContainerClass = 'max-w-335 w-full'
