@@ -6,7 +6,8 @@ import { ContentClass } from '../layout'
 import { cn } from '@/lib/utils'
 import ScaniaImg from '@/assets/images/scania.png'
 
-export default function IndustrialGasPage() {
+export default function ShippingAndPaymentPage() {
+  console.log('ShippingAndPaymentPage is rendering...')
   return (
     <div className={cn(ContentClass)}>
       <div className="flex flex-col gap-y-7">
@@ -40,7 +41,7 @@ export default function IndustrialGasPage() {
               <div className="py-3 px-5 rounded-[12px] bg-accent2 flex flex-col gap-y-1">
                 <h3 className="text-[1.125rem] font-semibold leading-[160%]">Самовывоз</h3>
                 <p className="leading-[160%]">
-                  Доставка по всей России Доставка осуществляется из Москвы, по поводу стоимости
+                  Доставка по всей России. Доставка осуществляется из Москвы, по поводу стоимости
                   доставки Вы можете уточнить по телефону в Москве 
                   <a className="underline" type="tel" href="tel:+74991887356">
                     +7 (499) 188-73-56
