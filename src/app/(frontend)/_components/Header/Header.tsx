@@ -46,8 +46,6 @@ export async function Header() {
     },
   })
 
-  console.log('-----------HEADER DATA ' + catalogCategories.docs.map((cat) => cat.title).join(', '))
-
   const catalogItems = catalogCategories.docs.map((category) => {
     return {
       title: category.title,
@@ -56,8 +54,6 @@ export async function Header() {
       icon: <Book className="size-5 shrink-0" />,
     }
   })
-
-  console.log('-----------HEADER NAV ITEMS ' + catalogItems.map((item) => item.title).join(', '))
 
   const menu = [
     { title: 'Главная', url: '/' },
@@ -83,8 +79,6 @@ export async function Header() {
     },
   ]
 
-  console.log(menu)
-
   return (
     <header className={cn(ContainerClass, 'sticky top-0 bg-background py-3 z-100')}>
       <div className={InsideContainerClass}>
@@ -92,9 +86,16 @@ export async function Header() {
           <div className="flex items-center gap-6">
             <LogoLink />
             <div className="flex items-center max-xl:hidden">
-              <NavigationMenu delayDuration={0}>
+              {menu.map((item) => {
+                if (item.items) {
+                  return `${item.title}[${item.items.map((sub) => sub.title).join(', ')}] `
+                }
+
+                return item.title
+              })}
+              {/* <NavigationMenu delayDuration={0}>
                 <NavigationMenuList>{menu.map((item) => renderMenuItem(item))}</NavigationMenuList>
-              </NavigationMenu>
+              </NavigationMenu> */}
             </div>
           </div>
           <div className="flex gap-x-4">
