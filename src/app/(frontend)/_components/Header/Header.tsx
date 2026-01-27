@@ -1,29 +1,17 @@
-import React from 'react'
-import Link from 'next/link'
-import { Book, Menu, PhoneCall, ChevronDown } from 'lucide-react'
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion'
-import { Button } from '@/components/ui/button'
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from '@/components/ui/navigation-menu'
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import Logo from '@/assets/logo.svg'
-import { cn } from '@/lib/utils'
-import { ContainerClass, InsideContainerClass } from '../../layout'
-import { ConnectBlock, ConnectHoverCard } from './Connect'
+import { Button } from '@/components/ui/button'
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { initPayload } from '@/lib/initPayload'
+import { cn } from '@/lib/utils'
+import { Book, ChevronDown, Menu, PhoneCall } from 'lucide-react'
+import Link from 'next/link'
+import React from 'react'
+import { ContainerClass, InsideContainerClass } from '../../layout'
+import { ConnectBlock, ConnectHoverCard } from './_components/Connect'
+import { MobileNavMenu } from './_components/MobileNavMenu'
+import { NavMenu } from './_components/NavMenu'
 
-type MenuItem = {
+export type MenuItem = {
   title: string
   url?: string
   description?: string
@@ -86,16 +74,7 @@ export async function Header() {
           <div className="flex items-center gap-6">
             <LogoLink />
             <div className="flex items-center max-xl:hidden">
-              {menu.map((item) => {
-                if (item.items) {
-                  return `${item.title}[${item.items.map((sub) => sub.title).join(', ')}] `
-                }
-
-                return item.title
-              })}
-              {/* <NavigationMenu delayDuration={0}>
-                <NavigationMenuList>{menu.map((item) => renderMenuItem(item))}</NavigationMenuList>
-              </NavigationMenu> */}
+              <NavMenu menu={menu} />
             </div>
           </div>
           <div className="flex gap-x-4">
@@ -128,9 +107,7 @@ export async function Header() {
                   </SheetTitle>
                 </SheetHeader>
                 <div className="flex flex-col gap-6 p-4">
-                  <Accordion type="single" collapsible className="flex w-full flex-col gap-4">
-                    {menu.map((item) => renderMobileMenuItem(item))}
-                  </Accordion>
+                  <MobileNavMenu menu={menu} />
                 </div>
                 <div className="p-4">
                   <Button size="lg" className="w-full">
@@ -146,78 +123,6 @@ export async function Header() {
         </nav>
       </div>
     </header>
-  )
-}
-
-const renderMenuItem = (item: MenuItem) => {
-  if (item.items && item.items.length > 0) {
-    console.log(
-      'Rendering menu item with subitems: ' + item.items.map((sub) => sub.title).join(', '),
-    )
-    return (
-      <NavigationMenuItem key={item.title}>
-        <NavigationMenuTrigger>{item.title}</NavigationMenuTrigger>
-        <NavigationMenuContent className="bg-popover text-popover-foreground">
-          {item.items.map((subItem) => (
-            <NavigationMenuLink asChild key={subItem.title} className="w-80">
-              <SubMenuLink item={subItem} />
-            </NavigationMenuLink>
-          ))}
-        </NavigationMenuContent>
-      </NavigationMenuItem>
-    )
-  }
-
-  return (
-    <NavigationMenuItem key={item.title}>
-      <NavigationMenuLink
-        href={item.url}
-        className="bg-background hover:bg-muted hover:text-accent-foreground group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors"
-      >
-        {item.title}
-      </NavigationMenuLink>
-    </NavigationMenuItem>
-  )
-}
-
-const renderMobileMenuItem = (item: MenuItem) => {
-  if (item.items) {
-    return (
-      <AccordionItem key={item.title} value={item.title} className="border-b-0">
-        <AccordionTrigger className="text-md py-0 font-semibold hover:no-underline">
-          {item.title}
-        </AccordionTrigger>
-        <AccordionContent className="mt-2">
-          {item.items.map((subItem) => (
-            <SubMenuLink key={subItem.title} item={subItem} />
-          ))}
-        </AccordionContent>
-      </AccordionItem>
-    )
-  }
-
-  return (
-    <Link key={item.title} href={item.url ?? '#'} className="text-md font-semibold" prefetch>
-      {item.title}
-    </Link>
-  )
-}
-
-const SubMenuLink = ({ item }: { item: MenuItem }) => {
-  return (
-    <Link
-      className="hover:bg-muted hover:text-accent-foreground flex min-w-80 select-none flex-row gap-4 rounded-md p-3 leading-none no-underline outline-none transition-colors"
-      href={item.url ?? '#'}
-      prefetch
-    >
-      <div className="text-foreground">{item.icon}</div>
-      <div>
-        <div className="text-sm font-semibold">{item.title}</div>
-        {item.description && (
-          <p className="text-muted-foreground text-sm leading-snug">{item.description}</p>
-        )}
-      </div>
-    </Link>
   )
 }
 
