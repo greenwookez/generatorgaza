@@ -83,6 +83,8 @@ export async function Header() {
     },
   ]
 
+  console.log(menu)
+
   return (
     <header className={cn(ContainerClass, 'sticky top-0 bg-background py-3 z-100')}>
       <div className={InsideContainerClass}>
@@ -147,7 +149,10 @@ export async function Header() {
 }
 
 const renderMenuItem = (item: MenuItem) => {
-  if (item.items) {
+  if (item.items && item.items.length > 0) {
+    console.log(
+      'Rendering menu item with subitems: ' + item.items.map((sub) => sub.title).join(', '),
+    )
     return (
       <NavigationMenuItem key={item.title}>
         <NavigationMenuTrigger>{item.title}</NavigationMenuTrigger>
