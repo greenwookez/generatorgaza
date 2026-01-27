@@ -1,15 +1,13 @@
-import Logo from '@/assets/logo.svg'
 import { Button } from '@/components/ui/button'
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { initPayload } from '@/lib/initPayload'
 import { cn } from '@/lib/utils'
-import { Book, ChevronDown, Menu, PhoneCall } from 'lucide-react'
-import Link from 'next/link'
+import { Book, ChevronDown, PhoneCall } from 'lucide-react'
 import React from 'react'
 import { ContainerClass, InsideContainerClass } from '../../layout'
-import { ConnectBlock, ConnectHoverCard } from './_components/Connect'
+import { ConnectHoverCard } from './_components/Connect'
 import { MobileNavMenu } from './_components/MobileNavMenu'
 import { NavMenu } from './_components/NavMenu'
+import { LogoLink } from './_components/LogoLink'
 
 export type MenuItem = {
   title: string
@@ -68,7 +66,7 @@ export async function Header() {
   ]
 
   return (
-    <header className={cn(ContainerClass, 'sticky top-0 bg-background py-3 z-100')}>
+    <header className={cn(ContainerClass, 'sticky top-0 bg-background py-3 z-40')}>
       <div className={InsideContainerClass}>
         <nav className="flex items-center justify-between">
           <div className="flex items-center gap-6">
@@ -94,40 +92,10 @@ export async function Header() {
               </ConnectHoverCard>
               <Button>Заказать звонок</Button>
             </div>
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button className="xl:hidden" variant="outline" size="icon">
-                  <Menu className="size-4" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent className="overflow-y-auto gap-0 max-sm:w-full">
-                <SheetHeader>
-                  <SheetTitle>
-                    <LogoLink />
-                  </SheetTitle>
-                </SheetHeader>
-                <div className="flex flex-col gap-6 p-4">
-                  <MobileNavMenu menu={menu} />
-                </div>
-                <div className="p-4">
-                  <Button size="lg" className="w-full">
-                    Заказать звонок
-                  </Button>
-                </div>
-                <div className="p-4">
-                  <ConnectBlock />
-                </div>
-              </SheetContent>
-            </Sheet>
+            <MobileNavMenu menu={menu} />
           </div>
         </nav>
       </div>
     </header>
   )
 }
-
-const LogoLink = () => (
-  <Link href="/" prefetch>
-    <Logo aria-label="Логотип АО «Опытно-технологический завод»" />
-  </Link>
-)

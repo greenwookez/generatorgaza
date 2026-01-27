@@ -1,6 +1,5 @@
 'use client'
 
-import Link from 'next/link'
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -10,6 +9,7 @@ import {
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu'
 import { MenuItem } from '../Header'
+import { SubMenuLink } from './SubMenuLink'
 
 export function NavMenu({ menu }: { menu: MenuItem[] }) {
   return (
@@ -44,23 +44,5 @@ const renderMenuItem = (item: MenuItem) => {
         {item.title}
       </NavigationMenuLink>
     </NavigationMenuItem>
-  )
-}
-
-export const SubMenuLink = ({ item }: { item: MenuItem }) => {
-  return (
-    <Link
-      className="hover:bg-muted hover:text-accent-foreground flex min-w-80 select-none flex-row gap-4 rounded-md p-3 leading-none no-underline outline-none transition-colors"
-      href={item.url ?? '#'}
-      prefetch
-    >
-      <div className="text-foreground">{item.icon}</div>
-      <div>
-        <div className="text-sm font-semibold">{item.title}</div>
-        {item.description && (
-          <p className="text-muted-foreground text-sm leading-snug">{item.description}</p>
-        )}
-      </div>
-    </Link>
   )
 }
