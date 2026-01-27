@@ -83,7 +83,7 @@ export async function Header() {
   ]
 
   return (
-    <header className={cn(ContainerClass, 'sticky top-0 bg-background py-3 z-10')}>
+    <header className={cn(ContainerClass, 'sticky top-0 bg-background py-3 z-100')}>
       <div className={InsideContainerClass}>
         <nav className="flex items-center justify-between">
           <div className="flex items-center gap-6">

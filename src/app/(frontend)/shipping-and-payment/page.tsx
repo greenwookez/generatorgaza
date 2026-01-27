@@ -6,6 +6,8 @@ import { ContentClass } from '../layout'
 import { cn } from '@/lib/utils'
 import ScaniaImg from '@/assets/images/scania.png'
 
+export const revalidate = 60
+
 export default function ShippingAndPaymentPage() {
   return (
     <div className={cn(ContentClass)}>
