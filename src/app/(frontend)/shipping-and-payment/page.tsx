@@ -6,8 +6,6 @@ import { ContentClass } from '../layout'
 import { cn } from '@/lib/utils'
 import ScaniaImg from '@/assets/images/scania.png'
 
-export const dynamic = 'force-dynamic'
-
 export default function ShippingAndPaymentPage() {
   return (
     <div className={cn(ContentClass)}>
