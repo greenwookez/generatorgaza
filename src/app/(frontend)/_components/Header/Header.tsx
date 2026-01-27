@@ -1,7 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import * as LucideIcons from 'lucide-react'
-import { Book, Menu, PhoneCall, ChevronDown, HelpCircle } from 'lucide-react'
+import { Book, Menu, PhoneCall, ChevronDown } from 'lucide-react'
 import {
   Accordion,
   AccordionContent,
@@ -47,29 +46,18 @@ export async function Header() {
     },
   })
 
-  console.log('-----------HEADER DATA' + catalogCategories.docs.map((cat) => cat.title).join(', '))
+  console.log('-----------HEADER DATA ' + catalogCategories.docs.map((cat) => cat.title).join(', '))
 
   const catalogItems = catalogCategories.docs.map((category) => {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const Icon = require('lucide-react')[category.navIcon]
-    if (!Icon) {
-      console.error(
-        `-----------HEADER Icon "${category.navIcon}" not found in lucide-react for category "${category.title}"`,
-      )
-    }
-
-    const NavIcon = LucideIcons[category.navIcon as keyof typeof LucideIcons] || HelpCircle
-
     return {
       title: category.title,
       url: `/catalog/${category.slug}`,
       description: category.navDescription,
-      // @ts-ignore
-      icon: <NavIcon className="size-5 shrink-0" />,
+      icon: <Book className="size-5 shrink-0" />,
     }
   })
 
-  console.log('-----------HEADER NAV ITEMS' + catalogItems.map((item) => item.title).join(', '))
+  console.log('-----------HEADER NAV ITEMS ' + catalogItems.map((item) => item.title).join(', '))
 
   const menu = [
     { title: 'Главная', url: '/' },
