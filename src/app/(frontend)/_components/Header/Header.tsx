@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { Book, Menu, Search, PhoneCall, ChevronDown } from 'lucide-react'
+import { Book, Menu, PhoneCall, ChevronDown } from 'lucide-react'
 import {
   Accordion,
   AccordionContent,

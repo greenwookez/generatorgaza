@@ -22,6 +22,7 @@ export default function IsLocalStorageAvailable() {
     localStorage.removeItem('test')
     isLocalStorageAvil = true
     return true
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (e) {
     isLocalStorageAvil = false
     return false
