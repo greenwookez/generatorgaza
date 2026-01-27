@@ -22,6 +22,8 @@ import { Media } from '@/payload-types'
 
 const h3ClassName = 'text-[2.25rem] font-medium leading-[110%] max-md:text-[1.5rem]'
 
+export const dynamic = 'force-dynamic'
+
 export default async function HomePage() {
   return (
     <div className="flex flex-col gap-y-20 pt-5 pb-20 items-center w-full max-sm:gap-y-16">
