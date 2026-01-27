@@ -6,8 +6,6 @@ import { cn } from '@/lib/utils'
 import { ContentClass } from '../layout'
 
 export default async function ContactUsPage() {
-  console.log('ContactUs regeneration')
-
   return (
     <div className={cn(ContentClass)}>
       <div className="flex flex-col gap-y-7">

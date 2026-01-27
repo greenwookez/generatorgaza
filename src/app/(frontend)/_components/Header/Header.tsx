@@ -46,6 +46,8 @@ export async function Header() {
     },
   })
 
+  console.log('-----------HEADER DATA' + catalogCategories.docs.map((cat) => cat.title).join(', '))
+
   const catalogItems = catalogCategories.docs.map((category) => {
     return {
       title: category.title,
@@ -57,6 +59,8 @@ export async function Header() {
       }),
     }
   })
+
+  console.log('-----------HEADER NAV ITEMS' + catalogItems.map((item) => item.title).join(', '))
 
   const menu = [
     { title: 'Главная', url: '/' },
