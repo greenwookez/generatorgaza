@@ -27,6 +27,9 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    components: {
+      beforeDashboard: ['/components/custom/InfoBanner'],
+    },
   },
   collections: [Users, Media, CatalogCategories, CatalogItems, Feedback],
   editor: lexicalEditor({
