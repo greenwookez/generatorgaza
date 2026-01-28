@@ -129,9 +129,6 @@ export const CatalogItems: CollectionConfig = {
               name: 'documents',
               hasMany: true,
               relationTo: 'media',
-              filterOptions: {
-                mimeType: { equals: 'application/pdf' },
-              },
               label: {
                 ru: 'Документы',
               },

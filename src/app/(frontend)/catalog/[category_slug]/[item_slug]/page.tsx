@@ -15,7 +15,7 @@ import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/elements/Separator'
 import { PopularLinks } from '@/app/(frontend)/_components/PopularLinks/PopularLinks'
 import { CatalogCategory, Media } from '@/payload-types'
-import { ImagesCarousel } from './_components/ImagesCarousel'
+import { ImagesCarousel } from '@/components/elements/ImagesCarousel'
 import { AskQuestionButton } from './_components/AskQuestionButton'
 import { MakeInquiryButton } from './_components/MakeInquiryButton'
 import { cn } from '@/lib/utils'
@@ -151,7 +151,9 @@ const CatalogItemPageContent = ({ item }: { item: CatalogItemForThisPage }) => {
                       <span className="font-medium leading-[1.5rem] text-muted-foreground">
                         {pair.key}
                       </span>
-                      <span className="leading-[1.5rem] text-foreground">{pair.value}</span>
+                      <span className="leading-[1.5rem] text-foreground text-right">
+                        {pair.value}
+                      </span>
                     </div>
                     {idx < (item.specification_key_value?.length ?? 0) - 1 && (
                       <Separator hr={{ className: 'bg-border2' }} />
@@ -214,13 +216,17 @@ const CatalogItemPageContent = ({ item }: { item: CatalogItemForThisPage }) => {
   const sections = getAccordionSections()
 
   return (
-    <div className="grow flex flex-col gap-y-6">
+    <div className="max-w-[820px] grow flex flex-col gap-y-6">
       <div className="lg:hidden">
         <CatalogItemPageSidebarBody item={item} />
       </div>
       {item.images && item.images.length > 0 && (
         <div className="flex justify-center">
-          <ImagesCarousel images={item.images as Media[]} />
+          <ImagesCarousel
+            images={item.images as Media[]}
+            containerClassName="rounded-[8px] border border-border2"
+            imageClassName="h-[546.7px]"
+          />
         </div>
       )}
       <p className="text-[1.125rem] leading-[170%] whitespace-pre-wrap">{item.shortDescription}</p>
@@ -252,7 +258,7 @@ const CatalogItemPageContentAccordion = ({ sections }: { sections: AccordionSect
 const CatalogItemPageSidebar = ({ item }: { item: CatalogItemForThisPage }) => (
   <div
     className={cn(
-      'max-lg:hidden w-full max-w-[440px] sticky top-[94px] shadow-[0px_5px_20px_0px_rgba(0,31,84,0.08)]',
+      'max-lg:hidden w-full max-w-[400px] sticky top-[94px] shadow-[0px_5px_20px_0px_rgba(0,31,84,0.08)]',
       CatalogItemPageSidebarBodyRoundedClass,
     )}
   >

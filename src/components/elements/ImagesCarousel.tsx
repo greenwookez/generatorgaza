@@ -7,23 +7,43 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Media } from '@/payload-types'
 
-export const ImagesCarousel = ({ images }: { images: Media[] }) => {
+export type ImagesCarouselProps = {
+  images: Media[]
+  containerClassName?: string
+  imageClassName?: string
+}
+
+export const ImagesCarousel = ({
+  images,
+  containerClassName,
+  imageClassName,
+}: ImagesCarouselProps) => {
+  if (images.length === 0) {
+    return null
+  }
+
   if (images.length === 1) {
     return (
       <ImageRenderer
         image={images[0]}
-        className="w-full relative rounded-[8px] border border-border2 overflow-hidden"
+        className={cn('w-full relative overflow-hidden', containerClassName, imageClassName)}
       />
     )
   }
+
   return (
-    <Carousel className="w-full relative rounded-[8px] border border-border2 overflow-hidden">
-      <ImagesCarouselBody images={images} />
+    <Carousel className={cn('w-full relative overflow-hidden', containerClassName)}>
+      <ImagesCarouselBody images={images} imagesClassName={imageClassName} />
     </Carousel>
   )
 }
 
-const ImagesCarouselBody = ({ images }: { images: Media[] }) => {
+type ImagesCarouselBodyProps = {
+  images: Media[]
+  imagesClassName?: string
+}
+
+const ImagesCarouselBody = ({ images, imagesClassName }: ImagesCarouselBodyProps) => {
   const { scrollPrev, scrollNext, canScrollPrev, canScrollNext } = useCarousel()
 
   return (
@@ -31,7 +51,7 @@ const ImagesCarouselBody = ({ images }: { images: Media[] }) => {
       <CarouselContent>
         {images.map((image, index) => (
           <CarouselItem key={index}>
-            <ImageRenderer image={image} />
+            <ImageRenderer image={image} className={imagesClassName} />
           </CarouselItem>
         ))}
       </CarouselContent>
@@ -60,7 +80,7 @@ const ImagesCarouselBody = ({ images }: { images: Media[] }) => {
 }
 
 const ImageRenderer = ({ image, className }: { image: Media; className?: string }) => (
-  <div className={cn(`relative h-[520px]`, className)}>
+  <div className={cn(`relative`, className)}>
     <Image src={image.url!} alt={image.alt ?? ''} fill className="z-10 object-contain" />
     <Image
       src={image.url!}
