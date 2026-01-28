@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import IsLocalStorageAvailable from '@/lib/isLocalStorageAvailable'
+import IsLocalStorageAvailable from '@/lib/helpers/isLocalStorageAvailable'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 

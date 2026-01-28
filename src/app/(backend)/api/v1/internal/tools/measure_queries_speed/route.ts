@@ -1,4 +1,4 @@
-import { initPayload } from '@/lib/initPayload'
+import { initPayload } from '@/lib/utils/initPayload'
 import { NextRequest, NextResponse } from 'next/server'
 import { CollectionSlug } from 'payload'
 

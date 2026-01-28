@@ -1,5 +1,5 @@
 import type { CollectionConfig } from 'payload'
-import { validateSlug } from '@/lib/validateSlug'
+import { validateSlug } from '@/lib/helpers/validateSlug'
 
 export const CatalogItems: CollectionConfig = {
   slug: 'catalog-items',

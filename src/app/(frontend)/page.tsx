@@ -8,7 +8,7 @@ import {
   Factory,
   ScrollText,
 } from 'lucide-react'
-import { initPayload } from '@/lib/initPayload'
+import { initPayload } from '@/lib/utils/initPayload'
 import { CatalogItem } from '@/components/elements/CatalogItem'
 import { LinkWithIcon } from '@/components/elements/LinkWithIcon'
 import { Separator } from '@/components/elements/Separator'

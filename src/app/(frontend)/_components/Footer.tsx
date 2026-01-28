@@ -5,7 +5,7 @@ import { TextWithLabel } from '@/components/elements/TextWithLabel'
 import { ContainerClass, InsideContainerClass } from '../layout'
 import { Separator } from '@/components/elements/Separator'
 import Link from 'next/link'
-import { initPayload } from '@/lib/initPayload'
+import { initPayload } from '@/lib/utils/initPayload'
 
 export type FooterProps = {
   className?: string
@@ -102,7 +102,7 @@ export const Footer = async ({ className }: FooterProps) => {
         <Separator />
         <div className="flex justify-between text-muted-foreground text-[0.875rem] font-medium gap-y-3 max-sm:flex-col-reverse">
           <span>© 2000—{new Date().getFullYear()} АО «ОТЗ» Все права защищены.</span>
-          <Link href="#" className="underline" prefetch>
+          <Link href="#" className="underline hover:no-underline" prefetch>
             Политика обработки персональных данных
           </Link>
         </div>

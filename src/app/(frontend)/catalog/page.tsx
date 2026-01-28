@@ -3,7 +3,7 @@ import { CatalogItem } from '@/components/elements/CatalogItem'
 import { Media } from '@/payload-types'
 import { cn } from '@/lib/utils'
 import { ContentClass } from '../layout'
-import { initPayload } from '@/lib/initPayload'
+import { initPayload } from '@/lib/utils/initPayload'
 
 export default async function CatalogPage() {
   const payload = await initPayload()

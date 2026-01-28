@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import useMaxWidth from '@/lib/useMaxWidth'
+import useMaxWidth from '@/lib/hooks/useMaxWidth'
 
 export const AskQuestionButton = () => {
   const isLess640px = useMaxWidth(640)

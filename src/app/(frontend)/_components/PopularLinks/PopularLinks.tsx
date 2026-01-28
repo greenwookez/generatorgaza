@@ -1,4 +1,4 @@
-import { initPayload } from '@/lib/initPayload'
+import { initPayload } from '@/lib/utils/initPayload'
 import { PopularLinksUI } from './PopularLinks.ui'
 
 export type PopularLink = {

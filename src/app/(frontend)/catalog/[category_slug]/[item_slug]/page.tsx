@@ -20,7 +20,7 @@ import { AskQuestionButton } from './_components/AskQuestionButton'
 import { MakeInquiryButton } from './_components/MakeInquiryButton'
 import { cn } from '@/lib/utils'
 import { ContentClass } from '@/app/(frontend)/layout'
-import { initPayload } from '@/lib/initPayload'
+import { initPayload } from '@/lib/utils/initPayload'
 import { LexicalConverters } from '@/app/(frontend)/_lexical/converters'
 
 type CatalogItemForThisPage = {

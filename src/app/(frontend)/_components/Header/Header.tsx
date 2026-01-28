@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button'
-import { initPayload } from '@/lib/initPayload'
+import { initPayload } from '@/lib/utils/initPayload'
 import { cn } from '@/lib/utils'
 import { Book, ChevronDown, PhoneCall } from 'lucide-react'
 import React from 'react'

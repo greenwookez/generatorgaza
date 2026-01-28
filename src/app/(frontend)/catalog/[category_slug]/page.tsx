@@ -6,7 +6,7 @@ import { notFound } from 'next/navigation'
 import { Media } from '@/payload-types'
 import { cn } from '@/lib/utils'
 import { ContentClass } from '../../layout'
-import { initPayload } from '@/lib/initPayload'
+import { initPayload } from '@/lib/utils/initPayload'
 
 export default async function CatalogCategoryPage({
   params,
