@@ -37,7 +37,10 @@ export async function Header() {
       title: category.title,
       url: `/catalog/${category.slug}`,
       description: category.navDescription,
-      icon: <Book className="size-5 shrink-0" />,
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      icon: React.createElement(require('lucide-react')[category.navIcon], {
+        className: 'size-5 shrink-0',
+      }),
     }
   })
 
