@@ -1,5 +1,4 @@
-import Image from 'next/image'
-import { ArrowRight, Factory, LucideIcon, ScrollText } from 'lucide-react'
+import { ArrowRight, LucideIcon } from 'lucide-react'
 import { BreadCrumbsTrail } from '@/components/elements/BreadCrumbsTrail'
 import { PopularLinks } from '../_components/PopularLinks/PopularLinks'
 import { Separator } from '@/components/elements/Separator'
@@ -49,7 +48,7 @@ const AboutPageContent = ({ data }: { data: About }) => (
       </div>
     )}
     {data.links && data.links.length > 0 && (
-      <div className="flex gap-x-12">
+      <div className="flex gap-x-7">
         {data.links.map((link, key) => (
           <AboutPageLinkingBlock
             key={key}
@@ -113,7 +112,7 @@ const AboutPageLinkingBlock = ({ title, href, icon: Icon }: AboutPageLinkingBloc
       <div className="bg-accent rounded-[50%] size-16 flex justify-center items-center">
         <Icon className="size-8.5 text-accent-foreground" />
       </div>
-      <h2 className="text-[1.375rem] leading-[140%] font-semibold">{title}</h2>
+      <h2 className="text-[1.25rem] leading-[140%] font-semibold">{title}</h2>
       <Button asChild variant="outline">
         <Link href={href} prefetch>
           Подробнее <ArrowRight />

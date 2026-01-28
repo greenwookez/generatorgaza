@@ -107,23 +107,19 @@ const HomePageAdvantages = () => (
           <div className="size-16 rounded-full bg-accent flex items-center justify-center shrink-0">
             <BadgeRussianRuble className="size-8.5 max-sm:size-7.5" />
           </div>
-          <span className="text-[1.25rem] font-medium leading-[140%] max-sm:text-[1.125rem]">
-            Гибкая система скидок
-          </span>
+          <span className="text-[1.125rem] font-medium leading-[140%]">Гибкая система скидок</span>
         </div>
         <div className="flex gap-x-5 items-center w-full">
           <div className="size-16 rounded-full bg-accent flex items-center justify-center shrink-0">
             <Handshake className="size-8.5 max-sm:size-7.5" />
           </div>
-          <span className="text-[1.25rem] font-medium leading-[140%] max-sm:text-[1.125rem]">
-            Индивидуальный подход
-          </span>
+          <span className="text-[1.125rem] font-medium leading-[140%]">Индивидуальный подход</span>
         </div>
         <div className="flex gap-x-5 items-center w-full">
           <div className="size-16 rounded-full bg-accent flex items-center justify-center shrink-0">
             <BriefcaseBusiness className="size-8.5 max-sm:size-7.5" />
           </div>
-          <span className="text-[1.25rem] font-medium leading-[140%] max-sm:text-[1.125rem]">
+          <span className="text-[1.125rem] font-medium leading-[140%]">
             Работаем с физическими и юридическими лицами
           </span>
         </div>
@@ -151,7 +147,7 @@ const HomePageAbout = async () => {
           />
         )}
         <div className="w-full">
-          <p className="text-[1.25rem] leading-[160%] mb-5 max-sm:text-[1rem] whitespace-pre-wrap">
+          <p className="text-[1.125rem] leading-[160%] mb-5 max-sm:text-[1rem] whitespace-pre-wrap">
             {data.landing_text}
           </p>
           <Button asChild variant="link" size="indent-none">
