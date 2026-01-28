@@ -16,6 +16,7 @@ import { Media } from './collections/Media'
 import { CatalogCategories } from './collections/CatalogCategories'
 import { CatalogItems } from './collections/CatalogItem'
 import { Feedback } from './collections/Feedback'
+import { About } from './globals/About'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -32,6 +33,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media, CatalogCategories, CatalogItems, Feedback],
+  globals: [About],
   editor: lexicalEditor({
     features: ({ defaultFeatures }) => [
       ...defaultFeatures.filter((f) => !['link', 'checklist', 'blockquote'].includes(f.key)),

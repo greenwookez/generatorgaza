@@ -7,76 +7,99 @@ import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { ContentClass } from '../layout'
+import { initPayload } from '@/lib/utils/initPayload'
+import { About, Media } from '@/payload-types'
+import { ImagesCarousel } from '@/components/elements/ImagesCarousel'
+import { AskQuestionButton } from '../catalog/[category_slug]/[item_slug]/_components/AskQuestionButton'
 
 export default async function AboutPage() {
+  const payload = await initPayload()
+  const data = await payload.findGlobal({
+    slug: 'about',
+  })
+
   return (
     <div className={cn(ContentClass)}>
       <div className="flex flex-col gap-y-7">
         <BreadCrumbsTrail items={[{ title: 'О предприятии' }]} />
         <h1 className="text-[1.875rem] font-medium leading-[110%]">О предприятии</h1>
-        <div className="flex gap-x-10">
-          <p className="text-[1.25rem] leading-[160%]">
-            Акционерное общество «Опытно-технологический завод» — предприятие с многолетней
-            историей, являющееся правопреемником производства ацетилена треста «Моспромтехмонтаж»,
-            входившего в Министерство атомной энергии Российской Федерации.
-            <br />
-            <br />
-            Завод специализируется на производстве воздухоразделительных установок, растворённого
-            ацетилена и подготовке технических газов (кислород, углекислота, аргон, азот, гелий,
-            газовые смеси), осуществляет ремонт и техническое освидетельствование баллонов, а также
-            производство известкового молока. Предприятие располагает филиалами в Москве, Протвино и
-            Екатеринбурге.
-            <br />
-            <br />
-            АО «Опытно-технологический завод» сотрудничает с надёжными партнёрами, обеспечивает
-            гарантированные сроки поставок и сдачи установок.
-          </p>
-          <Image
-            alt={'Скания'}
-            src="https://placehold.co/500x512.png"
-            className="shrink-0 object-cover max-h-[512px] rounded-[16px]"
-            width={500}
-            height={512}
-          />
-        </div>
       </div>
-      <div className="flex gap-x-12">
-        <AboutPageLinkingBlock title="Производство и цехи" href="/facilities" icon={Factory} />
-        <AboutPageLinkingBlock title="Сертификаты" href="/certificates" icon={ScrollText} />
+      <div className="flex gap-x-30 items-start max-xl:gap-x-20">
+        <AboutPageContent data={data} />
+        <AboutPageSidebar />
       </div>
-      <p className="text-[1.25rem] leading-[160%]">
-        ЗАО &quot;Промтехнология&quot; специализируется на производстве газовых генераторов и
-        другого газового оборудования, а также на разработке и изготовлении изделий как
-        промышленного, так и гражданского назначения (металлоконструкции строительные, железные и
-        деревянные двери, ворота, заборы, решетки и т. д.) Кислородные и азотные генераторы наиболее
-        наукоемкая продукция - разработка научно-промышленной инновационной компании
-        &quot;Адген&quot;. Кислородные генераторы используются: на металлообрабатывающих заводах
-        (резка металлов толщиной до 50 мм, сварка, пайка); в стекольной промышленности; окисление
-        отходов; в медицине и т. д. Генератор полностью автоматизирован и нуждается только в
-        источнике сжатого воздуха, причем особые требования к чистоте воздуха отсутствуют. Азотные
-        генераторы используются: как средства тушения пожаров, особенно на взрыво-пожароопасных
-        объектах; для долговременного хранения овощей и фруктов; для продувки азотом различных
-        технологических и электротехнических установок и т.д.
-        <br />
-        <br />У нас надежные многолетние контакты с партнерами, гарантированные сроки поставок и
-        сдачи объектов.
-        <br />
-        <br />
-        АО «Опытно-технологический завод»
-        <br />
-        ИНН 5037004018
-        <br />
-        КПП 503701001
-        <br />
-        ОГРН 1025004860990
-        <br />
-        Юридический адрес: 142281, МО, г. Протвино, ул. Железнодорожная, д. 1
-      </p>
       <Separator />
       <PopularLinks />
     </div>
   )
 }
+
+const AboutPageContent = ({ data }: { data: About }) => (
+  <div className="max-w-[820px] grow flex flex-col gap-y-7">
+    <div className="lg:hidden">
+      <AboutPageSidebarBody />
+    </div>
+    {data.images && data.images.length > 0 && (
+      <div className="flex justify-center">
+        <ImagesCarousel
+          images={data.images as Media[]}
+          containerClassName="rounded-[8px] border border-border2"
+          imageClassName="h-[546.7px] max-sm:h-[267px]"
+        />
+      </div>
+    )}
+    {data.links && data.links.length > 0 && (
+      <div className="flex gap-x-12">
+        {data.links.map((link, key) => (
+          <AboutPageLinkingBlock
+            key={key}
+            title={link.title}
+            href={link.href}
+            // eslint-disable-next-line @typescript-eslint/no-require-imports
+            icon={require('lucide-react')[link.icon]}
+          />
+        ))}
+      </div>
+    )}
+    {data.sections &&
+      data.sections.map((section, key) => (
+        <div key={key} className="flex gap-y-3 flex-col">
+          <h2 className="text-[1.5rem] font-medium leading-[160%]">{section.heading}</h2>
+          <p className="text-[1.125rem] leading-[170%] whitespace-pre-wrap">{section.text}</p>
+        </div>
+      ))}
+  </div>
+)
+
+const AboutPageSidebar = () => (
+  <div
+    className={cn(
+      'max-lg:hidden w-full max-w-[400px] sticky top-[94px] shadow-[0px_5px_20px_0px_rgba(0,31,84,0.08)]',
+      AboutPageSidebarBodyRoundedClass,
+    )}
+  >
+    <AboutPageSidebarBody />
+  </div>
+)
+
+const AboutPageSidebarBodyRoundedClass = 'rounded-[12px]'
+
+const AboutPageSidebarBody = () => (
+  <div
+    className={cn(
+      'border p-6 flex flex-col gap-y-4.5 w-full max-lg:rounded-[8px] max-lg:border-border2',
+      AboutPageSidebarBodyRoundedClass,
+    )}
+  >
+    <div className="flex flex-col gap-y-3">
+      <div className="font-medium text-muted-foreground leading-[110%]">Есть вопросы?</div>
+      <h3 className="font-medium text-[1.375rem] leading-[110%] max-sm:text-[1.5rem] max-sm:mb-5">
+        Свяжитесь с нами!
+      </h3>
+    </div>
+    <AskQuestionButton />
+  </div>
+)
 
 type AboutPageLinkingBlockProps = {
   title: string
@@ -87,8 +110,8 @@ type AboutPageLinkingBlockProps = {
 const AboutPageLinkingBlock = ({ title, href, icon: Icon }: AboutPageLinkingBlockProps) => {
   return (
     <div className="w-full p-6 rounded-[12px] border border-border2 flex flex-col gap-y-5 items-start">
-      <div className="size-16 flex justify-center items-center">
-        <Icon className="size-8.5" />
+      <div className="bg-accent rounded-[50%] size-16 flex justify-center items-center">
+        <Icon className="size-8.5 text-accent-foreground" />
       </div>
       <h2 className="text-[1.375rem] leading-[140%] font-semibold">{title}</h2>
       <Button asChild variant="outline">

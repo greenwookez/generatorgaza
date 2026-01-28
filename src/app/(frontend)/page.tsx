@@ -1,26 +1,18 @@
+import React from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
-import {
-  ArrowRight,
-  BadgeRussianRuble,
-  Handshake,
-  BriefcaseBusiness,
-  Factory,
-  ScrollText,
-} from 'lucide-react'
+import { ArrowRight, BadgeRussianRuble, Handshake, BriefcaseBusiness } from 'lucide-react'
 import { initPayload } from '@/lib/utils/initPayload'
 import { CatalogItem } from '@/components/elements/CatalogItem'
 import { LinkWithIcon } from '@/components/elements/LinkWithIcon'
 import { Separator } from '@/components/elements/Separator'
 import { Button } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
 import { TextWithLabel } from '@/components/elements/TextWithLabel'
 import { AskQuestionButton } from './_components/AskQuestionButton'
 import Logo from '@/assets/logo.svg'
-import NitrogenGeneratorImage from '@/assets/images/nitrogen-generator.png'
 import { Media } from '@/payload-types'
+import { ImagesCarousel } from '@/components/elements/ImagesCarousel'
 
-const h3ClassName = 'text-[2.25rem] font-medium leading-[110%] max-md:text-[1.5rem]'
+const h3ClassName = 'text-[2rem] font-medium leading-[110%] max-md:text-[1.5rem]'
 
 export const dynamic = 'force-dynamic'
 
@@ -29,8 +21,8 @@ export default async function HomePage() {
     <div className="flex flex-col gap-y-20 pt-5 pb-20 items-center w-full max-sm:gap-y-16">
       <HomePageHero />
       <HomePageCatalog />
-      <HomePageAdvantages />
       <HomePageAbout />
+      <HomePageAdvantages />
       <HomePageExample />
       <HomePageContacts />
     </div>
@@ -141,52 +133,52 @@ const HomePageAdvantages = () => (
   </div>
 )
 
-const HomePageAbout = () => (
-  <div className="flex flex-col gap-y-10 max-sm:gap-y-7">
-    <h3 className={h3ClassName}>О предприятии</h3>
-    <div className="flex gap-x-10 gap-y-7 max-lg:flex-col">
-      <div className="w-full">
-        <p className="text-[1.25rem] leading-[160%] mb-5 max-sm:text-[1rem]">
-          Акционерное общество «Опытно-технологический завод» — предприятие с многолетней историей,
-          являющееся правопреемником производства ацетилена треста «Моспромтехмонтаж», входившего в
-          Министерство атомной энергии Российской Федерации.
-          <br />
-          <br />
-          Завод специализируется на производстве воздухоразделительных установок, растворённого
-          ацетилена и подготовке технических газов (кислород, углекислота, аргон, азот, гелий,
-          газовые смеси), осуществляет ремонт и техническое освидетельствование баллонов, а также
-          производство известкового молока. Предприятие располагает филиалами в Москве, Протвино и
-          Екатеринбурге.
-          <br />
-          <br />
-          АО «Опытно-технологический завод» сотрудничает с надёжными партнёрами, обеспечивает
-          гарантированные сроки поставок и сдачи установок.
-        </p>
-        <Button asChild variant="link" size="indent-none">
-          <Link href="/about" prefetch>
-            Подробнее <ArrowRight />
-          </Link>
-        </Button>
-        <Separator hr={{ className: 'my-7' }} />
-        <div className="flex flex-col gap-y-6 max-sm:gap-y-5">
-          <LinkWithIcon icon={Factory} href="/facilities" prefetch>
-            Производство и цехи
-          </LinkWithIcon>
-          <LinkWithIcon icon={ScrollText} href="/certificates" prefetch>
-            Сертификаты
-          </LinkWithIcon>
+const HomePageAbout = async () => {
+  const payload = await initPayload()
+  const data = await payload.findGlobal({
+    slug: 'about',
+  })
+
+  return (
+    <div className="flex flex-col gap-y-10 max-sm:gap-y-7">
+      <h3 className={h3ClassName}>О предприятии</h3>
+      <div className="flex gap-x-10 gap-y-7 max-lg:flex-col items-start">
+        {data.images && data.images.length > 0 && (
+          <ImagesCarousel
+            images={data.images as Media[]}
+            containerClassName="w-full max-w-[600px] rounded-[16px] max-lg:min-w-full"
+            imageClassName="h-[400px] max-sm:h-[267px]"
+          />
+        )}
+        <div className="w-full">
+          <p className="text-[1.25rem] leading-[160%] mb-5 max-sm:text-[1rem] whitespace-pre-wrap">
+            {data.landing_text}
+          </p>
+          <Button asChild variant="link" size="indent-none">
+            <Link href="/about" prefetch>
+              Подробнее <ArrowRight />
+            </Link>
+          </Button>
         </div>
       </div>
-      <Image
-        alt="Азотный генератор"
-        className={cn(
-          'w-full min-w-[400px] rounded-[16px] max-h-[500px] object-cover max-lg:min-w-full',
-        )}
-        src={NitrogenGeneratorImage}
-      />
+      {data.links && data.links.length > 0 && (
+        <div className="flex flex-col gap-y-6 max-sm:gap-y-5">
+          {data.links.map((link, key) => (
+            <LinkWithIcon
+              key={key}
+              // eslint-disable-next-line @typescript-eslint/no-require-imports
+              icon={require('lucide-react')[link.icon]}
+              href={link.href}
+              prefetch
+            >
+              {link.title}
+            </LinkWithIcon>
+          ))}
+        </div>
+      )}
     </div>
-  </div>
-)
+  )
+}
 
 const HomePageExample = () => {
   return (

@@ -93,8 +93,12 @@ export interface Config {
     defaultIDType: number;
   };
   fallbackLocale: null;
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    about: About;
+  };
+  globalsSelect: {
+    about: AboutSelect<false> | AboutSelect<true>;
+  };
   locale: null;
   user: User & {
     collection: 'users';
@@ -516,6 +520,61 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about".
+ */
+export interface About {
+  id: number;
+  images?: (number | Media)[] | null;
+  links?:
+    | {
+        title: string;
+        href: string;
+        /**
+         * ComponentName из https://lucide.dev/icons (например, Cylinder)
+         */
+        icon: string;
+        id?: string | null;
+      }[]
+    | null;
+  landing_text?: string | null;
+  sections?:
+    | {
+        heading?: string | null;
+        text?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about_select".
+ */
+export interface AboutSelect<T extends boolean = true> {
+  images?: T;
+  links?:
+    | T
+    | {
+        title?: T;
+        href?: T;
+        icon?: T;
+        id?: T;
+      };
+  landing_text?: T;
+  sections?:
+    | T
+    | {
+        heading?: T;
+        text?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -225,7 +225,7 @@ const CatalogItemPageContent = ({ item }: { item: CatalogItemForThisPage }) => {
           <ImagesCarousel
             images={item.images as Media[]}
             containerClassName="rounded-[8px] border border-border2"
-            imageClassName="h-[546.7px]"
+            imageClassName="h-[546.7px] max-sm:h-[267px]"
           />
         </div>
       )}
