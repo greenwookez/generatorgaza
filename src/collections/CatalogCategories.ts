@@ -6,6 +6,7 @@ export const CatalogCategories: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     group: 'Каталог',
+    defaultColumns: ['id', 'title', 'slug'],
   },
   labels: {
     singular: {
@@ -16,6 +17,18 @@ export const CatalogCategories: CollectionConfig = {
     },
   },
   fields: [
+    {
+      name: 'isHidden',
+      type: 'checkbox',
+      required: true,
+      defaultValue: false,
+      label: {
+        ru: 'Скрыть категорию',
+      },
+      admin: {
+        description: 'Если отметить, категория не будет отображаться',
+      },
+    },
     {
       name: 'order',
       type: 'number',
@@ -74,6 +87,13 @@ export const CatalogCategories: CollectionConfig = {
       required: true,
       label: {
         ru: 'Описание в навигационном меню',
+      },
+    },
+    {
+      name: 'pageDescription',
+      type: 'textarea',
+      label: {
+        ru: 'Описание на странице категории',
       },
     },
     {

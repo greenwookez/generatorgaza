@@ -11,6 +11,7 @@ export const About: GlobalConfig = {
       type: 'upload',
       name: 'images',
       hasMany: true,
+      required: true,
       relationTo: 'media',
       label: {
         ru: 'Галерея изображений',
@@ -23,6 +24,7 @@ export const About: GlobalConfig = {
       name: 'links',
       type: 'array',
       label: 'Ссылки на другие страницы',
+      required: true,
       labels: {
         singular: {
           ru: 'Ссылка',
@@ -66,6 +68,7 @@ export const About: GlobalConfig = {
             {
               name: 'landing_text',
               type: 'textarea',
+              required: true,
               label: 'Текст на лендинге',
             },
           ],
@@ -77,6 +80,7 @@ export const About: GlobalConfig = {
               name: 'sections',
               type: 'array',
               label: 'Разделы страницы',
+              required: true,
               labels: {
                 singular: {
                   ru: 'Раздел',
@@ -89,6 +93,7 @@ export const About: GlobalConfig = {
                 {
                   name: 'heading',
                   type: 'text',
+                  required: true,
                   label: {
                     ru: 'Заголовок',
                   },
@@ -96,6 +101,7 @@ export const About: GlobalConfig = {
                 {
                   name: 'text',
                   type: 'textarea',
+                  required: true,
                   label: {
                     ru: 'Текст',
                   },

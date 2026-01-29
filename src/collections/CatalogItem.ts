@@ -6,6 +6,7 @@ export const CatalogItems: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     group: 'Каталог',
+    defaultColumns: ['id', 'title', 'slug'],
   },
   labels: {
     singular: {
@@ -16,6 +17,18 @@ export const CatalogItems: CollectionConfig = {
     },
   },
   fields: [
+    {
+      name: 'isHidden',
+      type: 'checkbox',
+      required: true,
+      defaultValue: false,
+      label: {
+        ru: 'Скрыть товар',
+      },
+      admin: {
+        description: 'Если отметить, товар не будет отображаться',
+      },
+    },
     {
       type: 'tabs',
       tabs: [

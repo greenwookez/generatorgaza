@@ -20,6 +20,7 @@ export default async function CatalogCategoryPage({
   const categories = await payload.find({
     collection: 'catalog-categories',
     where: {
+      isHidden: { equals: false },
       slug: { equals: category_slug },
     },
     limit: 1,
@@ -27,6 +28,7 @@ export default async function CatalogCategoryPage({
     select: {
       title: true,
       slug: true,
+      pageDescription: true,
     },
   })
 
@@ -39,6 +41,7 @@ export default async function CatalogCategoryPage({
     collection: 'catalog-items',
     where: {
       category: { equals: category.id },
+      isHidden: { equals: false },
     },
     sort: 'order',
     pagination: false,
@@ -56,7 +59,7 @@ export default async function CatalogCategoryPage({
       />
       <h1 className="text-[1.875rem] font-medium leading-[110%]">{category.title}</h1>
       <div className="flex flex-col gap-y-12">
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-y-8 gap-x-6">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-y-6 gap-x-6">
           {items.docs.map((item, idx) => (
             <ProductCard
               key={idx}
@@ -70,10 +73,8 @@ export default async function CatalogCategoryPage({
           ))}
         </div>
         <Separator />
-        <p className="text-[1.25rem] leading-[160%]">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum temporibus veritatis
-          excepturi accusamus aliquam error, cum obcaecati dolorum eius praesentium soluta debitis
-          quas. Harum eligendi ea ad maxime consequatur est!
+        <p className="text-[1.125rem] leading-[170%] whitespace-pre-wrap max-w-[900px]">
+          {category.pageDescription}
         </p>
         <Separator />
         <PopularLinks />

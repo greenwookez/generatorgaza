@@ -56,6 +56,7 @@ export default async function CatalogItemPage({
     collection: 'catalog-items',
     where: {
       slug: { equals: item_slug },
+      isHidden: { equals: false },
     },
     limit: 1,
     pagination: false,

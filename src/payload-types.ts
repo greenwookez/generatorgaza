@@ -182,6 +182,10 @@ export interface Media {
 export interface CatalogCategory {
   id: number;
   /**
+   * Если отметить, категория не будет отображаться
+   */
+  isHidden: boolean;
+  /**
    * Категории с меньшим номером будут отображаться раньше (левее/выше)
    */
   order: number;
@@ -193,6 +197,7 @@ export interface CatalogCategory {
   image: number | Media;
   description: string;
   navDescription: string;
+  pageDescription?: string | null;
   /**
    * ComponentName из https://lucide.dev/icons (например, Cylinder)
    */
@@ -206,6 +211,10 @@ export interface CatalogCategory {
  */
 export interface CatalogItem {
   id: number;
+  /**
+   * Если отметить, товар не будет отображаться
+   */
+  isHidden: boolean;
   /**
    * Товары с меньшим номером будут отображаться раньше (левее/выше)
    */
@@ -428,12 +437,14 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "catalog-categories_select".
  */
 export interface CatalogCategoriesSelect<T extends boolean = true> {
+  isHidden?: T;
   order?: T;
   title?: T;
   slug?: T;
   image?: T;
   description?: T;
   navDescription?: T;
+  pageDescription?: T;
   navIcon?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -443,6 +454,7 @@ export interface CatalogCategoriesSelect<T extends boolean = true> {
  * via the `definition` "catalog-items_select".
  */
 export interface CatalogItemsSelect<T extends boolean = true> {
+  isHidden?: T;
   order?: T;
   title?: T;
   category?: T;
@@ -527,26 +539,22 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface About {
   id: number;
-  images?: (number | Media)[] | null;
-  links?:
-    | {
-        title: string;
-        href: string;
-        /**
-         * ComponentName из https://lucide.dev/icons (например, Cylinder)
-         */
-        icon: string;
-        id?: string | null;
-      }[]
-    | null;
-  landing_text?: string | null;
-  sections?:
-    | {
-        heading?: string | null;
-        text?: string | null;
-        id?: string | null;
-      }[]
-    | null;
+  images: (number | Media)[];
+  links: {
+    title: string;
+    href: string;
+    /**
+     * ComponentName из https://lucide.dev/icons (например, Cylinder)
+     */
+    icon: string;
+    id?: string | null;
+  }[];
+  landing_text: string;
+  sections: {
+    heading: string;
+    text: string;
+    id?: string | null;
+  }[];
   updatedAt?: string | null;
   createdAt?: string | null;
 }

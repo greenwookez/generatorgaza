@@ -35,12 +35,12 @@ export const ProductCard = ({
   return (
     <div
       className={cn(
-        'flex flex-col gap-y-4 p-4 rounded-[8px] border border-border2 max-w-[250px] group cursor-pointer hover:border-border',
+        'flex flex-col gap-y-4 p-4 rounded-[8px] border border-border2 group cursor-pointer hover:border-border',
         containerClassName,
       )}
       onClick={onClick}
     >
-      <div className="bg-accent2 rounded-[4px] flex items-center justify-center grow relative min-h-[300px]">
+      <div className="bg-accent2 rounded-[4px] flex items-center justify-center grow relative min-h-[200px]">
         <Image
           {...imageProps}
           alt={title}
@@ -52,15 +52,15 @@ export const ProductCard = ({
       <div className="text-[1.125rem] leading-[130%] font-semibold group-hover:text-secondary-foreground">
         {title}
       </div>
-      <div className="flex flex-col gap-y-2">
-        <Button variant="default" onClick={onRequestClick}>
-          Запросить цену
-        </Button>
-        <Button variant="outline" asChild>
+      <div className="flex justify-between">
+        <Button variant="link" size="indent-none" asChild>
           <Link {...linkProps} prefetch>
             {linkChildren}
             <ArrowRight />
           </Link>
+        </Button>
+        <Button variant="outline" size="sm" onClick={onRequestClick}>
+          Запросить цену
         </Button>
       </div>
     </div>

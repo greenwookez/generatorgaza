@@ -61,6 +61,9 @@ const HomePageCatalog = async () => {
     collection: 'catalog-categories',
     sort: 'order',
     pagination: false,
+    where: {
+      isHidden: { equals: false },
+    },
     select: {
       title: true,
       description: true,

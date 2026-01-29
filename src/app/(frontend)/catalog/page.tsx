@@ -12,6 +12,9 @@ export default async function CatalogPage() {
     collection: 'catalog-categories',
     sort: 'order',
     pagination: false,
+    where: {
+      isHidden: { equals: false },
+    },
     select: {
       title: true,
       description: true,
@@ -24,7 +27,7 @@ export default async function CatalogPage() {
     <div className={cn(ContentClass, 'gap-y-7')}>
       <BreadCrumbsTrail items={[{ title: 'Каталог' }]} />
       <h1 className="text-[1.875rem] font-medium leading-[110%]">Каталог</h1>
-      <div className="grid [grid-template-columns:repeat(auto-fit,minmax(260px,1fr))] gap-6">
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-6">
         {categories.docs.map((category) => (
           <CatalogItem
             key={category.id}
