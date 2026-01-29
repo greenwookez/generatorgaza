@@ -145,7 +145,11 @@ export const CallbackForm = () => {
         autoComplete="tel"
         onChange={onChange('phone')}
         value={formState.phone}
-        className={hasErr('phone') ? 'border-destructive text-destructive' : undefined}
+        className={
+          hasErr('phone')
+            ? 'border-destructive placeholder:text-destructive text-destructive'
+            : undefined
+        }
         labelClassName={hasErr('phone') ? 'text-destructive' : undefined}
       />
       <div className="flex flex-col gap-y-2">

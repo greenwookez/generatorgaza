@@ -1,20 +1,14 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
 import useMaxWidth from '@/lib/hooks/useMaxWidth'
+import { RequestCallbackButton } from '@/app/(frontend)/_components/Callback/RequestCallbackButton'
 
 export const MakeInquiryButton = () => {
   const isLess640px = useMaxWidth(640)
 
-  const scrollToFeedbackForm = () => {
-    const form = document.getElementById('feedback-form')
-    if (form) {
-      form.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }
-  }
   return (
-    <Button className="grow" size={isLess640px ? 'default' : 'lg'} onClick={scrollToFeedbackForm}>
+    <RequestCallbackButton className="grow" size={isLess640px ? 'default' : 'lg'}>
       Подать заявку
-    </Button>
+    </RequestCallbackButton>
   )
 }

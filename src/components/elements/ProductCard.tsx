@@ -1,16 +1,17 @@
 'use client'
+
 import { useRouter } from 'next/navigation'
 import Image, { ImageProps } from 'next/image'
 import { Button } from '../ui/button'
 import { ArrowRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
+import { RequestCallbackButton } from '@/app/(frontend)/_components/Callback/RequestCallbackButton'
 
 export type ProductCardProps = {
   title: string
   image: ImageProps
   link: React.PropsWithChildren<React.ComponentProps<typeof Link>>
-  onRequestClick?: () => void
   containerClassName?: string
 }
 
@@ -18,7 +19,7 @@ export const ProductCard = ({
   title,
   image,
   link,
-  onRequestClick,
+
   containerClassName,
 }: ProductCardProps) => {
   const router = useRouter()
@@ -38,9 +39,11 @@ export const ProductCard = ({
         'flex flex-col gap-y-4 p-4 rounded-[8px] border border-border2 group cursor-pointer hover:border-border',
         containerClassName,
       )}
-      onClick={onClick}
     >
-      <div className="bg-accent2 rounded-[4px] overflow-hidden flex items-center justify-center grow relative min-h-[200px]">
+      <div
+        onClick={onClick}
+        className="bg-accent2 rounded-[4px] overflow-hidden flex items-center justify-center grow relative min-h-[200px]"
+      >
         <Image
           {...imageProps}
           alt={title}
@@ -60,9 +63,9 @@ export const ProductCard = ({
               <ArrowRight />
             </Link>
           </Button>
-          <Button variant="outline" size="sm" onClick={onRequestClick}>
+          <RequestCallbackButton variant="outline" size="sm">
             Запросить цену
-          </Button>
+          </RequestCallbackButton>
         </div>
       </div>
     </div>

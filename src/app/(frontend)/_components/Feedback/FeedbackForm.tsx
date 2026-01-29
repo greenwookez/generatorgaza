@@ -167,7 +167,11 @@ export const FeedbackForm = () => {
           autoComplete="tel"
           onChange={onChange('phone')}
           value={formState.phone}
-          className={hasErr('phone') ? 'border-destructive text-destructive' : undefined}
+          className={
+            hasErr('phone')
+              ? 'border-destructive placeholder:text-destructive text-destructive'
+              : undefined
+          }
           labelClassName={hasErr('phone') ? 'text-destructive' : undefined}
         />
         <InputWithLabel

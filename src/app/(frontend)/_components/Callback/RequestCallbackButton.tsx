@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetHeader, SheetTrigger, SheetTitle } from '@/components/ui/sheet'
 import { CallbackForm } from './CallbackForm'
 
-export type RequestCallbackButtonProps = Omit<ComponentProps<typeof Button>, 'onClick' | 'children'>
+export type RequestCallbackButtonProps = ComponentProps<typeof Button>
 
 export const RequestCallbackButton = (props: RequestCallbackButtonProps) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -13,11 +13,11 @@ export const RequestCallbackButton = (props: RequestCallbackButtonProps) => {
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
-        <Button {...props}>Заказать звонок</Button>
+        <Button {...props}>{props.children}</Button>
       </SheetTrigger>
       <SheetContent className="overflow-y-auto gap-0 max-sm:w-full">
         <SheetHeader>
-          <SheetTitle>Заказать звонок</SheetTitle>
+          <SheetTitle>{props.children}</SheetTitle>
         </SheetHeader>
         <div className="px-4">
           Оставьте свои контактные данные, и мы перезвоним вам в ближайшее время.

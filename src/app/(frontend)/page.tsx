@@ -49,7 +49,7 @@ const HomePageHero = () => {
       </div>
       <div className="flex gap-x-4 gap-y-3 justify-center max-sm:flex-col">
         <AskQuestionButton />
-        <RequestCallbackButton size="lg" />
+        <RequestCallbackButton size="lg">Заказать звонок</RequestCallbackButton>
       </div>
     </div>
   )

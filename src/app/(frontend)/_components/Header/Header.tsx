@@ -97,7 +97,7 @@ export async function Header() {
                   />
                 </Button>
               </ConnectHoverCard>
-              <RequestCallbackButton />
+              <RequestCallbackButton>Заказать звонок</RequestCallbackButton>
             </div>
             <MobileNavMenu menu={menu} />
           </div>

@@ -39,7 +39,9 @@ export function MobileNavMenu({ menu }: { menu: MenuItem[] }) {
           </Accordion>
         </div>
         <div className="p-4">
-          <RequestCallbackButton size="lg" className="w-full" />
+          <RequestCallbackButton size="lg" className="w-full">
+            Заказать звонок
+          </RequestCallbackButton>
         </div>
         <div className="p-4">
           <ConnectBlock />
