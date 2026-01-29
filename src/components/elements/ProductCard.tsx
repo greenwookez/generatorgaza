@@ -40,7 +40,7 @@ export const ProductCard = ({
       )}
       onClick={onClick}
     >
-      <div className="bg-accent2 rounded-[4px] flex items-center justify-center grow relative min-h-[200px]">
+      <div className="bg-accent2 rounded-[4px] overflow-hidden flex items-center justify-center grow relative min-h-[200px]">
         <Image
           {...imageProps}
           alt={title}
@@ -49,19 +49,21 @@ export const ProductCard = ({
           className={cn('object-cover', imageClassName)}
         />
       </div>
-      <div className="text-[1.125rem] leading-[130%] font-semibold group-hover:text-secondary-foreground">
-        {title}
-      </div>
-      <div className="flex justify-between">
-        <Button variant="link" size="indent-none" asChild>
-          <Link {...linkProps} prefetch>
-            {linkChildren}
-            <ArrowRight />
-          </Link>
-        </Button>
-        <Button variant="outline" size="sm" onClick={onRequestClick}>
-          Запросить цену
-        </Button>
+      <div className="flex flex-col gap-y-2">
+        <div className="text-[1.125rem] leading-[130%] font-semibold group-hover:text-secondary-foreground">
+          {title}
+        </div>
+        <div className="flex justify-between">
+          <Button variant="link" size="indent-none" asChild>
+            <Link {...linkProps} prefetch>
+              {linkChildren}
+              <ArrowRight />
+            </Link>
+          </Button>
+          <Button variant="outline" size="sm" onClick={onRequestClick}>
+            Запросить цену
+          </Button>
+        </div>
       </div>
     </div>
   )

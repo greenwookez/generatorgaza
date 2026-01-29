@@ -197,7 +197,7 @@ export interface CatalogCategory {
   image: number | Media;
   description: string;
   navDescription: string;
-  pageDescription?: string | null;
+  pageDescription: string;
   /**
    * ComponentName из https://lucide.dev/icons (например, Cylinder)
    */

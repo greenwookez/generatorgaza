@@ -92,6 +92,7 @@ export const CatalogCategories: CollectionConfig = {
     {
       name: 'pageDescription',
       type: 'textarea',
+      required: true,
       label: {
         ru: 'Описание на странице категории',
       },
