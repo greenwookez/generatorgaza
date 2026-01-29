@@ -13,6 +13,12 @@ import useSimpleError from '@/lib/hooks/useSimpleError'
 import { cn } from '@/lib/utils'
 import { isValidEmail } from '@/lib/helpers/isValidEmail'
 import { isValidPhoneNumber } from '@/lib/helpers/isValidPhoneNumber'
+import {
+  CreateFeedbackOutputInvalidParams,
+  CreateFeedbackOutputOK,
+  CreateFeedbackOutputTooManyRequests,
+} from '@/runtime/feedback/model'
+import { toast } from 'sonner'
 
 type FormState = {
   name: string
@@ -20,6 +26,14 @@ type FormState = {
   email: string
   message: string
   consent: boolean
+}
+
+const emptyFormState: FormState = {
+  name: '',
+  phone: '',
+  email: '',
+  message: '',
+  consent: false,
 }
 
 const phoneMaskOptions = {
@@ -30,13 +44,7 @@ const phoneMaskOptions = {
 
 export const FeedbackForm = () => {
   const [hasErr, setErr] = useSimpleError(['name', 'phone', 'email', 'message', 'consent'])
-  const [formState, setFormState] = useState<FormState>({
-    name: '',
-    phone: '',
-    email: '',
-    message: '',
-    consent: false,
-  })
+  const [formState, setFormState] = useState<FormState>(emptyFormState)
 
   const inputRef = useMask(phoneMaskOptions)
 
@@ -78,14 +86,42 @@ export const FeedbackForm = () => {
       return
     }
 
-    // TODO: UI for successfull/unsuccessfull submission
-    CreateFeedback({
+    const status = await CreateFeedback({
       name: formState.name,
       phone: formState.phone,
       email: formState.email,
       message: formState.message,
       page_url: window.location.href,
     })
+
+    if (status === CreateFeedbackOutputOK) {
+      toast.success('Успешно отправлено', {
+        duration: 3000,
+        description: 'Спасибо за вопрос! Мы свяжемся с вами в ближайшее время.',
+        position: 'top-center',
+      })
+      setFormState(emptyFormState)
+      return
+    }
+
+    if (status === CreateFeedbackOutputTooManyRequests) {
+      toast.warning('Слишком много сообщений', {
+        duration: 3000,
+        description: 'Мы заметили слишком много сообщений от вас. Пожалуйста, попробуйте позже.',
+        position: 'top-center',
+      })
+      return
+    }
+
+    if (status === CreateFeedbackOutputInvalidParams) {
+      toast.info('Что-то пошло не так', {
+        duration: 3000,
+        description:
+          'Не волнуйтесь, это на нашей стороне. Наши разработчики уже оповещены. Пожалуйста, попробуйте позже.',
+        position: 'top-center',
+      })
+      return
+    }
   }
 
   const onChange =

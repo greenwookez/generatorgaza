@@ -4,16 +4,14 @@ import { Header } from '@/app/(frontend)/_components/Header/Header'
 import { Footer } from './_components/Footer'
 import { Feedback } from './_components/Feedback/Feedback'
 import { cn } from '@/lib/utils'
-
+import { Toaster } from '@/components/ui/sonner'
+import { CookiePopup } from './_components/CookiePopup'
 import './styles.css'
 import './_lexical/lexical.css'
-import { CookiePopup } from './_components/CookiePopup'
 
 // Перед релизом:
 // [ ]: Формы обратной связи: успешный и ошибочный UI после отправки, отдельная форма в Sheet
-// [ ]: Каталог: переделать карточку внутри категории, адаптация под мобильные, описание категории
 // [ ]: Контакты: фото, тексты и адаптация под мобильные
-// [ ]: Возможность скрыть созданную категорию или товар с сайта через Payload CMS
 // -----------------------------------------------------
 // [ ]: Главная: видео на Rutube или self-hosted
 // [ ]: Политика обработки персональных данных - изучить как лучше
@@ -79,6 +77,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
           </section>
         </main>
         <Footer />
+        <Toaster theme="light" className="border-border2" />
       </body>
     </html>
   )
