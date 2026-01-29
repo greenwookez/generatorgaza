@@ -11,6 +11,7 @@ import { AskQuestionButton } from './_components/AskQuestionButton'
 import Logo from '@/assets/logo.svg'
 import { Media } from '@/payload-types'
 import { ImagesCarousel } from '@/components/elements/ImagesCarousel'
+import { RequestCallbackButton } from './_components/Callback/RequestCallbackButton'
 
 const h3ClassName = 'text-[2rem] font-medium leading-[110%] max-md:text-[1.5rem]'
 
@@ -48,7 +49,7 @@ const HomePageHero = () => {
       </div>
       <div className="flex gap-x-4 gap-y-3 justify-center max-sm:flex-col">
         <AskQuestionButton />
-        <Button size="lg">Заказать звонок</Button>
+        <RequestCallbackButton size="lg" />
       </div>
     </div>
   )
@@ -82,7 +83,7 @@ const HomePageCatalog = async () => {
           </Link>
         </Button>
       </div>
-      <div className="grid [grid-template-columns:repeat(auto-fit,minmax(270px,1fr))] gap-x-9 gap-y-12">
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(270px,1fr))] gap-x-9 gap-y-12">
         {categories.docs.map((category) => (
           <CatalogItem
             key={category.id}
@@ -105,7 +106,7 @@ const HomePageAdvantages = () => (
     <Separator />
     <div className="py-12 flex flex-col gap-y-10">
       <h3 className={h3ClassName}>Наши преимущества</h3>
-      <div className="grid [grid-template-columns:repeat(auto-fit,minmax(350px,1fr))] gap-6">
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(350px,1fr))] gap-6">
         <div className="flex gap-x-5 items-center w-full">
           <div className="size-16 rounded-full bg-accent flex items-center justify-center shrink-0">
             <BadgeRussianRuble className="size-8.5 max-sm:size-7.5" />

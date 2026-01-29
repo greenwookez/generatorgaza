@@ -8,6 +8,7 @@ import { ConnectHoverCard } from './_components/Connect'
 import { MobileNavMenu } from './_components/MobileNavMenu'
 import { NavMenu } from './_components/NavMenu'
 import { LogoLink } from './_components/LogoLink'
+import { RequestCallbackButton } from '../Callback/RequestCallbackButton'
 
 export type MenuItem = {
   title: string
@@ -96,7 +97,7 @@ export async function Header() {
                   />
                 </Button>
               </ConnectHoverCard>
-              <Button>Заказать звонок</Button>
+              <RequestCallbackButton />
             </div>
             <MobileNavMenu menu={menu} />
           </div>

@@ -1,21 +1,21 @@
 import type { CollectionConfig } from 'payload'
 import { isAdmin } from './Users'
 import { SendNotificationInTelegram } from '@/runtime/telegram/SendNotificationInTelegram'
-import { FormatFeedbackNotificationMessage } from '@/runtime/feedback/FormatFeedbackNotificationMessage'
-import { Feedback as TFeeback } from '@/payload-types'
+import { Callback as TCallback } from '@/payload-types'
+import { FormatCallbackNotificationMessage } from '@/runtime/callbacks/FormatFeedbackNotificationMessage'
 
-export const Feedback: CollectionConfig = {
-  slug: 'feedback',
+export const Callbacks: CollectionConfig = {
+  slug: 'callbacks',
   admin: {
     group: 'CRM',
-    defaultColumns: ['id', 'message', 'name', 'phone', 'email'],
+    defaultColumns: ['id', 'name', 'phone'],
   },
   labels: {
     singular: {
-      ru: 'Обратная связь',
+      ru: 'Обратный звонок',
     },
     plural: {
-      ru: 'Обратная связь',
+      ru: 'Обратные звонки',
     },
   },
   access: {
@@ -27,7 +27,7 @@ export const Feedback: CollectionConfig = {
     afterChange: [
       async ({ operation, doc }) => {
         if (operation === 'create') {
-          const text = FormatFeedbackNotificationMessage(doc as TFeeback)
+          const text = FormatCallbackNotificationMessage(doc as TCallback)
           SendNotificationInTelegram(text)
         }
       },
@@ -48,22 +48,6 @@ export const Feedback: CollectionConfig = {
       required: true,
       label: {
         ru: 'Телефон',
-      },
-    },
-    {
-      type: 'text',
-      name: 'email',
-      required: true,
-      label: {
-        ru: 'Email',
-      },
-    },
-    {
-      type: 'textarea',
-      name: 'message',
-      required: true,
-      label: {
-        ru: 'Сообщение',
       },
     },
     {

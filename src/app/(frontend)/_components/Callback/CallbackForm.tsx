@@ -4,35 +4,29 @@ import { ChangeEvent, FormEvent, useState } from 'react'
 import Link from 'next/link'
 import { useMask } from '@react-input/mask'
 import { InputWithLabel } from '@/components/elements/InputWithLabel'
-import { TextareaWithLabel } from '@/components/elements/TextareaWithLabel'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
-import { CreateFeedback } from '@/runtime/feedback/CreateFeedback'
+import { CreateCallback } from '@/runtime/callbacks/CreateCallback'
 import useSimpleError from '@/lib/hooks/useSimpleError'
 import { cn } from '@/lib/utils'
-import { isValidEmail } from '@/lib/helpers/isValidEmail'
 import { isValidPhoneNumber } from '@/lib/helpers/isValidPhoneNumber'
 import {
-  CreateFeedbackOutputInvalidParams,
-  CreateFeedbackOutputOK,
-  CreateFeedbackOutputTooManyRequests,
-} from '@/runtime/feedback/model'
+  CreateCallbackOutputInvalidParams,
+  CreateCallbackOutputOK,
+  CreateCallbackOutputTooManyRequests,
+} from '@/runtime/callbacks/model'
 import { toast } from 'sonner'
 
 type FormState = {
   name: string
   phone: string
-  email: string
-  message: string
   consent: boolean
 }
 
 const emptyFormState: FormState = {
   name: '',
   phone: '',
-  email: '',
-  message: '',
   consent: false,
 }
 
@@ -42,7 +36,7 @@ const phoneMaskOptions = {
   showMask: true,
 }
 
-export const FeedbackForm = () => {
+export const CallbackForm = () => {
   const [hasErr, setErr] = useSimpleError(['name', 'phone', 'email', 'message', 'consent'])
   const [formState, setFormState] = useState<FormState>(emptyFormState)
 
@@ -66,16 +60,6 @@ export const FeedbackForm = () => {
       isValid = false
     }
 
-    if (formState.email.trim() === '' || !isValidEmail(formState.email)) {
-      setErr('email', true)
-      isValid = false
-    }
-
-    if (formState.message.trim() === '') {
-      setErr('message', true)
-      isValid = false
-    }
-
     return isValid
   }
 
@@ -86,15 +70,13 @@ export const FeedbackForm = () => {
       return
     }
 
-    const status = await CreateFeedback({
+    const status = await CreateCallback({
       name: formState.name,
       phone: formState.phone,
-      email: formState.email,
-      message: formState.message,
       page_url: window.location.href,
     })
 
-    if (status === CreateFeedbackOutputOK) {
+    if (status === CreateCallbackOutputOK) {
       toast.success('Успешно отправлено', {
         duration: 3000,
         description: 'Спасибо за вопрос! Мы свяжемся с вами в ближайшее время.',
@@ -104,7 +86,7 @@ export const FeedbackForm = () => {
       return
     }
 
-    if (status === CreateFeedbackOutputTooManyRequests) {
+    if (status === CreateCallbackOutputTooManyRequests) {
       toast.warning('Слишком много сообщений', {
         duration: 3000,
         description: 'Мы заметили слишком много сообщений от вас. Пожалуйста, попробуйте позже.',
@@ -113,7 +95,7 @@ export const FeedbackForm = () => {
       return
     }
 
-    if (status === CreateFeedbackOutputInvalidParams) {
+    if (status === CreateCallbackOutputInvalidParams) {
       toast.info('Что-то пошло не так', {
         duration: 3000,
         description:
@@ -145,10 +127,7 @@ export const FeedbackForm = () => {
   }
 
   return (
-    <form
-      onSubmit={onSubmit}
-      className="w-full py-4 px-6 rounded-[12px] bg-background border border-border2 flex flex-col gap-y-4 max-sm:py-4 max-sm:px-4"
-    >
+    <form onSubmit={onSubmit} className="flex flex-col gap-6 p-4">
       <InputWithLabel
         label="Ваше имя"
         autoComplete="name"
@@ -157,48 +136,24 @@ export const FeedbackForm = () => {
         className={hasErr('name') ? 'border-destructive text-destructive' : undefined}
         labelClassName={hasErr('name') ? 'text-destructive' : undefined}
       />
-      <div className="flex gap-4 max-md:flex-col">
-        <InputWithLabel
-          ref={inputRef}
-          placeholder={phoneMaskOptions.mask}
-          containerClassName="flex-1"
-          label="Контактный телефон"
-          type="tel"
-          autoComplete="tel"
-          onChange={onChange('phone')}
-          value={formState.phone}
-          className={hasErr('phone') ? 'border-destructive text-destructive' : undefined}
-          labelClassName={hasErr('phone') ? 'text-destructive' : undefined}
-        />
-        <InputWithLabel
-          containerClassName="flex-1"
-          label="Email"
-          autoComplete="email"
-          onChange={onChange('email')}
-          value={formState.email}
-          className={hasErr('email') ? 'border-destructive text-destructive' : undefined}
-          labelClassName={hasErr('email') ? 'text-destructive' : undefined}
-        />
-      </div>
-      <TextareaWithLabel
-        label="Сообщение"
-        placeholder="Введите свой вопрос"
-        onChange={onChange('message')}
-        value={formState.message}
-        className={cn(
-          'resize-none h-[80px]',
-          hasErr('message')
-            ? 'border-destructive text-destructive placeholder:text-destructive'
-            : undefined,
-        )}
-        labelClassName={hasErr('message') ? 'text-destructive' : undefined}
+      <InputWithLabel
+        ref={inputRef}
+        placeholder={phoneMaskOptions.mask}
+        containerClassName="flex-1"
+        label="Контактный телефон"
+        type="tel"
+        autoComplete="tel"
+        onChange={onChange('phone')}
+        value={formState.phone}
+        className={hasErr('phone') ? 'border-destructive text-destructive' : undefined}
+        labelClassName={hasErr('phone') ? 'text-destructive' : undefined}
       />
       <div className="flex flex-col gap-y-2">
         <div className="flex gap-x-2 cursor-pointer">
           <Checkbox
             className={cn('cursor-pointer shrink-0', hasErr('consent') && 'border-destructive')}
-            id="feedback-consent-checkbox"
-            name="feedback-consent-checkbox"
+            id="callback-consent-checkbox"
+            name="callback-consent-checkbox"
             checked={formState.consent}
             onCheckedChange={onConsentChange}
           />
@@ -207,7 +162,7 @@ export const FeedbackForm = () => {
               'cursor-pointer block text-[0.75rem] font-medium leading-4 text-muted-foreground',
               hasErr('consent') && 'text-destructive',
             )}
-            htmlFor="feedback-consent-checkbox"
+            htmlFor="callback-consent-checkbox"
           >
             Я согласен с{' '}
             <Link href="#" className="underline hover:no-underline" prefetch>

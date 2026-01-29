@@ -15,6 +15,7 @@ import { SubMenuLink } from './SubMenuLink'
 import { MenuItem } from '../Header'
 import { ConnectBlock } from './Connect'
 import { LogoLink } from './LogoLink'
+import { RequestCallbackButton } from '../../Callback/RequestCallbackButton'
 
 export function MobileNavMenu({ menu }: { menu: MenuItem[] }) {
   const [isOpen, setIsOpen] = useState(false)
@@ -38,9 +39,7 @@ export function MobileNavMenu({ menu }: { menu: MenuItem[] }) {
           </Accordion>
         </div>
         <div className="p-4">
-          <Button size="lg" className="w-full">
-            Заказать звонок
-          </Button>
+          <RequestCallbackButton size="lg" className="w-full" />
         </div>
         <div className="p-4">
           <ConnectBlock />

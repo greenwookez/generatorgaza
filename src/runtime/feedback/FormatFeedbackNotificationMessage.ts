@@ -8,8 +8,7 @@ import { Feedback } from '@/payload-types'
  */
 export function FormatFeedbackNotificationMessage(Feedback: Feedback): string {
   return (
-    'Новая обратная связь!\n' +
-    `ID: ${Feedback.id}\n` +
+    '🗣️ Новая обратная связь!\n' +
     `Имя: ${Feedback.name}\n` +
     `Телефон: ${Feedback.phone || 'Не указан'}\n` +
     `Email: ${Feedback.email || 'Не указан'}\n` +
@@ -17,6 +16,7 @@ export function FormatFeedbackNotificationMessage(Feedback: Feedback): string {
     `URL страницы: ${Feedback.page_url}\n` +
     `Дата создания: ${new Date(Feedback.createdAt).toLocaleString('ru-RU', {
       timeZone: 'Europe/Moscow',
-    })} МСК\n`
+    })} МСК\n` +
+    `Идентификатор запроса: ${Feedback.id}\n`
   )
 }

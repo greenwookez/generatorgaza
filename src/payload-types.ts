@@ -72,6 +72,7 @@ export interface Config {
     'catalog-categories': CatalogCategory;
     'catalog-items': CatalogItem;
     feedback: Feedback;
+    callbacks: Callback;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -84,6 +85,7 @@ export interface Config {
     'catalog-categories': CatalogCategoriesSelect<false> | CatalogCategoriesSelect<true>;
     'catalog-items': CatalogItemsSelect<false> | CatalogItemsSelect<true>;
     feedback: FeedbackSelect<false> | FeedbackSelect<true>;
+    callbacks: CallbacksSelect<false> | CallbacksSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -305,6 +307,18 @@ export interface Feedback {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "callbacks".
+ */
+export interface Callback {
+  id: number;
+  name: string;
+  phone: string;
+  page_url: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -346,6 +360,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'feedback';
         value: number | Feedback;
+      } | null)
+    | ({
+        relationTo: 'callbacks';
+        value: number | Callback;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -489,6 +507,17 @@ export interface FeedbackSelect<T extends boolean = true> {
   phone?: T;
   email?: T;
   message?: T;
+  page_url?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "callbacks_select".
+ */
+export interface CallbacksSelect<T extends boolean = true> {
+  name?: T;
+  phone?: T;
   page_url?: T;
   updatedAt?: T;
   createdAt?: T;

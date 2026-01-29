@@ -17,6 +17,7 @@ import { CatalogCategories } from './collections/CatalogCategories'
 import { CatalogItems } from './collections/CatalogItem'
 import { Feedback } from './collections/Feedback'
 import { About } from './globals/About'
+import { Callbacks } from './collections/Callbacks'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -32,7 +33,7 @@ export default buildConfig({
       beforeDashboard: ['/components/custom/InfoBanner'],
     },
   },
-  collections: [Users, Media, CatalogCategories, CatalogItems, Feedback],
+  collections: [Users, Media, CatalogCategories, CatalogItems, Feedback, Callbacks],
   globals: [About],
   editor: lexicalEditor({
     features: ({ defaultFeatures }) => [
