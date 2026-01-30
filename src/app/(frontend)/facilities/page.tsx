@@ -133,7 +133,7 @@ const FacilitiesPageSidebarBody = () => (
   >
     <div className="flex flex-col gap-y-3">
       <div className="font-medium text-muted-foreground leading-[110%]">Есть вопросы?</div>
-      <h3 className="font-medium text-[1.375rem] leading-[110%] max-sm:text-[1.5rem] max-sm:mb-5">
+      <h3 className="font-medium text-[1.375rem] leading-[110%] max-sm:text-[1.5rem]">
         Свяжитесь с нами!
       </h3>
     </div>
