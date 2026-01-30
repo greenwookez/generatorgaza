@@ -59,7 +59,12 @@ export default async function CatalogCategoryPage({
       />
       <h1 className="text-[1.875rem] font-medium leading-[110%]">{category.title}</h1>
       <div className="flex flex-col gap-y-12">
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-y-6 gap-x-6">
+        <div
+          className={cn(
+            'grid gap-y-6 gap-x-6 grid-cols-[repeat(auto-fit,minmax(280px,1fr))]',
+            items.docs.length < 4 && 'md:grid-cols-[repeat(auto-fit,minmax(280px,317px))]',
+          )}
+        >
           {items.docs.map((item, idx) => (
             <ProductCard
               key={idx}
@@ -73,7 +78,7 @@ export default async function CatalogCategoryPage({
           ))}
         </div>
         <Separator />
-        <p className="text-[1.125rem] leading-[170%] whitespace-pre-wrap max-w-[900px]">
+        <p className="text-[1.125rem] max-sm:text-[1rem] leading-[170%] whitespace-pre-wrap max-w-[900px]">
           {category.pageDescription}
         </p>
         <Separator />

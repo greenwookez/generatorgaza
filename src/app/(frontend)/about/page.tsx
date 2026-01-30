@@ -48,7 +48,7 @@ const AboutPageContent = ({ data }: { data: About }) => (
       </div>
     )}
     {data.links && data.links.length > 0 && (
-      <div className="flex gap-x-7">
+      <div className="flex gap-7 max-sm:flex-col">
         {data.links.map((link, key) => (
           <AboutPageLinkingBlock
             key={key}
@@ -64,7 +64,9 @@ const AboutPageContent = ({ data }: { data: About }) => (
       data.sections.map((section, key) => (
         <div key={key} className="flex gap-y-3 flex-col">
           <h2 className="text-[1.5rem] font-medium leading-[160%]">{section.heading}</h2>
-          <p className="text-[1.125rem] leading-[170%] whitespace-pre-wrap">{section.text}</p>
+          <p className="text-[1.125rem] max-sm:text-[1rem] leading-[170%] whitespace-pre-wrap">
+            {section.text}
+          </p>
         </div>
       ))}
   </div>

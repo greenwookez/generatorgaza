@@ -16,8 +16,10 @@ export default async function FacilitiesPage() {
   return (
     <div className={cn(ContentClass)}>
       <div className="flex flex-col gap-y-7">
-        <BreadCrumbsTrail items={[{ title: 'О предприятии' }]} />
-        <h1 className="text-[1.875rem] font-medium leading-[110%]">О предприятии</h1>
+        <BreadCrumbsTrail
+          items={[{ title: 'О предприятии', href: '/about' }, { title: 'Производство и цехи' }]}
+        />
+        <h1 className="text-[1.875rem] font-medium leading-[110%]">Производство и цехи</h1>
       </div>
       <div className="flex gap-x-30 items-start max-xl:gap-x-20">
         <FacilitiesPageContent />
@@ -36,8 +38,10 @@ const FacilitiesPageContent = () => (
     </div>
     <div className="flex flex-col gap-y-6">
       <div className="flex flex-col gap-y-2">
-        <h2 className="text-[1.5rem] leading-[160%]">Цех наполнения ацетилена</h2>
-        <h3 className="text-[1.125rem] leading-[160%]">4 рампы на 72 баллона каждая</h3>
+        <h2 className="text-[1.5rem] leading-[120%]">Цех наполнения ацетилена</h2>
+        <h3 className="text-[1.125rem] max-sm:text-[1rem] leading-[160%]">
+          4 рампы на 72 баллона каждая
+        </h3>
       </div>
       <Image
         alt={'Цех наполнения ацетилена'}
@@ -47,8 +51,8 @@ const FacilitiesPageContent = () => (
     </div>
     <div className="flex flex-col gap-y-6">
       <div className="flex flex-col gap-y-2">
-        <h2 className="text-[1.5rem] leading-[160%]">Цех металлообработки</h2>
-        <h3 className="text-[1.125rem] leading-[160%]">
+        <h2 className="text-[1.5rem] leading-[120%]">Цех металлообработки</h2>
+        <h3 className="text-[1.125rem] max-sm:text-[1rem] leading-[160%]">
           Площадь 5000 кв. метров. Малые азотные установки и моноблоки перед отгрузкой.
         </h3>
       </div>
@@ -65,8 +69,10 @@ const FacilitiesPageContent = () => (
     </div>
     <div className="flex flex-col gap-y-6">
       <div className="flex flex-col gap-y-2">
-        <h2 className="text-[1.5rem] leading-[160%]">Наполнительные отделения</h2>
-        <h3 className="text-[1.125rem] leading-[160%]">Аргона (ближнее) и углекислоты (дальнее)</h3>
+        <h2 className="text-[1.5rem] leading-[120%]">Наполнительные отделения</h2>
+        <h3 className="text-[1.125rem] max-sm:text-[1rem] leading-[160%]">
+          Аргона (ближнее) и углекислоты (дальнее)
+        </h3>
       </div>
       <Image
         alt={'Наполнительное отделение Аргона'}
@@ -76,8 +82,8 @@ const FacilitiesPageContent = () => (
     </div>
     <div className="flex flex-col gap-y-6">
       <div className="flex flex-col gap-y-2">
-        <h2 className="text-[1.5rem] leading-[160%]">Цех наполнения кислорода</h2>
-        <h3 className="text-[1.125rem] leading-[160%]">
+        <h2 className="text-[1.5rem] leading-[120%]">Цех наполнения кислорода</h2>
+        <h3 className="text-[1.125rem] max-sm:text-[1rem] leading-[160%]">
           Производственная мощность – 80 000 баллонов в год
         </h3>
       </div>
@@ -89,10 +95,12 @@ const FacilitiesPageContent = () => (
     </div>
     <div className="flex flex-col gap-y-6">
       <div className="flex flex-col gap-y-2">
-        <h2 className="text-[1.5rem] leading-[160%]">
+        <h2 className="text-[1.5rem] leading-[120%]">
           Участок контроля качества наполнения ацетилена
         </h2>
-        <h3 className="text-[1.125rem] leading-[160%]">Электронные весы, разрядная рампа</h3>
+        <h3 className="text-[1.125rem] max-sm:text-[1rem] leading-[160%]">
+          Электронные весы, разрядная рампа
+        </h3>
       </div>
       <Image
         alt={'Участок контроля качества наполнения ацетилена'}
@@ -119,7 +127,7 @@ const FacilitiesPageSidebarBodyRoundedClass = 'rounded-[12px]'
 const FacilitiesPageSidebarBody = () => (
   <div
     className={cn(
-      'border p-6 flex flex-col gap-y-4.5 w-full max-lg:rounded-[8px] max-lg:border-border2',
+      'border p-6 max-sm:p-4 flex flex-col gap-y-4.5 w-full max-lg:rounded-[8px] max-lg:border-border2',
       FacilitiesPageSidebarBodyRoundedClass,
     )}
   >

@@ -77,7 +77,7 @@ const HomePageCatalog = async () => {
     <div className="flex flex-col gap-y-10 w-full">
       <div className="flex gap-x-7 align-center">
         <h3 className={h3ClassName}>Каталог</h3>
-        <Button asChild variant="link" size="indent-none">
+        <Button asChild variant="link" size="indent-none" className="mt-1">
           <Link href="/catalog" prefetch>
             Вся продукция <ArrowRight />
           </Link>
@@ -203,7 +203,7 @@ const HomePageContacts = () => (
   <div className="flex flex-col gap-y-10 w-full">
     <div className="flex gap-x-7 align-center">
       <h3 className={h3ClassName}>Контакты</h3>
-      <Button asChild variant="link" size="indent-none">
+      <Button asChild variant="link" size="indent-none" className="mt-1">
         <Link href="/contact-us" prefetch>
           Подробнее <ArrowRight />
         </Link>

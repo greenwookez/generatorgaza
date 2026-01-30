@@ -9,16 +9,18 @@ import CertificateOxygenImage from '@/assets/images/certificate-oxygen.png'
 import CertificateNitrogenImage from '@/assets/images/certificate-nitrogen.png'
 import PermissionMonoblocksImage from '@/assets/images/permission-monoblocks.png'
 
-export default async function CerificatesPage() {
+export default async function CertificatesPage() {
   return (
     <div className={cn(ContentClass)}>
       <div className="flex flex-col gap-y-7">
-        <BreadCrumbsTrail items={[{ title: 'О предприятии' }]} />
-        <h1 className="text-[1.875rem] font-medium leading-[110%]">О предприятии</h1>
+        <BreadCrumbsTrail
+          items={[{ title: 'О предприятии', href: '/about' }, { title: 'Сертификаты' }]}
+        />
+        <h1 className="text-[1.875rem] font-medium leading-[110%]">Сертификаты</h1>
       </div>
       <div className="flex gap-x-30 items-start max-xl:gap-x-20">
-        <CerificatesPageContent />
-        <CerificatesPageSidebar />
+        <CertificatesPageContent />
+        <CertificatesPageSidebar />
       </div>
       <Separator />
       <PopularLinks />
@@ -26,14 +28,14 @@ export default async function CerificatesPage() {
   )
 }
 
-const CerificatesPageContent = () => (
+const CertificatesPageContent = () => (
   <div className="max-w-[820px] grow flex flex-col gap-y-12">
     <div className="lg:hidden">
-      <CerificatesPageSidebarBody />
+      <CertificatesPageSidebarBody />
     </div>
     <div className="flex flex-col gap-y-6">
       <div className="flex flex-col gap-y-2">
-        <h2 className="text-[1.5rem] leading-[160%] max-sm:text-[1.25rem]">
+        <h2 className="text-[1.5rem] leading-[120%] max-sm:text-[1.25rem]">
           Декларация соответствия - Азотная установка
         </h2>
       </div>
@@ -45,7 +47,7 @@ const CerificatesPageContent = () => (
     </div>
     <div className="flex flex-col gap-y-6">
       <div className="flex flex-col gap-y-2">
-        <h2 className="text-[1.5rem] leading-[160%] max-sm:text-[1.25rem]">
+        <h2 className="text-[1.5rem] leading-[120%] max-sm:text-[1.25rem]">
           Сертификат соответствия - Кислородная установка
         </h2>
       </div>
@@ -57,7 +59,7 @@ const CerificatesPageContent = () => (
     </div>
     <div className="flex flex-col gap-y-6">
       <div className="flex flex-col gap-y-2">
-        <h2 className="text-[1.5rem] leading-[160%] max-sm:text-[1.25rem]">
+        <h2 className="text-[1.5rem] leading-[120%] max-sm:text-[1.25rem]">
           Разрешение - Моноблоки
         </h2>
       </div>
@@ -70,24 +72,24 @@ const CerificatesPageContent = () => (
   </div>
 )
 
-const CerificatesPageSidebar = () => (
+const CertificatesPageSidebar = () => (
   <div
     className={cn(
       'max-lg:hidden w-full max-w-[400px] sticky top-[94px] shadow-[0px_5px_20px_0px_rgba(0,31,84,0.08)]',
-      CerificatesPageSidebarBodyRoundedClass,
+      CertificatesPageSidebarBodyRoundedClass,
     )}
   >
-    <CerificatesPageSidebarBody />
+    <CertificatesPageSidebarBody />
   </div>
 )
 
-const CerificatesPageSidebarBodyRoundedClass = 'rounded-[12px]'
+const CertificatesPageSidebarBodyRoundedClass = 'rounded-[12px]'
 
-const CerificatesPageSidebarBody = () => (
+const CertificatesPageSidebarBody = () => (
   <div
     className={cn(
-      'border p-6 flex flex-col gap-y-4.5 w-full max-lg:rounded-[8px] max-lg:border-border2',
-      CerificatesPageSidebarBodyRoundedClass,
+      'border p-6 max-sm:p-4 flex flex-col gap-y-4.5 w-full max-lg:rounded-[8px] max-lg:border-border2',
+      CertificatesPageSidebarBodyRoundedClass,
     )}
   >
     <div className="flex flex-col gap-y-3">

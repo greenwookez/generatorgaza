@@ -12,7 +12,7 @@ export default function ShippingAndPaymentPage() {
       <div className="flex flex-col gap-y-7">
         <BreadCrumbsTrail items={[{ title: 'Доставка и оплата' }]} />
         <h1 className="text-[1.875rem] font-medium leading-[110%]">Доставка и оплата</h1>
-        <span className="text-[1.125rem] leading-[160%]">
+        <span className="text-[1.125rem] max-sm:text-[1rem] leading-[160%]">
           В нашей компании есть 70 единиц транспорта, и мы осуществляем доставку товара по всей
           России.
         </span>
@@ -66,7 +66,7 @@ export default function ShippingAndPaymentPage() {
       </div>
       <div className="flex flex-col gap-y-3">
         <h2 className="text-[1.5rem] font-medium leading-[160%]">Оплата</h2>
-        <ul className="text-[1.125rem] leading-[170%] list-disc marker:text-muted-foreground pl-5">
+        <ul className="text-[1.125rem] max-sm:text-[1rem] leading-[170%] list-disc marker:text-muted-foreground pl-5">
           <li>Цены на наш товар включают все налоги, в том числе и НДС</li>
           <li>Оплата заказов производится безналичным путем на основании выставленных счетов</li>
           <li>

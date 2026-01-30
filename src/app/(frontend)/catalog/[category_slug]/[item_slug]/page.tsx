@@ -182,7 +182,7 @@ const CatalogItemPageContent = ({ item }: { item: CatalogItemForThisPage }) => {
                 <div className="size-12 rounded-[8px] bg-accent2 flex justify-center items-center">
                   <File className="size-6 text-muted-foreground" />
                 </div>
-                <span className="text-[0.875rem] max-w-[300px] overflow-hidden text-ellipsis whitespace-nowrap">
+                <span className="text-[0.875rem] max-w-[300px] max-sm:max-w-[200px] overflow-hidden text-ellipsis whitespace-nowrap">
                   {(doc as Media).filename}
                 </span>
                 <Button variant="link" size="indent-none" asChild>
@@ -230,7 +230,9 @@ const CatalogItemPageContent = ({ item }: { item: CatalogItemForThisPage }) => {
           />
         </div>
       )}
-      <p className="text-[1.125rem] leading-[170%] whitespace-pre-wrap">{item.shortDescription}</p>
+      <p className="text-[1.125rem] max-sm:text-[1rem] leading-[170%] whitespace-pre-wrap">
+        {item.shortDescription}
+      </p>
       {sections && <CatalogItemPageContentAccordion sections={sections} />}
       <CatalogItemPageMobileFooter />
     </div>
@@ -272,7 +274,7 @@ const CatalogItemPageSidebarBodyRoundedClass = 'rounded-[12px]'
 const CatalogItemPageSidebarBody = ({ item }: { item: CatalogItemForThisPage }) => (
   <div
     className={cn(
-      'border p-6 flex flex-col gap-y-4.5 w-full max-lg:rounded-[8px] max-lg:border-border2',
+      'border p-6 max-sm:p-4 flex flex-col gap-y-4.5 w-full max-lg:rounded-[8px] max-lg:border-border2',
       CatalogItemPageSidebarBodyRoundedClass,
     )}
   >

@@ -13,13 +13,9 @@ export const LexicalConverters: JSXConverters = {
     if (!value || typeof value !== 'object' || !url || !width || !height) return null
 
     return (
-      <Image
-        data-component="lexical-image"
-        src={url}
-        alt={alt || ''}
-        width={width}
-        height={height}
-      />
+      <div className="relative max-h-[450px]" style={{ aspectRatio: `${width} / ${height}` }}>
+        <Image data-component="lexical-image" src={url} alt={alt || ''} fill objectFit="contain" />
+      </div>
     )
   },
 }
