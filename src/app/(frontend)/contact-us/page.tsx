@@ -122,7 +122,6 @@ export default async function ContactUsPage() {
                 text="oooetin@yandex.ru"
                 a={{ href: 'mailto:oooetin@yandex.ru' }}
               />
-              {/* TODO: Спросить у папы про этин */}
               <TextWithLabel
                 label="Бухгалтерия"
                 text="otz-buh@yandex.ru"
@@ -151,8 +150,8 @@ type ContactUsBlockWithMapProps = {
 
 const ContactUsBlockWithMap = ({ title, addresses, telephone }: ContactUsBlockWithMapProps) => {
   return (
-    <div className="flex gap-x-10">
-      <div className="max-w-[520px] grow-1 flex flex-col gap-y-4">
+    <div className="flex gap-20 max-xl:gap-10 max-lg:flex-col">
+      <div className="w-[520px] max-xl:w-[400px] max-lg:w-full shrink-0 flex flex-col gap-y-4">
         <h2 className="text-[1.375rem] font-semibold leading-[140%]">{title}</h2>
         {addresses.map((address, index) => (
           <TextWithLabel
@@ -181,7 +180,7 @@ const ContactUsBlockWithMap = ({ title, addresses, telephone }: ContactUsBlockWi
       </div>
       <iframe
         src="https://yandex.ru/map-widget/v1/?um=constructor%3A7fee0fd8215b1756edcc141245a766a52e0f6a01090bfe6d5b3c1a5e5a342385&amp;source=constructor"
-        className="h-87.5 w-full max-w-[800px] rounded-[8px]"
+        className="h-87.5 w-full rounded-[8px]"
       ></iframe>
     </div>
   )

@@ -1,16 +1,14 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
+import { scrollToID } from '@/lib/helpers/scrollToID'
 import useMaxWidth from '@/lib/hooks/useMaxWidth'
 
 export const AskQuestionButton = () => {
   const isLess640px = useMaxWidth(640)
 
   const scrollToFeedbackForm = () => {
-    const form = document.getElementById('feedback-form')
-    if (form) {
-      form.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }
+    scrollToID('feedback-form', 64)
   }
 
   return (
