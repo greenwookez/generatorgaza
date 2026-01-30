@@ -58,6 +58,7 @@ export default function ShippingAndPaymentPage() {
                 src={ScaniaImg}
                 className="object-cover max-h-[450px] rounded-[12px]"
                 fill
+                sizes="(max-width: 768px) 300px, 600px"
               />
             </div>
           </div>

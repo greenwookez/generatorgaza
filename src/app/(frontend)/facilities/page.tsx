@@ -43,8 +43,6 @@ const FacilitiesPageContent = () => (
         alt={'Цех наполнения ацетилена'}
         src={WorkshopAcetyleneImage}
         className="shrink-0 object-cover max-h-[512px] rounded-[16px]"
-        width={900}
-        height={512}
       />
     </div>
     <div className="flex flex-col gap-y-6">
@@ -58,15 +56,11 @@ const FacilitiesPageContent = () => (
         alt={'Цех металлообработки (вид 1)'}
         src={WorkshopMetalworking1Image}
         className="shrink-0 object-cover max-h-[512px] rounded-[16px]"
-        width={900}
-        height={512}
       />
       <Image
         alt={'Цех металлообработки (вид 2)'}
         src={WorkshopMetalworking2Image}
         className="shrink-0 object-cover max-h-[512px] rounded-[16px]"
-        width={900}
-        height={512}
       />
     </div>
     <div className="flex flex-col gap-y-6">
@@ -78,8 +72,6 @@ const FacilitiesPageContent = () => (
         alt={'Наполнительное отделение Аргона'}
         src={WorkshopArgonImage}
         className="shrink-0 object-cover max-h-[512px] rounded-[16px]"
-        width={900}
-        height={512}
       />
     </div>
     <div className="flex flex-col gap-y-6">
@@ -93,8 +85,6 @@ const FacilitiesPageContent = () => (
         alt={'Цех наполнения кислорода'}
         src={WorkshopOxygenImage}
         className="shrink-0 object-cover max-h-[512px] rounded-[16px]"
-        width={900}
-        height={512}
       />
     </div>
     <div className="flex flex-col gap-y-6">
@@ -108,8 +98,6 @@ const FacilitiesPageContent = () => (
         alt={'Участок контроля качества наполнения ацетилена'}
         src={QCAcetyleneImage}
         className="shrink-0 object-cover max-h-[512px] rounded-[16px]"
-        width={900}
-        height={512}
       />
     </div>
   </div>

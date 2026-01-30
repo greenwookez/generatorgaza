@@ -81,7 +81,13 @@ const ImagesCarouselBody = ({ images, imagesClassName }: ImagesCarouselBodyProps
 
 const ImageRenderer = ({ image, className }: { image: Media; className?: string }) => (
   <div className={cn(`relative`, className)}>
-    <Image src={image.url!} alt={image.alt ?? ''} fill className="z-10 object-contain" />
+    <Image
+      src={image.url!}
+      alt={image.alt ?? ''}
+      fill
+      sizes="(max-width: 768px) 300px, 600px"
+      className="z-10 object-contain"
+    />
     <Image
       src={image.url!}
       alt={image.alt ?? ''}

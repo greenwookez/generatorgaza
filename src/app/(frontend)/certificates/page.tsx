@@ -41,8 +41,6 @@ const CerificatesPageContent = () => (
         alt={'Декларация соответствия - Азотная установка'}
         src={CertificateNitrogenImage}
         className="border border-border2 shrink-0 object-cover rounded-[16px]"
-        width={594}
-        height={758}
       />
     </div>
     <div className="flex flex-col gap-y-6">
@@ -55,8 +53,6 @@ const CerificatesPageContent = () => (
         alt={'Сертификат соответствия - Кислородная установка'}
         src={CertificateOxygenImage}
         className="border border-border2 shrink-0 object-cover rounded-[16px]"
-        width={594}
-        height={818}
       />
     </div>
     <div className="flex flex-col gap-y-6">
@@ -69,8 +65,6 @@ const CerificatesPageContent = () => (
         alt={'Разрешение - Моноблоки'}
         src={PermissionMonoblocksImage}
         className="border border-border2 shrink-0 object-cover rounded-[16px]"
-        width={594}
-        height={818}
       />
     </div>
   </div>
