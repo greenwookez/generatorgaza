@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import type { Metadata } from 'next'
 import { Manrope } from 'next/font/google'
 import { Header } from '@/app/(frontend)/_components/Header/Header'
@@ -125,7 +125,9 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
       )}
     >
       <body>
-        <YandexMetrika />
+        <Suspense fallback={null}>
+          <YandexMetrika />
+        </Suspense>
         <JsonLd data={organizationJsonLd} />
         <CookiePopup />
         <Header />
