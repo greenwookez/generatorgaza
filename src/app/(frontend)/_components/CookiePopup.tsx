@@ -28,7 +28,7 @@ export const CookiePopup = () => {
       <span>
         Мы используем Cookie, чтобы сделать наш сайт удобнее и персонализированее для вас.
         Подробнее:{' '}
-        <Link href="#" className="underline" prefetch>
+        <Link href="/privacy" className="underline" target="_blank" rel="noopener noreferrer">
           Политика обработки персональных данных
         </Link>
         .

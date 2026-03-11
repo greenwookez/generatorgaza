@@ -152,7 +152,7 @@ export const CallbackForm = () => {
         }
         labelClassName={hasErr('phone') ? 'text-destructive' : undefined}
       />
-      <div className="flex flex-col gap-y-2">
+      <div className="flex flex-col gap-y-3">
         <div className="flex gap-x-2 cursor-pointer">
           <Checkbox
             className={cn('cursor-pointer shrink-0', hasErr('consent') && 'border-destructive')}
@@ -168,9 +168,23 @@ export const CallbackForm = () => {
             )}
             htmlFor="callback-consent-checkbox"
           >
-            Я согласен с{' '}
-            <Link href="#" className="underline hover:no-underline" prefetch>
-              Политикой обработки персональных данных
+            Нажимая кнопку «Отправить», я даю{' '}
+            <Link
+              href="/agreement"
+              className="underline hover:no-underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Согласие на обработку персональных данных
+            </Link>{' '}
+            и принимаю{' '}
+            <Link
+              href="/privacy"
+              className="underline hover:no-underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Политику обработки персональных данных
             </Link>
           </Label>
         </div>

@@ -105,7 +105,12 @@ export const Footer = async ({ className }: FooterProps) => {
         <Separator />
         <div className="flex justify-between text-muted-foreground text-[0.875rem] font-medium gap-y-3 max-sm:flex-col-reverse">
           <span>© 2000—{new Date().getFullYear()} АО «ОТЗ» Все права защищены.</span>
-          <Link href="#" className="underline hover:no-underline" prefetch>
+          <Link
+            href="/privacy"
+            className="underline hover:no-underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Политика обработки персональных данных
           </Link>
         </div>
