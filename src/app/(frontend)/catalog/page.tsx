@@ -4,6 +4,14 @@ import { Media } from '@/payload-types'
 import { cn } from '@/lib/utils'
 import { ContentClass } from '../layout'
 import { initPayload } from '@/lib/utils/initPayload'
+import { buildPageMetadata } from '@/lib/seo'
+
+export const metadata = buildPageMetadata({
+  title: 'Каталог продукции',
+  description:
+    'Каталог продукции АО «Опытно-технологический завод»: технические газы, установки и промышленное оборудование.',
+  path: '/catalog',
+})
 
 export default async function CatalogPage() {
   const payload = await initPayload()
@@ -25,7 +33,7 @@ export default async function CatalogPage() {
 
   return (
     <div className={cn(ContentClass, 'gap-y-7')}>
-      <BreadCrumbsTrail items={[{ title: 'Каталог' }]} />
+      <BreadCrumbsTrail items={[{ title: 'Каталог', href: '/catalog' }]} />
       <h1 className="text-[1.875rem] font-medium leading-[110%]">Каталог</h1>
       <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-6">
         {categories.docs.map((category) => (

@@ -4,12 +4,20 @@ import { Separator } from '@/components/elements/Separator'
 import { TextWithLabel } from '@/components/elements/TextWithLabel'
 import { cn } from '@/lib/utils'
 import { ContentClass } from '../layout'
+import { buildPageMetadata } from '@/lib/seo'
+
+export const metadata = buildPageMetadata({
+  title: 'Контакты',
+  description:
+    'Контакты АО «Опытно-технологический завод»: телефоны, адреса в Москве и Протвино, электронная почта.',
+  path: '/contact-us',
+})
 
 export default async function ContactUsPage() {
   return (
     <div className={cn(ContentClass)}>
       <div className="flex flex-col gap-y-7">
-        <BreadCrumbsTrail items={[{ title: 'Контакты' }]} />
+        <BreadCrumbsTrail items={[{ title: 'Контакты', href: '/contact-us' }]} />
         <h1 className="text-[1.875rem] font-medium leading-[110%]">Контакты</h1>
         <div className="flex flex-col gap-y-12">
           <div className="flex flex-col gap-y-10">

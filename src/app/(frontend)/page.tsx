@@ -12,10 +12,18 @@ import Logo from '@/assets/logo.svg'
 import { Media } from '@/payload-types'
 import { ImagesCarousel } from '@/components/elements/ImagesCarousel'
 import { RequestCallbackButton } from './_components/Callback/RequestCallbackButton'
+import { buildPageMetadata } from '@/lib/seo'
 
 const h3ClassName = 'text-[2rem] font-medium leading-[110%] max-md:text-[1.5rem]'
 
 export const dynamic = 'force-dynamic'
+export const metadata = buildPageMetadata({
+  title: 'Производство генераторов газа и технических газов',
+  description:
+    'АО «Опытно-технологический завод» производит генераторы газа, воздухоразделительные установки и поставляет газы в баллонах по России.',
+  path: '/',
+  keywords: ['генераторы газа', 'технические газы', 'воздухоразделительные установки'],
+})
 
 export default async function HomePage() {
   return (

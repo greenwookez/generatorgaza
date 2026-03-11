@@ -1,4 +1,5 @@
 import React from 'react'
+import type { Metadata } from 'next'
 import { Download, File } from 'lucide-react'
 import { notFound } from 'next/navigation'
 import { SerializedEditorState } from 'lexical'
@@ -22,10 +23,21 @@ import { cn } from '@/lib/utils'
 import { ContentClass } from '@/app/(frontend)/layout'
 import { initPayload } from '@/lib/utils/initPayload'
 import { LexicalConverters } from '@/app/(frontend)/_lexical/converters'
+import { JsonLd } from '@/app/(frontend)/_components/Seo/JsonLd'
+import {
+  buildPageMetadata,
+  getAbsoluteUrl,
+} from '@/lib/seo'
+
+type Params = {
+  category_slug: string
+  item_slug: string
+}
 
 type CatalogItemForThisPage = {
   id: number
   title: string
+  slug: string
   category: number | CatalogCategory
   variations?: string | null | undefined
   volumes?: string | null | undefined
@@ -43,25 +55,21 @@ type CatalogItemForThisPage = {
   images?: (number | Media)[] | null | undefined
 }
 
-export default async function CatalogItemPage({
-  params,
-}: {
-  params: Promise<{ item_slug: string }>
-}) {
+const getCatalogItemBySlug = async (itemSlug: string) => {
   const payload = await initPayload()
-
-  const { item_slug } = await params
 
   const items = await payload.find({
     collection: 'catalog-items',
     where: {
-      slug: { equals: item_slug },
+      slug: { equals: itemSlug },
       isHidden: { equals: false },
     },
     limit: 1,
     pagination: false,
+    depth: 1,
     select: {
       title: true,
+      slug: true,
       category: true,
       variations: true,
       volumes: true,
@@ -77,22 +85,84 @@ export default async function CatalogItemPage({
     },
   })
 
-  const item = items.docs?.[0]
+  return items.docs?.[0] ?? null
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<Params>
+}): Promise<Metadata> {
+  const { item_slug } = await params
+  const item = await getCatalogItemBySlug(item_slug)
+
+  if (!item) {
+    return buildPageMetadata({
+      title: 'Товар не найден',
+      description: 'Запрошенный товар не найден.',
+      path: `/catalog/${item_slug}`,
+      noIndex: true,
+    })
+  }
+
+  const category = item.category as CatalogCategory
+  if (!category || typeof category === 'number' || !category.slug) {
+    return buildPageMetadata({
+      title: item.title,
+      description: item.shortDescription,
+      path: `/catalog/${item.slug}`,
+      noIndex: true,
+    })
+  }
+
+  return buildPageMetadata({
+    title: item.title,
+    description: item.shortDescription,
+    path: `/catalog/${category.slug}/${item.slug}`,
+  })
+}
+
+export default async function CatalogItemPage({
+  params,
+}: {
+  params: Promise<Params>
+}) {
+  const { item_slug, category_slug } = await params
+  const item = await getCatalogItemBySlug(item_slug)
   if (!item) {
     notFound()
   }
 
+  const category = item.category as CatalogCategory
+  if (!category || typeof category === 'number' || !category.slug || category.slug !== category_slug) {
+    notFound()
+  }
+
+  const productUrl = `/catalog/${category.slug}/${item.slug}`
+  const firstImage = item.images?.[0] as Media | undefined
+
   return (
     <div className={cn(ContentClass)}>
       <div className="flex flex-col gap-y-7">
+        <JsonLd
+          data={{
+            '@context': 'https://schema.org',
+            '@type': 'Product',
+            name: item.title,
+            description: item.shortDescription,
+            category: category.title,
+            url: getAbsoluteUrl(productUrl),
+            image: firstImage?.url ? getAbsoluteUrl(firstImage.url) : undefined,
+          }}
+        />
         <BreadCrumbsTrail
           items={[
             { title: 'Каталог', href: '/catalog' },
             {
-              title: (item.category as CatalogCategory).title,
-              href: `/catalog/${(item.category as CatalogCategory).slug}`,
+              title: category.title,
+              href: `/catalog/${category.slug}`,
             },
-            { title: item.title },
+            { title: item.title, href: productUrl },
           ]}
         />
         <h1 className="text-[1.875rem] max-sm:text-[1.5rem] font-medium leading-[110%]">

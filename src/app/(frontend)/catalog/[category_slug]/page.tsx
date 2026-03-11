@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { BreadCrumbsTrail } from '@/components/elements/BreadCrumbsTrail'
 import { Separator } from '@/components/elements/Separator'
 import { PopularLinks } from '../../_components/PopularLinks/PopularLinks'
@@ -7,21 +8,22 @@ import { Media } from '@/payload-types'
 import { cn } from '@/lib/utils'
 import { ContentClass } from '../../layout'
 import { initPayload } from '@/lib/utils/initPayload'
+import { JsonLd } from '../../_components/Seo/JsonLd'
+import {
+  buildPageMetadata,
+  getAbsoluteUrl,
+} from '@/lib/seo'
 
-export default async function CatalogCategoryPage({
-  params,
-}: {
-  params: Promise<{ category_slug: string }>
-}) {
+type Params = { category_slug: string }
+
+const getCategoryBySlug = async (categorySlug: string) => {
   const payload = await initPayload()
-
-  const { category_slug } = await params
 
   const categories = await payload.find({
     collection: 'catalog-categories',
     where: {
       isHidden: { equals: false },
-      slug: { equals: category_slug },
+      slug: { equals: categorySlug },
     },
     limit: 1,
     pagination: false,
@@ -32,11 +34,45 @@ export default async function CatalogCategoryPage({
     },
   })
 
-  const category = categories.docs?.[0]
+  return categories.docs?.[0] ?? null
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<Params>
+}): Promise<Metadata> {
+  const { category_slug } = await params
+  const category = await getCategoryBySlug(category_slug)
+
+  if (!category) {
+    return buildPageMetadata({
+      title: 'Категория не найдена',
+      description: 'Запрошенная категория каталога не найдена.',
+      path: `/catalog/${category_slug}`,
+      noIndex: true,
+    })
+  }
+
+  return buildPageMetadata({
+    title: category.title,
+    description: category.pageDescription,
+    path: `/catalog/${category.slug}`,
+  })
+}
+
+export default async function CatalogCategoryPage({
+  params,
+}: {
+  params: Promise<Params>
+}) {
+  const { category_slug } = await params
+  const category = await getCategoryBySlug(category_slug)
   if (!category) {
     notFound()
   }
 
+  const payload = await initPayload()
   const items = await payload.find({
     collection: 'catalog-items',
     where: {
@@ -54,8 +90,30 @@ export default async function CatalogCategoryPage({
 
   return (
     <div className={cn(ContentClass, 'gap-y-7')}>
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          name: category.title,
+          description: category.pageDescription,
+          url: getAbsoluteUrl(`/catalog/${category.slug}`),
+          mainEntity: {
+            '@type': 'ItemList',
+            numberOfItems: items.docs.length,
+            itemListElement: items.docs.map((item, index) => ({
+              '@type': 'ListItem',
+              position: index + 1,
+              url: getAbsoluteUrl(`/catalog/${category.slug}/${item.slug}`),
+              name: item.title,
+            })),
+          },
+        }}
+      />
       <BreadCrumbsTrail
-        items={[{ title: 'Каталог', href: '/catalog' }, { title: category.title }]}
+        items={[
+          { title: 'Каталог', href: '/catalog' },
+          { title: category.title, href: `/catalog/${category.slug}` },
+        ]}
       />
       <h1 className="text-[1.875rem] font-medium leading-[110%]">{category.title}</h1>
       <div className="flex flex-col gap-y-12">

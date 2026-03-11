@@ -5,12 +5,20 @@ import { Separator } from '@/components/elements/Separator'
 import { ContentClass } from '../layout'
 import { cn } from '@/lib/utils'
 import ScaniaImg from '@/assets/images/scania.png'
+import { buildPageMetadata } from '@/lib/seo'
+
+export const metadata = buildPageMetadata({
+  title: 'Доставка и оплата',
+  description:
+    'Условия доставки и оплаты продукции АО «Опытно-технологический завод» по Москве и регионам России.',
+  path: '/shipping-and-payment',
+})
 
 export default function ShippingAndPaymentPage() {
   return (
     <div className={cn(ContentClass)}>
       <div className="flex flex-col gap-y-7">
-        <BreadCrumbsTrail items={[{ title: 'Доставка и оплата' }]} />
+        <BreadCrumbsTrail items={[{ title: 'Доставка и оплата', href: '/shipping-and-payment' }]} />
         <h1 className="text-[1.875rem] font-medium leading-[110%]">Доставка и оплата</h1>
         <span className="text-[1.125rem] max-sm:text-[1rem] leading-[160%]">
           В нашей компании есть 70 единиц транспорта, и мы осуществляем доставку товара по всей

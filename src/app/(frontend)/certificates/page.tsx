@@ -8,13 +8,24 @@ import { ContentClass } from '../layout'
 import CertificateOxygenImage from '@/assets/images/certificate-oxygen.png'
 import CertificateNitrogenImage from '@/assets/images/certificate-nitrogen.png'
 import PermissionMonoblocksImage from '@/assets/images/permission-monoblocks.png'
+import { buildPageMetadata } from '@/lib/seo'
+
+export const metadata = buildPageMetadata({
+  title: 'Сертификаты',
+  description:
+    'Сертификаты и декларации соответствия на оборудование и продукцию АО «Опытно-технологический завод».',
+  path: '/certificates',
+})
 
 export default async function CertificatesPage() {
   return (
     <div className={cn(ContentClass)}>
       <div className="flex flex-col gap-y-7">
         <BreadCrumbsTrail
-          items={[{ title: 'О предприятии', href: '/about' }, { title: 'Сертификаты' }]}
+          items={[
+            { title: 'О предприятии', href: '/about' },
+            { title: 'Сертификаты', href: '/certificates' },
+          ]}
         />
         <h1 className="text-[1.875rem] font-medium leading-[110%]">Сертификаты</h1>
       </div>

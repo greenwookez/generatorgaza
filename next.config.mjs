@@ -11,10 +11,10 @@ const nextConfig = {
       },
     },
   },
-  async rewrites() {
+  async redirects() {
     return [
-      { source: '/privacy', destination: '/legal/privacy.pdf' },
-      { source: '/agreement', destination: '/legal/agreement.pdf' },
+      { source: '/privacy', destination: '/legal/privacy.pdf', permanent: true },
+      { source: '/agreement', destination: '/legal/agreement.pdf', permanent: true },
     ]
   },
   // Your Next.js config here

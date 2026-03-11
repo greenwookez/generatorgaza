@@ -1,4 +1,5 @@
 import React from 'react'
+import type { Metadata } from 'next'
 import { Manrope } from 'next/font/google'
 import { Header } from '@/app/(frontend)/_components/Header/Header'
 import { Footer } from './_components/Footer'
@@ -6,6 +7,8 @@ import { Feedback } from './_components/Feedback/Feedback'
 import { cn } from '@/lib/utils'
 import { Toaster } from '@/components/ui/sonner'
 import { CookiePopup } from './_components/CookiePopup'
+import { JsonLd } from './_components/Seo/JsonLd'
+import { getAbsoluteUrl, getSiteUrl } from '@/lib/seo'
 import './styles.css'
 import './_lexical/lexical.css'
 
@@ -19,12 +22,47 @@ import './_lexical/lexical.css'
 // [ ]: Создать карточки на Яндекс.Картах и обязательно добавить ссылки на сайт
 // [ ]: Адреса и контакты в Payload CMS
 
-export const metadata = {
-  title:
-    'Производство генераторов газа, воздухоразделительных установок, газа в баллонах по оптимальным ценам | АО «Опытно-технологический завод»',
+export const metadata: Metadata = {
+  metadataBase: getSiteUrl(),
+  title: {
+    default:
+      'Производство генераторов газа, воздухоразделительных установок, газа в баллонах по оптимальным ценам | АО «Опытно-технологический завод»',
+    template: '%s | АО «Опытно-технологический завод»',
+  },
   description:
     'АО «Опытно-технологический завод» осуществляет производство генераторов газа, воздухо-разделительных установок, газа в баллонах по оптимальным ценам. Ждем Ваших звонков по телефонам в Москве и Протвино.',
-  keywords: 'АО «Опытно-технологический завод»: общая информация',
+  keywords: [
+    'АО «Опытно-технологический завод»',
+    'производство генераторов газа',
+    'газ в баллонах',
+  ],
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: 'АО «Опытно-технологический завод»',
+    description:
+      'Производство генераторов газа, воздухо-разделительных установок и технических газов.',
+    url: getAbsoluteUrl('/'),
+    siteName: 'АО «Опытно-технологический завод»',
+    locale: 'ru_RU',
+    type: 'website',
+    images: [
+      {
+        url: getAbsoluteUrl('/web-app-manifest-512x512.png'),
+        width: 512,
+        height: 512,
+        alt: 'АО «Опытно-технологический завод»',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'АО «Опытно-технологический завод»',
+    description:
+      'Производство генераторов газа, воздухо-разделительных установок и технических газов.',
+    images: [getAbsoluteUrl('/web-app-manifest-512x512.png')],
+  },
   icons: {
     icon: [
       { url: '/favicon-96x96.png', type: 'image/png', sizes: '96x96' },
@@ -50,6 +88,30 @@ const font = Manrope({
   display: 'swap',
 })
 
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'АО «Опытно-технологический завод»',
+  url: getAbsoluteUrl('/'),
+  logo: getAbsoluteUrl('/web-app-manifest-512x512.png'),
+  contactPoint: [
+    {
+      '@type': 'ContactPoint',
+      contactType: 'customer support',
+      telephone: '+7-499-188-73-56',
+      areaServed: 'RU',
+      availableLanguage: 'ru',
+    },
+    {
+      '@type': 'ContactPoint',
+      contactType: 'customer support',
+      telephone: '+7-4967-74-59-55',
+      areaServed: 'RU',
+      availableLanguage: 'ru',
+    },
+  ],
+}
+
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
 
@@ -62,6 +124,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
       )}
     >
       <body>
+        <JsonLd data={organizationJsonLd} />
         <CookiePopup />
         <Header />
         <main className={ContainerClass}>

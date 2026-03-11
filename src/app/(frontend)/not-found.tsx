@@ -1,5 +1,13 @@
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import { buildPageMetadata } from '@/lib/seo'
+
+export const metadata = buildPageMetadata({
+  title: 'Страница не найдена',
+  description: 'Запрошенная страница не найдена.',
+  path: '/404',
+  noIndex: true,
+})
 
 export default function NotFoundSegment() {
   return (

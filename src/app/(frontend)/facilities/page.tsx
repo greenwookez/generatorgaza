@@ -11,13 +11,24 @@ import WorkshopArgonImage from '@/assets/images/workshop-argon.png'
 import WorkshopMetalworking1Image from '@/assets/images/workshop-metalworking1.png'
 import WorkshopMetalworking2Image from '@/assets/images/workshop-metalworking2.png'
 import WorkshopOxygenImage from '@/assets/images/workshop-oxygen.png'
+import { buildPageMetadata } from '@/lib/seo'
+
+export const metadata = buildPageMetadata({
+  title: 'Производство и цехи',
+  description:
+    'Цеха и производственные мощности АО «Опытно-технологический завод»: наполнительные отделения, контроль качества и металлообработка.',
+  path: '/facilities',
+})
 
 export default async function FacilitiesPage() {
   return (
     <div className={cn(ContentClass)}>
       <div className="flex flex-col gap-y-7">
         <BreadCrumbsTrail
-          items={[{ title: 'О предприятии', href: '/about' }, { title: 'Производство и цехи' }]}
+          items={[
+            { title: 'О предприятии', href: '/about' },
+            { title: 'Производство и цехи', href: '/facilities' },
+          ]}
         />
         <h1 className="text-[1.875rem] font-medium leading-[110%]">Производство и цехи</h1>
       </div>

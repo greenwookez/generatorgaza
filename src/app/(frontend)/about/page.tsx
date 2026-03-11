@@ -10,6 +10,14 @@ import { initPayload } from '@/lib/utils/initPayload'
 import { About, Media } from '@/payload-types'
 import { ImagesCarousel } from '@/components/elements/ImagesCarousel'
 import { AskQuestionButton } from '../catalog/[category_slug]/[item_slug]/_components/AskQuestionButton'
+import { buildPageMetadata } from '@/lib/seo'
+
+export const metadata = buildPageMetadata({
+  title: 'О предприятии',
+  description:
+    'Информация об АО «Опытно-технологический завод», направления работы, история и производственные возможности.',
+  path: '/about',
+})
 
 export default async function AboutPage() {
   const payload = await initPayload()
@@ -20,7 +28,7 @@ export default async function AboutPage() {
   return (
     <div className={cn(ContentClass)}>
       <div className="flex flex-col gap-y-7">
-        <BreadCrumbsTrail items={[{ title: 'О предприятии' }]} />
+        <BreadCrumbsTrail items={[{ title: 'О предприятии', href: '/about' }]} />
         <h1 className="text-[1.875rem] font-medium leading-[110%]">О предприятии</h1>
       </div>
       <div className="flex gap-x-30 items-start max-xl:gap-x-20">
