@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils'
 import { Toaster } from '@/components/ui/sonner'
 import { CookiePopup } from './_components/CookiePopup'
 import { JsonLd } from './_components/Seo/JsonLd'
+import { YandexMetrika } from './_components/YandexMetrika'
 import { getAbsoluteUrl, getSiteUrl } from '@/lib/seo'
 import './styles.css'
 import './_lexical/lexical.css'
@@ -124,6 +125,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
       )}
     >
       <body>
+        <YandexMetrika />
         <JsonLd data={organizationJsonLd} />
         <CookiePopup />
         <Header />
