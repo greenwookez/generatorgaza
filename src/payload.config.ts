@@ -19,6 +19,9 @@ import { Feedback } from './collections/Feedback'
 import { About } from './globals/About'
 import { Callbacks } from './collections/Callbacks'
 
+import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
+import nodemailer from 'nodemailer'
+
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 const isBuild = process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD
@@ -43,6 +46,18 @@ export default buildConfig({
       }),
       EXPERIMENTAL_TableFeature(),
     ],
+  }),
+  email: nodemailerAdapter({
+    defaultFromAddress: process.env.SMTP_USER || '',
+    defaultFromName: process.env.SMTP_FROM || '',
+    transport: await nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: Number(process.env.SMTP_PORT),
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASSWORD,
+      },
+    }),
   }),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
