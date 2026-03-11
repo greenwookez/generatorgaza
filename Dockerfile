@@ -26,6 +26,11 @@ COPY . .
 
 ARG DATABASE_PUBLIC_URI
 ARG PAYLOAD_SECRET
+ARG SMTP_HOST
+ARG SMTP_PORT
+ARG SMTP_USER
+ARG SMTP_PASSWORD
+ARG SMTP_FROM
 
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
