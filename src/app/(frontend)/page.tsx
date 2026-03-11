@@ -181,20 +181,20 @@ const HomePageAbout = async () => {
 }
 
 const HomePageExample = () => {
+  const demoVideoSrc =
+    process.env.NODE_ENV !== 'production' && process.env.S3_BUCKET
+      ? `https://s3.twcstorage.ru/${process.env.S3_BUCKET}/generatorgaza/demo.mp4`
+      : '/api/media/file/demo.mp4'
+
   return (
     <div className="flex flex-col gap-y-10 w-full items-center">
       <h4 className="text-[1.75rem] font-medium leading-[110%] max-sm:text-[1.5rem]">
         Пример работы адсорбционного генератора кислорода
       </h4>
-      <iframe
-        className="max-w-[1000px] aspect-video"
-        width="100%"
-        src="https://www.youtube-nocookie.com/embed/_47kx7JEfFY?si=aB7w9CFxO1RESkdL"
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerPolicy="strict-origin-when-cross-origin"
-        allowFullScreen
-      ></iframe>
+      <video className="max-w-[1000px] aspect-video w-full" controls preload="metadata">
+        <source src={demoVideoSrc} type="video/mp4" />
+        Ваш браузер не поддерживает воспроизведение видео.
+      </video>
     </div>
   )
 }
