@@ -13,6 +13,12 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.generatorgaza.ru' }],
+        destination: 'https://generatorgaza.ru/:path*',
+        permanent: true,
+      },
       { source: '/privacy', destination: '/legal/privacy.pdf', permanent: true },
       { source: '/agreement', destination: '/legal/agreement.pdf', permanent: true },
       { source: '/o-zavode.html', destination: '/about', permanent: true },
