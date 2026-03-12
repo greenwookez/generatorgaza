@@ -30,6 +30,7 @@ export default async function ContactUsPage() {
                   address: '129337, г. Москва, ул. Красная сосна, д. 24, cтр. 1',
                 },
               ]}
+              mapIframeSrc="https://yandex.ru/map-widget/v1/?um=constructor%3A62b45c54b82382521d290321e732738a9544a774d37217e21d802c93e5fa7f48&amp;source=constructor"
             />
             <Separator />
             <ContactUsBlockWithMap
@@ -46,6 +47,7 @@ export default async function ContactUsPage() {
                     '142280, Московская обл., г. Протвино, ул. Индустриальный проезд, д. 4 (проходная №2)',
                 },
               ]}
+              mapIframeSrc="https://yandex.ru/map-widget/v1/?um=constructor%3A7fee0fd8215b1756edcc141245a766a52e0f6a01090bfe6d5b3c1a5e5a342385&amp;source=constructor"
             />
             <Separator />
           </div>
@@ -154,9 +156,15 @@ type ContactUsBlockWithMapProps = {
   title: string
   addresses: ContactUsBlockWithMapAddress[]
   telephone: string
+  mapIframeSrc: string
 }
 
-const ContactUsBlockWithMap = ({ title, addresses, telephone }: ContactUsBlockWithMapProps) => {
+const ContactUsBlockWithMap = ({
+  title,
+  addresses,
+  telephone,
+  mapIframeSrc,
+}: ContactUsBlockWithMapProps) => {
   return (
     <div className="flex gap-20 max-xl:gap-10 max-lg:flex-col">
       <div className="w-[520px] max-xl:w-[400px] max-lg:w-full shrink-0 flex flex-col gap-y-4">
@@ -186,10 +194,7 @@ const ContactUsBlockWithMap = ({ title, addresses, telephone }: ContactUsBlockWi
           span={{ className: 'text-[1rem] leading-[140%] text-foreground' }}
         />
       </div>
-      <iframe
-        src="https://yandex.ru/map-widget/v1/?um=constructor%3A7fee0fd8215b1756edcc141245a766a52e0f6a01090bfe6d5b3c1a5e5a342385&amp;source=constructor"
-        className="h-87.5 w-full rounded-[8px]"
-      ></iframe>
+      <iframe src={mapIframeSrc} className="h-87.5 w-full rounded-[8px]"></iframe>
     </div>
   )
 }
