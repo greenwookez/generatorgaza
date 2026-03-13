@@ -3,6 +3,7 @@ import { isAdmin } from './Users'
 import { SendNotificationInTelegram } from '@/runtime/telegram/SendNotificationInTelegram'
 import { FormatFeedbackNotificationMessage } from '@/runtime/feedback/FormatFeedbackNotificationMessage'
 import { Feedback as TFeeback } from '@/payload-types'
+import { SendSimpleEmail } from '@/runtime/email/SendSimpleEmail'
 
 export const Feedback: CollectionConfig = {
   slug: 'feedback',
@@ -25,10 +26,23 @@ export const Feedback: CollectionConfig = {
   },
   hooks: {
     afterChange: [
-      async ({ operation, doc }) => {
+      async ({ operation, doc, req }) => {
         if (operation === 'create') {
           const text = FormatFeedbackNotificationMessage(doc as TFeeback)
-          SendNotificationInTelegram(text)
+
+          const notifications = [SendNotificationInTelegram(text)]
+          if (process.env.EMAIL_NOTIFICATION_TO) {
+            notifications.push(
+              SendSimpleEmail({
+                payload: req.payload,
+                to: process.env.EMAIL_NOTIFICATION_TO,
+                subject: 'Новая обратная связь с сайта',
+                text,
+              }),
+            )
+          }
+
+          await Promise.allSettled(notifications)
         }
       },
     ],

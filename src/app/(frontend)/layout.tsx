@@ -13,8 +13,6 @@ import { getAbsoluteUrl, getSiteUrl } from '@/lib/seo'
 import './styles.css'
 import './_lexical/lexical.css'
 
-// Перед релизом:
-// [ ]: Подключить корпоративную почту
 // На потом:
 // [ ]: Поиск по сайту
 // [ ]: Создать карточки на Яндекс.Картах и обязательно добавить ссылки на сайт

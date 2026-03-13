@@ -3,6 +3,7 @@ import { isAdmin } from './Users'
 import { SendNotificationInTelegram } from '@/runtime/telegram/SendNotificationInTelegram'
 import { Callback as TCallback } from '@/payload-types'
 import { FormatCallbackNotificationMessage } from '@/runtime/callbacks/FormatFeedbackNotificationMessage'
+import { SendSimpleEmail } from '@/runtime/email/SendSimpleEmail'
 
 export const Callbacks: CollectionConfig = {
   slug: 'callbacks',
@@ -25,10 +26,23 @@ export const Callbacks: CollectionConfig = {
   },
   hooks: {
     afterChange: [
-      async ({ operation, doc }) => {
+      async ({ operation, doc, req }) => {
         if (operation === 'create') {
           const text = FormatCallbackNotificationMessage(doc as TCallback)
-          SendNotificationInTelegram(text)
+
+          const notifications = [SendNotificationInTelegram(text)]
+          if (process.env.EMAIL_NOTIFICATION_TO) {
+            notifications.push(
+              SendSimpleEmail({
+                payload: req.payload,
+                to: process.env.EMAIL_NOTIFICATION_TO,
+                subject: 'Новый запрос на обратный звонок с сайта',
+                text,
+              }),
+            )
+          }
+
+          await Promise.allSettled(notifications)
         }
       },
     ],
