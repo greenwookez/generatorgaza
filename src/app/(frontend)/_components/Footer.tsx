@@ -80,8 +80,8 @@ export const Footer = async ({ className }: FooterProps) => {
             </div>
             <TextWithLabel
               label="Email"
-              text="otz-gaz@yandex.ru"
-              a={{ href: 'mailto:otz-gaz@yandex.ru' }}
+              text="contact@generatorgaza.ru"
+              a={{ href: 'mailto:contact@generatorgaza.ru' }}
             />
           </div>
           <div className="pt-2 flex gap-10 max-w-[720px] flex-wrap">

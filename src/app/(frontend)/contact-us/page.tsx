@@ -119,23 +119,28 @@ export default async function ContactUsPage() {
             <div className="flex flex-col gap-y-4">
               <TextWithLabel
                 label="Секретарь"
-                text="otz-gaz@yandex.ru"
-                a={{ href: 'mailto:otz-gaz@yandex.ru' }}
+                text="contact@generatorgaza.ru"
+                a={{ href: 'mailto:contact@generatorgaza.ru' }}
               />
               <TextWithLabel
                 label="Азотные и кислородные установки"
-                text="6818834@mail.ru"
-                a={{ href: 'mailto:6818834@mail.ru' }}
+                text="info@generatorgaza.ru"
+                a={{ href: 'mailto:info@generatorgaza.ru' }}
               />
               <TextWithLabel
                 label="Технические газы"
-                text="oooetin@yandex.ru"
-                a={{ href: 'mailto:oooetin@yandex.ru' }}
+                text="info@generatorgaza.ru"
+                a={{ href: 'mailto:info@generatorgaza.ru' }}
               />
               <TextWithLabel
                 label="Бухгалтерия"
-                text="otz-buh@yandex.ru"
-                a={{ href: 'mailto:otz-buh@yandex.ru' }}
+                text="accounting@generatorgaza.ru"
+                a={{ href: 'mailto:accounting@generatorgaza.ru' }}
+              />
+              <TextWithLabel
+                label="По вопросам обработки персональных данных"
+                text="privacy@generatorgaza.ru"
+                a={{ href: 'mailto:privacy@generatorgaza.ru' }}
               />
             </div>
           </div>
