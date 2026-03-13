@@ -33,7 +33,7 @@ export const CookiePopup = () => {
         </Link>
         .
       </span>
-      <Button onClick={onAcceptClick}>Принять</Button>
+      <Button onClick={onAcceptClick}>Понятно</Button>
     </div>
   )
 }
