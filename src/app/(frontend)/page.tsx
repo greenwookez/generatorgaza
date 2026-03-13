@@ -13,6 +13,8 @@ import { Media } from '@/payload-types'
 import { ImagesCarousel } from '@/components/elements/ImagesCarousel'
 import { RequestCallbackButton } from './_components/Callback/RequestCallbackButton'
 import { buildPageMetadata } from '@/lib/seo'
+import landingVideoPreview from '@/assets/images/landing-video-preview.png'
+import { VideoWithPreview } from './_components/VideoWithPreview'
 
 const h3ClassName = 'text-[2rem] font-medium leading-[110%] max-md:text-[1.5rem]'
 
@@ -199,10 +201,11 @@ const HomePageExample = () => {
       <h4 className="text-[1.75rem] font-medium leading-[110%] max-sm:text-[1.5rem]">
         Пример работы адсорбционного генератора кислорода
       </h4>
-      <video className="max-w-[1000px] aspect-video w-full" controls preload="metadata">
-        <source src={demoVideoSrc} type="video/mp4" />
-        Ваш браузер не поддерживает воспроизведение видео.
-      </video>
+      <VideoWithPreview
+        title="Пример работы адсорбционного генератора кислорода"
+        videoSrc={demoVideoSrc}
+        previewImageSrc={landingVideoPreview}
+      />
     </div>
   )
 }
