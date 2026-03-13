@@ -31,6 +31,7 @@ ARG SMTP_PORT
 ARG SMTP_USER
 ARG SMTP_PASSWORD
 ARG SMTP_FROM
+ARG SITE_URL
 
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
